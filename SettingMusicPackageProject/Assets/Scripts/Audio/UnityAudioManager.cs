@@ -20,6 +20,14 @@ namespace Audio
             _inInspectorMusics.ForEach(AddMusic);
             _inInspectorSounds.ForEach(AddSound);
         }
+        
+        private void OnValidate()
+        {
+            IsMuteSound = _isMuteSound;
+            IsMuteMusic = _isMuteMusic;
+            SoundVolume = _soundVolume;
+            MusicVolume = _musicVolume;
+        }
 
         public bool IsMuteSound
         {
@@ -99,14 +107,6 @@ namespace Audio
         public void RemoveMusic(IAudioPlayer musicPlayer)
         {
             _musicPlayers.Remove(musicPlayer);
-        }
-
-        private void OnValidate()
-        {
-            IsMuteSound = _isMuteSound;
-            IsMuteMusic = _isMuteMusic;
-            SoundVolume = _soundVolume;
-            MusicVolume = _musicVolume;
         }
     }
 }

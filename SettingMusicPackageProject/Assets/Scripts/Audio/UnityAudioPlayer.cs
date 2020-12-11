@@ -5,6 +5,8 @@ namespace Audio
     [RequireComponent(typeof(AudioSource))]
     public class UnityAudioPlayer : MonoBehaviour, IAudioPlayer
     {
+        public event PlayHandler PlayHandler;
+        
         private AudioSource _audioSource;
 
         private void Awake()
@@ -44,6 +46,7 @@ namespace Audio
 
         public void Play()
         {
+            OnPlayHandler(this);
             _audioSource.Play();
         }
 
@@ -55,6 +58,11 @@ namespace Audio
         public void Pause()
         {
             _audioSource.Pause();
+        }
+
+        private void OnPlayHandler(IAudioPlayer audioPlayer)
+        {
+            PlayHandler?.Invoke(audioPlayer);
         }
     }
 }

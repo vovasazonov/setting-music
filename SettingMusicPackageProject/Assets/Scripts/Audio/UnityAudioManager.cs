@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace Audio
 {
     public class UnityAudioManager : MonoBehaviour, IAudioManager
     {
+        [SerializeField] private protected List<UnityAudioPlayer> _inInspectorMusics;
+        [SerializeField] private protected List<UnityAudioPlayer> _inInspectorSounds;
         [SerializeField] private protected bool _isMuteSound;
         [SerializeField] private protected bool _isMuteMusic;
         [SerializeField, Range(0, 1)] private protected float _soundVolume;
@@ -12,6 +15,12 @@ namespace Audio
 
         private readonly HashSet<IAudioPlayer> _soundPlayers = new HashSet<IAudioPlayer>();
         private readonly HashSet<IAudioPlayer> _musicPlayers = new HashSet<IAudioPlayer>();
+
+        private void Awake()
+        {
+            _inInspectorMusics.ForEach(a=>_musicPlayers.Add(a));
+            _inInspectorSounds.ForEach(a=>_soundPlayers.Add(a));
+        }
 
         public bool IsMuteSound
         {

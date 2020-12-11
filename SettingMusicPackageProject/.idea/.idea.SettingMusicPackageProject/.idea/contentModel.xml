@@ -8,9 +8,9 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Audio" t="Include">
-            <e p="AudioManager.cs" t="Include" />
             <e p="IAudioManager.cs" t="Include" />
             <e p="IAudioPlayer.cs" t="Include" />
+            <e p="UnityAudioManager.cs" t="Include" />
             <e p="UnityAudioPlayer.cs" t="Include" />
           </e>
         </e>

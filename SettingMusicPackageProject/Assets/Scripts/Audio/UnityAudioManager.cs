@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Audio
 {
-    public class AudioManager : MonoBehaviour, IAudioManager
+    public class UnityAudioManager : MonoBehaviour, IAudioManager
     {
         [SerializeField] private protected bool _isMuteSound;
         [SerializeField] private protected bool _isMuteMusic;
@@ -71,6 +71,8 @@ namespace Audio
         
         public void AddSound(IAudioPlayer soundPlayer)
         {
+            soundPlayer.IsMute = _isMuteSound;
+            soundPlayer.Volume = _soundVolume;
             _soundPlayers.Add(soundPlayer);
         }
 
@@ -81,6 +83,8 @@ namespace Audio
 
         public void AddMusic(IAudioPlayer musicPlayer)
         {
+            musicPlayer.IsMute = _isMuteMusic;
+            musicPlayer.Volume = _musicVolume;
             _musicPlayers.Add(musicPlayer);
         }
 

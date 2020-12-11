@@ -6,6 +6,7 @@
         bool IsLoop { get; set; }
         bool IsMute { get; set; }
         float Volume { get; set; }
+        float Pitch { get; set; }
         void Play();
         void Stop();
         void Pause();

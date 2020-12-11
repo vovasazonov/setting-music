@@ -36,6 +36,12 @@ namespace Audio
             set => _audioSource.volume = value;
         }
 
+        public float Pitch
+        {
+            get => _audioSource.pitch;
+            set => _audioSource.pitch = value;
+        }
+
         public void Play()
         {
             _audioSource.Play();

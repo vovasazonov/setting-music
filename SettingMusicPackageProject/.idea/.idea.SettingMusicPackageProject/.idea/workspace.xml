@@ -41,9 +41,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IMusicPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/UnityAudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/UnityAudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/UnityAudioManager.cs" />
       </list>
     </option>
   </component>
@@ -90,7 +90,7 @@
       <workItem from="1607495883050" duration="5744000" />
       <workItem from="1607580782721" duration="285000" />
       <workItem from="1607582260033" duration="11286000" />
-      <workItem from="1607668976628" duration="3484000" />
+      <workItem from="1607668976628" duration="4165000" />
     </task>
     <servers />
   </component>

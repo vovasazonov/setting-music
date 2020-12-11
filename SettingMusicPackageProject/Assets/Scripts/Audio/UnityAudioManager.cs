@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,8 +17,8 @@ namespace Audio
 
         private void Awake()
         {
-            _inInspectorMusics.ForEach(a=>_musicPlayers.Add(a));
-            _inInspectorSounds.ForEach(a=>_soundPlayers.Add(a));
+            _inInspectorMusics.ForEach(AddMusic);
+            _inInspectorSounds.ForEach(AddSound);
         }
 
         public bool IsMuteSound

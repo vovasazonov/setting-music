@@ -1,15 +1,13 @@
-﻿namespace Audio
+﻿using System.Collections.Generic;
+
+namespace Audio
 {
     public interface IAudioManager
     {
+        IReadOnlyDictionary<string, IAudioCollection> AudioCollections { get; }
         bool IsMuteSound { get; set; }
         bool IsMuteMusic { get; set; }
         float SoundVolume { get; set; }
         float MusicVolume { get; set; }
-
-        void AddSound(IAudioPlayer soundPlayer);
-        void RemoveSound(IAudioPlayer soundPlayer);
-        void AddMusic(IAudioPlayer musicPlayer);
-        void RemoveMusic(IAudioPlayer musicPlayer);
     }
 }

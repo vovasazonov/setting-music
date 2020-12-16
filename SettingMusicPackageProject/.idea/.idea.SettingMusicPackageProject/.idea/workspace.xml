@@ -54,16 +54,16 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPooler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayerHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioAttachable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioAttachableAttribute.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioCollectionControllable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPool.cs" />
       </list>
     </option>
   </component>
@@ -113,7 +113,7 @@
       <workItem from="1607668976628" duration="8262000" />
       <workItem from="1607931095371" duration="2377000" />
       <workItem from="1608015343372" duration="20749000" />
-      <workItem from="1608082365484" duration="28542000" />
+      <workItem from="1608082365484" duration="29323000" />
     </task>
     <servers />
   </component>

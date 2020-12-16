@@ -62,6 +62,7 @@ namespace Audio
         private void SetToFactorySettings(AudioPlayer audioPlayer)
         {
             audioPlayer.enabled = false;
+            audioPlayer.transform.SetParent(transform);
         }
         
         private void SetToReleaseSettings(AudioPlayer audioPlayer)

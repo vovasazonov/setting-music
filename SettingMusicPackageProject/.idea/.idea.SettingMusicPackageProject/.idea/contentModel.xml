@@ -8,14 +8,18 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Audio" t="Include">
+            <e p="AudioCollection.cs" t="Include" />
+            <e p="AudioManager.cs" t="Include" />
+            <e p="AudioPlayer.cs" t="Include" />
+            <e p="AudioPool.cs" t="Include" />
             <e p="AudioPriorityType.cs" t="Include" />
-            <e p="IAudio3DSetting.cs" t="Include" />
-            <e p="IAudioAttachable.cs" t="Include" />
             <e p="IAudioCollection.cs" t="Include" />
+            <e p="IAudioCollectionControllable.cs" t="Include" />
             <e p="IAudioManager.cs" t="Include" />
             <e p="IAudioPlayer.cs" t="Include" />
-            <e p="IAudioPlayerHelper.cs" t="Include" />
+            <e p="IAudioPool.cs" t="Include" />
             <e p="IPosition.cs" t="Include" />
+            <e p="Position.cs" t="Include" />
             <e p="RolloffMode.cs" t="Include" />
           </e>
         </e>

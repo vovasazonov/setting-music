@@ -2,14 +2,14 @@
 {
     public interface IAudioCollection
     {
-        string Name { get; }
-        float VolumeAll { get; set; }
-        bool IsMuteAll { get; set; }
-        
-        IAudioPlayer GetAudio(string nameSound);
+        string Id { get; }
+
+        IAudioPlayer GetAudio(string idAudio);
         void SetLimitPlaySameAudioTogether(string nameAudio, int maxAmountAudio = 2);
-        void SetBeginningAll();
         void PlayAll();
         void PauseAll();
+        void StopAll();
+        void MuteAll(bool isMute);
+        void SetVolumeAll(float volume);
     }
 }

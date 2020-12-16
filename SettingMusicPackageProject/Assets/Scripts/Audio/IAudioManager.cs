@@ -4,10 +4,11 @@ namespace Audio
 {
     public interface IAudioManager
     {
-        IReadOnlyDictionary<string, IAudioCollection> AudioCollections { get; }
-        bool IsMuteSound { get; set; }
+        IReadOnlyDictionary<string, IAudioCollection> MusicCollections { get; }
+        IReadOnlyDictionary<string, IAudioCollection> SoundCollections { get; }
         bool IsMuteMusic { get; set; }
-        float SoundVolume { get; set; }
+        bool IsMuteSound { get; set; }
         float MusicVolume { get; set; }
+        float SoundVolume { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace Audio
         bool IsMuteSound { get; set; }
         float MusicVolume { get; set; }
         float SoundVolume { get; set; }
+        int LimitPlayAudioTogether { get; set; }
     }
 }

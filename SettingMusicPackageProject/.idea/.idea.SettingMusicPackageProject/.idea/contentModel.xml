@@ -14,10 +14,10 @@
             <e p="AudioPool.cs" t="Include" />
             <e p="AudioPriorityType.cs" t="Include" />
             <e p="IAudioCollection.cs" t="Include" />
-            <e p="IAudioCollectionControllable.cs" t="Include" />
             <e p="IAudioManager.cs" t="Include" />
             <e p="IAudioPlayer.cs" t="Include" />
             <e p="IAudioPool.cs" t="Include" />
+            <e p="IIdentifiable.cs" t="Include" />
             <e p="IPosition.cs" t="Include" />
             <e p="Position.cs" t="Include" />
             <e p="RolloffMode.cs" t="Include" />

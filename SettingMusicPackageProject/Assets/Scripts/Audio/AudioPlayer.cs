@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Audio
 {
     [RequireComponent(typeof(AudioSource))]
-    public class AudioPlayer : MonoBehaviour, IAudioPlayer, IAudioCollectionControllable
+    public class AudioPlayer : MonoBehaviour, IAudioPlayer
     {
         public event StartPlayAudioHandler StartPlay;
         public event FinishPlayAudioHandler FinishPlay;
@@ -17,7 +17,6 @@ namespace Audio
         [SerializeField] private protected AudioPriorityType _audioPriorityType;
 
         private AudioSource _audioSource;
-        private bool _isAllowPlay;
         private bool _isPause;
         private bool _isOnPlayProcess;
 
@@ -62,7 +61,24 @@ namespace Audio
         public AudioPriorityType PriorityType
         {
             get => _audioPriorityType;
-            set => _audioPriorityType = value;
+            set
+            {
+                _audioPriorityType = value;
+                switch (_audioPriorityType)
+                {
+                    case AudioPriorityType.High:
+                        _audioSource.priority = 0;
+                        break;
+                    case AudioPriorityType.Medium:
+                        _audioSource.priority = 128;
+                        break;
+                    case AudioPriorityType.Low:
+                        _audioSource.priority = 256;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
         }
 
         public float SpatialBlend
@@ -108,10 +124,11 @@ namespace Audio
 
         public void Play()
         {
-            CallStartPlay(this);
+            bool isAllowPlay = true;
+            CallStartPlay(this, ref isAllowPlay);
 
             _isPause = false;
-            if (!_isAllowPlay)
+            if (isAllowPlay)
             {
                 if (!_isOnPlayProcess)
                 {
@@ -134,7 +151,7 @@ namespace Audio
         {
             _isOnPlayProcess = false;
             _audioSource.Stop();
-            CallStopPlay(this);
+            CallFinishPlay(this);
         }
 
         private IEnumerator FollowAudioPlay()
@@ -212,12 +229,12 @@ namespace Audio
             CallAudioDispose(this);
         }
 
-        private void CallStartPlay(IAudioPlayer audioPlayer)
+        private void CallStartPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
         {
-            StartPlay?.Invoke(audioPlayer);
+            StartPlay?.Invoke(audioPlayer, ref isAllowPlay);
         }
 
-        private void CallStopPlay(IAudioPlayer audioPlayer)
+        private void CallFinishPlay(IAudioPlayer audioPlayer)
         {
             FinishPlay?.Invoke(audioPlayer);
         }
@@ -225,11 +242,6 @@ namespace Audio
         private void CallAudioDispose(IAudioPlayer audioPlayer)
         {
             AudioDispose?.Invoke(audioPlayer);
-        }
-
-        public void AllowPlay(bool isAllow)
-        {
-            _isAllowPlay = isAllow;
         }
     }
 }

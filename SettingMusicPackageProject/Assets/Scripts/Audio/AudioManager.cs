@@ -8,6 +8,7 @@ namespace Audio
     {
         [SerializeField] private protected List<AudioCollection> _musicCollectionList;
         [SerializeField] private protected List<AudioCollection> _soundCollectionList;
+        [SerializeField] private protected int _limitPlayAudioTogether;
 
         private IReadOnlyDictionary<string, IAudioCollection> _musicCollectionDic;
         private IReadOnlyDictionary<string, IAudioCollection> _soundCollectionDic;
@@ -15,6 +16,7 @@ namespace Audio
         private bool _isMuteSound;
         private float _musicVolume;
         private float _soundVolume;
+        private readonly HashSet<IAudioPlayer> _audioPlayerPlayingHash = new HashSet<IAudioPlayer>();
 
         public IReadOnlyDictionary<string, IAudioCollection> MusicCollections => _musicCollectionDic;
         public IReadOnlyDictionary<string, IAudioCollection> SoundCollections => _soundCollectionDic;
@@ -59,10 +61,94 @@ namespace Audio
             }
         }
 
+        public int LimitPlayAudioTogether
+        {
+            get => _limitPlayAudioTogether;
+            set => _limitPlayAudioTogether = value;
+        }
+
         private void Awake()
         {
             _musicCollectionDic = _musicCollectionList.ToDictionary(k => k.Id, v => (IAudioCollection) v);
             _soundCollectionDic = _soundCollectionList.ToDictionary(k => k.Id, v => (IAudioCollection) v);
+
+            _musicCollectionList.ForEach(AddAudioCollectionListener);
+            _soundCollectionList.ForEach(AddAudioCollectionListener);
+        }
+
+        private void AddAudioCollectionListener(IAudioCollection audioCollection)
+        {
+            audioCollection.StartPlay += OnAudioPlayerInCollectionStartPlay;
+        }
+
+        private void RemoveAudioCollectionListener(IAudioCollection audioCollection)
+        {
+            audioCollection.StartPlay -= OnAudioPlayerInCollectionStartPlay;
+        }
+
+        private void AddAudioPlayerListener(IAudioPlayer audioPlayer)
+        {
+            audioPlayer.FinishPlay += OnAudioPlayerFinishPlay;
+        }
+
+        private void RemoveAudioPlayerListener(IAudioPlayer audioPlayer)
+        {
+            audioPlayer.FinishPlay -= OnAudioPlayerFinishPlay;
+        }
+
+        private void OnAudioPlayerFinishPlay(IAudioPlayer audioPlayer)
+        {
+            RemoveAudioPlayerListener(audioPlayer);
+            _audioPlayerPlayingHash.Remove(audioPlayer);
+        }
+
+        private void OnAudioPlayerInCollectionStartPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        {
+            isAllowPlay = false;
+
+            var amountPriorityHigh = _audioPlayerPlayingHash.Count(a => a.PriorityType == AudioPriorityType.High);
+            var amountPriorityMedium = _audioPlayerPlayingHash.Count(a => a.PriorityType == AudioPriorityType.Medium);
+            var amountPriorityLow = _audioPlayerPlayingHash.Count(a => a.PriorityType == AudioPriorityType.Low);
+            var amountWhole = amountPriorityHigh + amountPriorityMedium + amountPriorityLow;
+
+            if (amountWhole < LimitPlayAudioTogether)
+            {
+                AllowAudioPlay(audioPlayer, out isAllowPlay);
+            }
+            else if (AudioPriorityType.High == audioPlayer.PriorityType)
+            {
+                if (amountPriorityLow > 0)
+                {
+                    StopOneAudioPlayer(AudioPriorityType.Low);
+                    AllowAudioPlay(audioPlayer, out isAllowPlay);
+                }
+                else if (amountPriorityMedium > 0)
+                {
+                    StopOneAudioPlayer(AudioPriorityType.Medium);
+                    AllowAudioPlay(audioPlayer, out isAllowPlay);
+                }
+            }
+            else if (AudioPriorityType.Medium == audioPlayer.PriorityType)
+            {
+                if (amountPriorityLow > 0)
+                {
+                    StopOneAudioPlayer(AudioPriorityType.Low);
+                    AllowAudioPlay(audioPlayer, out isAllowPlay);
+                }
+            }
+        }
+
+        private void AllowAudioPlay(IAudioPlayer audioPlayer, out bool isAllowPlay)
+        {
+            isAllowPlay = true;
+            AddAudioPlayerListener(audioPlayer);
+            _audioPlayerPlayingHash.Add(audioPlayer);
+        }
+
+        private void StopOneAudioPlayer(AudioPriorityType audioPriorityType)
+        {
+            var audioPlayerLow = _audioPlayerPlayingHash.First(a => a.PriorityType == audioPriorityType);
+            audioPlayerLow.Stop();
         }
 
         private void MuteAudioCollections(IEnumerable<IAudioCollection> audioCollections, bool isMute)

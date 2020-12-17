@@ -2,17 +2,18 @@
 
 namespace Audio
 {
-    public delegate void StartPlayAudioHandler(IAudioPlayer audioPlayer);
+    public delegate void StartPlayAudioHandler(IAudioPlayer audioPlayer, ref bool isAllowPlay);
+
     public delegate void FinishPlayAudioHandler(IAudioPlayer audioPlayer);
-    public delegate void DisposeAudioHandler (IAudioPlayer audioPlayer);
-        
-    public interface IAudioPlayer : IDisposable
+
+    public delegate void DisposeAudioHandler(IAudioPlayer audioPlayer);
+
+    public interface IAudioPlayer : IDisposable, IIdentifiable<string>
     {
         event StartPlayAudioHandler StartPlay;
         event FinishPlayAudioHandler FinishPlay;
         event DisposeAudioHandler AudioDispose;
-        
-        string Id { get; }
+
         bool IsLoop { get; set; }
         bool IsMute { get; set; }
         float FadeInSeconds { get; set; }

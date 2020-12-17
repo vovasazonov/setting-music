@@ -8,6 +8,9 @@ namespace Audio
     [RequireComponent(typeof(AudioPool))]
     public class AudioCollection : MonoBehaviour, IAudioCollection
     {
+        public event StartPlayAudioHandler StartPlay;
+        public event FinishPlayAudioHandler FinishPlay;
+
         [SerializeField] private protected string _name;
         [SerializeField] private protected List<AudioPlayerSetting> _audioPlayerList;
 
@@ -110,9 +113,10 @@ namespace Audio
         private void OnFinishPlay(IAudioPlayer audioPlayer)
         {
             _amountAudioPlayerPlayingDic[audioPlayer.Id] -= 1;
+            CallFinishPlay(audioPlayer);
         }
 
-        private void OnStartPlay(IAudioPlayer audioPlayer)
+        private void OnStartPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
         {
             var maxAmountAudioInSameTime = _limitPlaySameAudioTogetherDic[audioPlayer.Id];
             var currentAmountAudioPlaying = _amountAudioPlayerPlayingDic[audioPlayer.Id];
@@ -120,11 +124,12 @@ namespace Audio
             if (maxAmountAudioInSameTime > currentAmountAudioPlaying)
             {
                 _amountAudioPlayerPlayingDic[audioPlayer.Id] += 1;
-                (audioPlayer as IAudioCollectionControllable).AllowPlay(true);
+                isAllowPlay = true;
+                CallStartPlay(audioPlayer, ref isAllowPlay);
             }
             else
             {
-                (audioPlayer as IAudioCollectionControllable).AllowPlay(false);
+                isAllowPlay = false;
             }
         }
 
@@ -140,6 +145,16 @@ namespace Audio
         {
             public AudioPlayer AudioPlayer;
             public int AmountMaxPlayTogether;
+        }
+
+        private void CallFinishPlay(IAudioPlayer audioPlayer)
+        {
+            FinishPlay?.Invoke(audioPlayer);
+        }
+
+        private void CallStartPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        {
+            StartPlay?.Invoke(audioPlayer, ref isAllowPlay);
         }
     }
 }

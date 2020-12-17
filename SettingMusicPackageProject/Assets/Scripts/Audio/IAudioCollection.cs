@@ -1,9 +1,9 @@
 ﻿namespace Audio
 {
-    public interface IAudioCollection
+    public interface IAudioCollection : IIdentifiable<string>
     {
-        string Id { get; }
-
+        event StartPlayAudioHandler StartPlay;
+        event FinishPlayAudioHandler FinishPlay;
         IAudioPlayer GetAudio(string idAudio);
         void SetLimitPlaySameAudioTogether(string nameAudio, int maxAmountAudio = 2);
         void PlayAll();

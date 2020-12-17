@@ -79,30 +79,28 @@ namespace Audio
         private void AddAudioCollectionListener(IAudioCollection audioCollection)
         {
             audioCollection.StartPlay += OnAudioPlayerInCollectionStartPlay;
+            audioCollection.FinishPlay += OnAudioPlayerInCollectionFinishPlay;
+            audioCollection.CheckAllowPlay += OnAudioPlayerInCollectionCheckAllowPlay;
         }
 
         private void RemoveAudioCollectionListener(IAudioCollection audioCollection)
         {
             audioCollection.StartPlay -= OnAudioPlayerInCollectionStartPlay;
+            audioCollection.FinishPlay -= OnAudioPlayerInCollectionFinishPlay;
+            audioCollection.CheckAllowPlay -= OnAudioPlayerInCollectionCheckAllowPlay;
         }
-
-        private void AddAudioPlayerListener(IAudioPlayer audioPlayer)
+        
+        private void OnAudioPlayerInCollectionStartPlay(IAudioPlayer audioPlayer)
         {
-            audioPlayer.FinishPlay += OnAudioPlayerFinishPlay;
+            _audioPlayerPlayingHash.Add(audioPlayer);
         }
-
-        private void RemoveAudioPlayerListener(IAudioPlayer audioPlayer)
+        
+        private void OnAudioPlayerInCollectionFinishPlay(IAudioPlayer audioPlayer)
         {
-            audioPlayer.FinishPlay -= OnAudioPlayerFinishPlay;
-        }
-
-        private void OnAudioPlayerFinishPlay(IAudioPlayer audioPlayer)
-        {
-            RemoveAudioPlayerListener(audioPlayer);
             _audioPlayerPlayingHash.Remove(audioPlayer);
         }
 
-        private void OnAudioPlayerInCollectionStartPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        private void OnAudioPlayerInCollectionCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
         {
             isAllowPlay = false;
 
@@ -113,36 +111,29 @@ namespace Audio
 
             if (amountWhole < LimitPlayAudioTogether)
             {
-                AllowAudioPlay(audioPlayer, out isAllowPlay);
+                isAllowPlay = true;
             }
             else if (AudioPriorityType.High == audioPlayer.PriorityType)
             {
                 if (amountPriorityLow > 0)
                 {
+                    isAllowPlay = true;
                     StopOneAudioPlayer(AudioPriorityType.Low);
-                    AllowAudioPlay(audioPlayer, out isAllowPlay);
                 }
                 else if (amountPriorityMedium > 0)
                 {
+                    isAllowPlay = true;
                     StopOneAudioPlayer(AudioPriorityType.Medium);
-                    AllowAudioPlay(audioPlayer, out isAllowPlay);
                 }
             }
             else if (AudioPriorityType.Medium == audioPlayer.PriorityType)
             {
                 if (amountPriorityLow > 0)
                 {
+                    isAllowPlay = true;
                     StopOneAudioPlayer(AudioPriorityType.Low);
-                    AllowAudioPlay(audioPlayer, out isAllowPlay);
                 }
             }
-        }
-
-        private void AllowAudioPlay(IAudioPlayer audioPlayer, out bool isAllowPlay)
-        {
-            isAllowPlay = true;
-            AddAudioPlayerListener(audioPlayer);
-            _audioPlayerPlayingHash.Add(audioPlayer);
         }
 
         private void StopOneAudioPlayer(AudioPriorityType audioPriorityType)

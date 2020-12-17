@@ -7,10 +7,11 @@ namespace Audio
     [RequireComponent(typeof(AudioSource))]
     public class AudioPlayer : MonoBehaviour, IAudioPlayer
     {
+        public event CheckAllowPlayHandler CheckAllowPlay;
         public event StartPlayAudioHandler StartPlay;
         public event FinishPlayAudioHandler FinishPlay;
         public event DisposeAudioHandler AudioDispose;
-
+        
         [SerializeField] private protected string _id;
         [SerializeField] private protected float _fadeInSeconds;
         [SerializeField] private protected float _fadeOutSeconds;
@@ -125,9 +126,10 @@ namespace Audio
         public void Play()
         {
             bool isAllowPlay = true;
-            CallStartPlay(this, ref isAllowPlay);
-
+            CallCheckAllowPlay(this, ref isAllowPlay);
+            
             _isPause = false;
+            
             if (isAllowPlay)
             {
                 if (!_isOnPlayProcess)
@@ -136,8 +138,13 @@ namespace Audio
                     StartCoroutine(Fade(0, Volume, _fadeInSeconds));
                     StartCoroutine(FollowAudioPlay());
                 }
-
+                
+                CallStartPlay(this);
                 _audioSource.Play();
+            }
+            else
+            {
+                Stop();
             }
         }
 
@@ -229,9 +236,9 @@ namespace Audio
             CallAudioDispose(this);
         }
 
-        private void CallStartPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        private void CallStartPlay(IAudioPlayer audioPlayer)
         {
-            StartPlay?.Invoke(audioPlayer, ref isAllowPlay);
+            StartPlay?.Invoke(audioPlayer);
         }
 
         private void CallFinishPlay(IAudioPlayer audioPlayer)
@@ -242,6 +249,11 @@ namespace Audio
         private void CallAudioDispose(IAudioPlayer audioPlayer)
         {
             AudioDispose?.Invoke(audioPlayer);
+        }
+
+        private void CallCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        {
+            CheckAllowPlay?.Invoke(audioPlayer, ref isAllowPlay);
         }
     }
 }

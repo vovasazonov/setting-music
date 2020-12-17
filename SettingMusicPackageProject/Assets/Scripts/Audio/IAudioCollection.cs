@@ -2,6 +2,7 @@
 {
     public interface IAudioCollection : IIdentifiable<string>
     {
+        event CheckAllowPlayHandler CheckAllowPlay;
         event StartPlayAudioHandler StartPlay;
         event FinishPlayAudioHandler FinishPlay;
         IAudioPlayer GetAudio(string idAudio);

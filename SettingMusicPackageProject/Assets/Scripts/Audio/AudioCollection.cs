@@ -8,6 +8,7 @@ namespace Audio
     [RequireComponent(typeof(AudioPool))]
     public class AudioCollection : MonoBehaviour, IAudioCollection
     {
+        public event CheckAllowPlayHandler CheckAllowPlay;
         public event StartPlayAudioHandler StartPlay;
         public event FinishPlayAudioHandler FinishPlay;
 
@@ -53,6 +54,7 @@ namespace Audio
 
         private void AddAudioPlayerListener(IAudioPlayer audioPlayer)
         {
+            audioPlayer.CheckAllowPlay += OnCheckAllowPlay;
             audioPlayer.StartPlay += OnStartPlay;
             audioPlayer.FinishPlay += OnFinishPlay;
             audioPlayer.AudioDispose += OnAudioDispose;
@@ -60,6 +62,7 @@ namespace Audio
 
         private void RemoveAudioPlayerListener(IAudioPlayer audioPlayer)
         {
+            audioPlayer.CheckAllowPlay -= OnCheckAllowPlay;
             audioPlayer.StartPlay -= OnStartPlay;
             audioPlayer.FinishPlay -= OnFinishPlay;
             audioPlayer.AudioDispose -= OnAudioDispose;
@@ -116,37 +119,34 @@ namespace Audio
             CallFinishPlay(audioPlayer);
         }
 
-        private void OnStartPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        private void OnStartPlay(IAudioPlayer audioPlayer)
+        {
+            CallStartPlay(audioPlayer);
+            _amountAudioPlayerPlayingDic[audioPlayer.Id] += 1;
+        }
+
+        private void OnCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
         {
             var maxAmountAudioInSameTime = _limitPlaySameAudioTogetherDic[audioPlayer.Id];
             var currentAmountAudioPlaying = _amountAudioPlayerPlayingDic[audioPlayer.Id];
-
-            if (maxAmountAudioInSameTime > currentAmountAudioPlaying)
+            isAllowPlay = maxAmountAudioInSameTime > currentAmountAudioPlaying;
+            
+            if (isAllowPlay)
             {
-                CallStartPlay(audioPlayer, ref isAllowPlay);
-                if (isAllowPlay)
-                {
-                    _amountAudioPlayerPlayingDic[audioPlayer.Id] += 1;
-                }
-            }
-            else
-            {
-                isAllowPlay = false;
+                CallCheckAllowPlay(audioPlayer,ref isAllowPlay);
             }
         }
-
+        
         private void OnAudioDispose(IAudioPlayer audioPlayer)
         {
             RemoveAudioPlayerListener(audioPlayer);
             _audioInGameDic[audioPlayer.Id].Remove(audioPlayer);
             _audioPool.Return(audioPlayer);
         }
-
-        [Serializable]
-        protected struct AudioPlayerSetting
+        
+        private void CallCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
         {
-            public AudioPlayer AudioPlayer;
-            public int AmountMaxPlayTogether;
+            CheckAllowPlay?.Invoke(audioPlayer, ref isAllowPlay);
         }
 
         private void CallFinishPlay(IAudioPlayer audioPlayer)
@@ -154,9 +154,16 @@ namespace Audio
             FinishPlay?.Invoke(audioPlayer);
         }
 
-        private void CallStartPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        private void CallStartPlay(IAudioPlayer audioPlayer)
         {
-            StartPlay?.Invoke(audioPlayer, ref isAllowPlay);
+            StartPlay?.Invoke(audioPlayer);
+        }
+        
+        [Serializable]
+        protected struct AudioPlayerSetting
+        {
+            public AudioPlayer AudioPlayer;
+            public int AmountMaxPlayTogether;
         }
     }
 }

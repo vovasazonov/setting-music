@@ -28,6 +28,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Audio/IAudioCollection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Audio/AudioCollection.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -61,12 +67,16 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioSetting.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/Identifiable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IIdentifiable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioCollection.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioSetting.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioHelper.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioHelper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioCollection.cs" />
       </list>
     </option>
   </component>
@@ -117,7 +127,8 @@
       <workItem from="1607931095371" duration="2377000" />
       <workItem from="1608015343372" duration="20749000" />
       <workItem from="1608082365484" duration="29929000" />
-      <workItem from="1608185853194" duration="12031000" />
+      <workItem from="1608185853194" duration="13868000" />
+      <workItem from="1608207069221" duration="1799000" />
     </task>
     <servers />
   </component>

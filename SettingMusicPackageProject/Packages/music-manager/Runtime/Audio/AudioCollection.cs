@@ -123,9 +123,11 @@ namespace Audio
 
             if (maxAmountAudioInSameTime > currentAmountAudioPlaying)
             {
-                _amountAudioPlayerPlayingDic[audioPlayer.Id] += 1;
-                isAllowPlay = true;
                 CallStartPlay(audioPlayer, ref isAllowPlay);
+                if (isAllowPlay)
+                {
+                    _amountAudioPlayerPlayingDic[audioPlayer.Id] += 1;
+                }
             }
             else
             {

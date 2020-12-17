@@ -23,17 +23,14 @@ namespace Audio
 
         public IAudioPlayer Take(string idAudio)
         {
-            var freeAudioPlayers = _audioFree[idAudio];
-            var busyAudioPlayers = _audioBusy[idAudio];
-
-            if (freeAudioPlayers.Count == 0)
+            if (_audioFree[idAudio].Count == 0)
             {
                 InstantiateAudioPlayer(idAudio);
             }
 
-            var audioPlayerTaking = freeAudioPlayers.First();
-            freeAudioPlayers.Remove(audioPlayerTaking);
-            busyAudioPlayers.Add(audioPlayerTaking);
+            var audioPlayerTaking = _audioFree[idAudio].First();
+            _audioFree[idAudio].Remove(audioPlayerTaking);
+            _audioBusy[idAudio].Add(audioPlayerTaking);
             SetToReleaseSettings(audioPlayerTaking);
 
             return audioPlayerTaking;
@@ -41,19 +38,16 @@ namespace Audio
 
         public void Return(IAudioPlayer audioPlayer)
         {
-            var freeAudioPlayers = _audioFree[audioPlayer.Id];
-            var busyAudioPlayers = _audioBusy[audioPlayer.Id];
             var audioPlayerExemplar = audioPlayer as AudioPlayer;
 
-            busyAudioPlayers.Remove(audioPlayerExemplar);
+            _audioBusy[audioPlayer.Id].Remove(audioPlayerExemplar);
             SetToFactorySettings(audioPlayerExemplar);
-            freeAudioPlayers.Add(audioPlayerExemplar);
+            _audioFree[audioPlayer.Id].Add(audioPlayerExemplar);
         }
 
         private void InstantiateAudioPlayer(string idAudio)
         {
-            var prefab = _audioPrefabs[idAudio];
-            var exemplar = Instantiate(prefab);
+            var exemplar = Instantiate(_audioPrefabs[idAudio]);
             
             SetToFactorySettings(exemplar);
             _audioFree[idAudio].Add(exemplar);

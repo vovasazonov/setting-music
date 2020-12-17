@@ -211,6 +211,7 @@ MonoBehaviour:
   _musicCollectionList:
   - {fileID: 0}
   _soundCollectionList: []
+  _limitPlayAudioTogether: 0
 --- !u!4 &415289470
 Transform:
   m_ObjectHideFlags: 0

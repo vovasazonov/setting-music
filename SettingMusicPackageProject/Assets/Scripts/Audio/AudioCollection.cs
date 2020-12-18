@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -133,6 +133,7 @@ namespace Audio
 
         private void CallCheckAllowPlay(IAudioPlayer audioPlayer, out bool isAllowPlay, bool stopAudioToAllow)
         {
+            isAllowPlay = false;
             CheckAllowPlay?.Invoke(audioPlayer, out isAllowPlay, stopAudioToAllow);
         }
 

@@ -1,4 +1,4 @@
-﻿namespace Audio
+﻿﻿namespace Audio
 {
     public readonly struct Position : IPosition
     {

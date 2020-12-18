@@ -20,7 +20,6 @@ namespace Audio
 
         private AudioSource _audioSource;
         private bool _isPause;
-        private bool _isOnPlayProcess;
 
         public string Id => _id;
 
@@ -122,29 +121,42 @@ namespace Audio
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
+            AddAudioPlayerListener();
         }
 
+        private void AddAudioPlayerListener()
+        {
+            StartPlay += OnStartPlay;
+        }
+
+        private void RemoveAudioListener()
+        {
+            StartPlay -= OnStartPlay;
+        }
+        
         public void Play()
         {
-            _isPause = false;
-            CallCheckAllowPlay(this, out var isAllowPlay, true);
-
-            if (isAllowPlay)
+            if (!_isPause)
             {
-                CallStartPlay(this);
-                _audioSource.Play();
+                CallCheckAllowPlay(this, out var isAllowPlay, true);
                 
-                if (!_isOnPlayProcess)
+                if (isAllowPlay)
                 {
-                    _isOnPlayProcess = true;
-                    StartCoroutine(Fade(0, Volume, _fadeInSeconds));
-                    StartCoroutine(FollowAudioPlay());
+                    CallStartPlay(this);
+                    _audioSource.Play();
                 }
             }
             else
             {
-                Stop();
+                _isPause = false;
+                _audioSource.Play();
             }
+        }
+        
+        private void OnStartPlay(IAudioPlayer audioPlayer)
+        {
+            StartCoroutine(Fade(0, Volume, _fadeInSeconds));
+            StartCoroutine(FollowAudioPlay());
         }
 
         public void Pause()
@@ -155,31 +167,28 @@ namespace Audio
 
         public void Stop()
         {
-            _isOnPlayProcess = false;
             _audioSource.Stop();
             CallFinishPlay(this);
         }
 
         private IEnumerator FollowAudioPlay()
         {
-            bool isStartFade = false;
-
-            while (_audioSource.isPlaying || _isPause)
+            bool isFirstFrame = true;
+            
+            while (_audioSource.isPlaying || _isPause || isFirstFrame)
             {
-                if (!isStartFade)
+                isFirstFrame = false;
+                var timeAudioToEnd = _audioSource.clip.length - _audioSource.time;
+                if (timeAudioToEnd < _fadeOutSeconds)
                 {
-                    var timeAudioToEnd = _audioSource.clip.length - _audioSource.time;
-                    if (timeAudioToEnd < _fadeOutSeconds)
-                    {
-                        StartCoroutine(Fade(Volume, 0, _fadeOutSeconds));
-                        isStartFade = true;
-                    }
+                    StartCoroutine(Fade(Volume, 0, _fadeOutSeconds));
+                    yield break;
                 }
-
-                yield return null;
+                else
+                {
+                    yield return null;
+                }
             }
-
-            Stop();
         }
 
         private IEnumerator Fade(float startVolume, float targetVolume, float fadeSeconds)

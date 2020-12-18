@@ -119,10 +119,6 @@ namespace Audio
                 {
                     isAllowPlay = TryStopOneAudioPlayer(AudioPriorityType.Low);
                 }
-                else
-                {
-                    isAllowPlay = false;
-                }
             }
         }
 

@@ -57,7 +57,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioDelegate.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioCollection.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioDelegates.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPriorityType.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioCollection.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioManager.cs" />
@@ -84,8 +83,9 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPool.cs" />
         <option value="$PROJECT_DIR$/Assets/PlayZomb.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
       </list>
     </option>
   </component>
@@ -140,7 +140,7 @@
       <workItem from="1608082365484" duration="29929000" />
       <workItem from="1608185853194" duration="13868000" />
       <workItem from="1608207069221" duration="7017000" />
-      <workItem from="1608263966935" duration="17145000" />
+      <workItem from="1608263966935" duration="17889000" />
     </task>
     <servers />
   </component>

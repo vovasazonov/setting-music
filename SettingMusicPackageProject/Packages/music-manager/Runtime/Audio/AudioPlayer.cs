@@ -224,7 +224,7 @@ namespace Audio
             transform.SetParent(((MonoBehaviour) audioAttachableObject).transform);
         }
 
-        public void SetVolumeRolloff(RolloffMode rolloffMode)
+        public void SetVolumeRolloffMode(RolloffMode rolloffMode)
         {
             switch (rolloffMode)
             {

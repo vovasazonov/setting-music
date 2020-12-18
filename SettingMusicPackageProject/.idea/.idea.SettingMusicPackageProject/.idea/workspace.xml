@@ -29,7 +29,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/PlayZomb.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -62,7 +61,6 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPriorityType.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioCollection.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioManager.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPool.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IIdentifiable.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IPosition.cs" />
@@ -87,6 +85,7 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPool.cs" />
         <option value="$PROJECT_DIR$/Assets/PlayZomb.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
       </list>
     </option>
   </component>
@@ -141,7 +140,7 @@
       <workItem from="1608082365484" duration="29929000" />
       <workItem from="1608185853194" duration="13868000" />
       <workItem from="1608207069221" duration="7017000" />
-      <workItem from="1608263966935" duration="16424000" />
+      <workItem from="1608263966935" duration="17145000" />
     </task>
     <servers />
   </component>

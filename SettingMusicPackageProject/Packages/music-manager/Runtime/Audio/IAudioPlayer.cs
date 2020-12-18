@@ -30,6 +30,6 @@ namespace Audio
         void Stop();
         void SetPosition(IPosition position);
         void Attach(object audioAttachableObject);
-        void SetVolumeRolloff(RolloffMode rolloffMode);
+        void SetVolumeRolloffMode(RolloffMode rolloffMode);
     }
 }

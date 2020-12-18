@@ -31,14 +31,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/IAudioManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/IAudioPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/IMusicPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudio.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/ISoundPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/UnitySoundPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/UnityMusicPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IMusicPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/UnityAudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/UnityAudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IPostion.cs" />
@@ -55,28 +47,41 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioSetting.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/Identifiable.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioHelper.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioHelper.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioSetting.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/RolloffMode.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/Position.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IPosition.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IIdentifiable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPool.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPriorityType.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayerLibrary.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/sdfsdf.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayerHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioDelegate.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioCollection.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPool.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioDelegates.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioDelegates.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPool.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPriorityType.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioManager.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPool.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IIdentifiable.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IPosition.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Position.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/RolloffMode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioDelegates.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPool.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPriorityType.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPool.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IIdentifiable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IPosition.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/Position.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/RolloffMode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/sdf.cs" />
       </list>
     </option>
   </component>
@@ -129,7 +134,7 @@
       <workItem from="1608082365484" duration="29929000" />
       <workItem from="1608185853194" duration="13868000" />
       <workItem from="1608207069221" duration="7017000" />
-      <workItem from="1608263966935" duration="7430000" />
+      <workItem from="1608263966935" duration="7752000" />
     </task>
     <servers />
   </component>

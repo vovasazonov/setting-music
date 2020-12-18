@@ -125,11 +125,10 @@ namespace Audio
 
         public void Play()
         {
+            _isPause = false;
             bool isAllowPlay = true;
             CallCheckAllowPlay(this, ref isAllowPlay);
-            
-            _isPause = false;
-            
+
             if (isAllowPlay)
             {
                 if (!_isOnPlayProcess)

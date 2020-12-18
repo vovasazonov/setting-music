@@ -41,15 +41,8 @@ namespace Audio
             var audioPlayer = _audioPool.Take(idAudio);
             AddAudioPlayerListener(audioPlayer);
             _audioInGameDic[idAudio].Add(audioPlayer);
-            SetCollectionSettingToAudioPlayer(audioPlayer);
 
             return audioPlayer;
-        }
-
-        private void SetCollectionSettingToAudioPlayer(IAudioPlayer audioPlayer)
-        {
-            audioPlayer.IsMute = _isMuteAll;
-            audioPlayer.Volume = _volumeAll;
         }
 
         private void AddAudioPlayerListener(IAudioPlayer audioPlayer)
@@ -75,34 +68,34 @@ namespace Audio
 
         public void PlayAll()
         {
-            SetStateToAllAudioPlayersInGame(audioPlayer => audioPlayer.Play());
+            ActToAllAudioPlayers(audioPlayer => audioPlayer.Play());
         }
 
         public void PauseAll()
         {
-            SetStateToAllAudioPlayersInGame(audioPlayer => audioPlayer.Pause());
+            ActToAllAudioPlayers(audioPlayer => audioPlayer.Pause());
         }
 
         public void StopAll()
         {
-            SetStateToAllAudioPlayersInGame(audioPlayer => audioPlayer.Stop());
+            ActToAllAudioPlayers(audioPlayer => audioPlayer.Stop());
         }
 
         public void MuteAll(bool isMute)
         {
             _isMuteAll = isMute;
 
-            SetStateToAllAudioPlayersInGame(audioPlayer => audioPlayer.IsMute = isMute);
+            ActToAllAudioPlayers(audioPlayer => audioPlayer.IsMute = isMute);
         }
 
         public void SetVolumeAll(float volume)
         {
             _volumeAll = volume;
 
-            SetStateToAllAudioPlayersInGame(audioPlayer => audioPlayer.Volume = volume);
+            ActToAllAudioPlayers(audioPlayer => audioPlayer.Volume = volume);
         }
 
-        private void SetStateToAllAudioPlayersInGame(Action<IAudioPlayer> action)
+        private void ActToAllAudioPlayers(Action<IAudioPlayer> action)
         {
             foreach (var audioPlayerHashSet in _audioInGameDic.Values)
             {
@@ -130,20 +123,20 @@ namespace Audio
             var maxAmountAudioInSameTime = _limitPlaySameAudioTogetherDic[audioPlayer.Id];
             var currentAmountAudioPlaying = _amountAudioPlayerPlayingDic[audioPlayer.Id];
             isAllowPlay = maxAmountAudioInSameTime > currentAmountAudioPlaying;
-            
+
             if (isAllowPlay)
             {
-                CallCheckAllowPlay(audioPlayer,ref isAllowPlay);
+                CallCheckAllowPlay(audioPlayer, ref isAllowPlay);
             }
         }
-        
+
         private void OnDisposeAudio(IAudioPlayer audioPlayer)
         {
             RemoveAudioPlayerListener(audioPlayer);
             _audioInGameDic[audioPlayer.Id].Remove(audioPlayer);
             _audioPool.Return(audioPlayer);
         }
-        
+
         private void CallCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
         {
             CheckAllowPlay?.Invoke(audioPlayer, ref isAllowPlay);
@@ -158,7 +151,7 @@ namespace Audio
         {
             StartPlay?.Invoke(audioPlayer);
         }
-        
+
         [Serializable]
         protected struct AudioPlayerSetting
         {

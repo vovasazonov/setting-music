@@ -69,13 +69,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayerLibrary.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/sdfsdf.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayerHelper.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioDelegate.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" />
       </list>
     </option>
   </component>
@@ -128,7 +128,7 @@
       <workItem from="1608082365484" duration="29929000" />
       <workItem from="1608185853194" duration="13868000" />
       <workItem from="1608207069221" duration="7017000" />
-      <workItem from="1608263966935" duration="4016000" />
+      <workItem from="1608263966935" duration="6297000" />
     </task>
     <servers />
   </component>

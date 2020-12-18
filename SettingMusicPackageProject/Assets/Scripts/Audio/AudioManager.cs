@@ -102,38 +102,40 @@ namespace Audio
 
         private void OnAudioPlayerInCollectionCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
         {
-            isAllowPlay = false;
-
-            var amountPriorityHigh = _audioPlayerPlayingHash.Count(a => a.PriorityType == AudioPriorityType.High);
-            var amountPriorityMedium = _audioPlayerPlayingHash.Count(a => a.PriorityType == AudioPriorityType.Medium);
-            var amountPriorityLow = _audioPlayerPlayingHash.Count(a => a.PriorityType == AudioPriorityType.Low);
-            var amountWhole = amountPriorityHigh + amountPriorityMedium + amountPriorityLow;
-
-            if (amountWhole < LimitPlayAudioTogether)
+            if (_audioPlayerPlayingHash.Count < LimitPlayAudioTogether)
             {
                 isAllowPlay = true;
             }
             else if (AudioPriorityType.High == audioPlayer.PriorityType)
             {
-                if (amountPriorityLow > 0)
+                isAllowPlay = TryStopOneAudioPlayer(AudioPriorityType.Low);
+                
+                if (!isAllowPlay)
                 {
-                    isAllowPlay = true;
-                    StopOneAudioPlayer(AudioPriorityType.Low);
-                }
-                else if (amountPriorityMedium > 0)
-                {
-                    isAllowPlay = true;
-                    StopOneAudioPlayer(AudioPriorityType.Medium);
+                    isAllowPlay = TryStopOneAudioPlayer(AudioPriorityType.Medium);
                 }
             }
             else if (AudioPriorityType.Medium == audioPlayer.PriorityType)
             {
-                if (amountPriorityLow > 0)
-                {
-                    isAllowPlay = true;
-                    StopOneAudioPlayer(AudioPriorityType.Low);
-                }
+                isAllowPlay = TryStopOneAudioPlayer(AudioPriorityType.Low);
             }
+            else
+            {
+                isAllowPlay = false;
+            }
+        }
+
+        private bool TryStopOneAudioPlayer(AudioPriorityType audioPriorityType)
+        {
+            var amountAudio = _audioPlayerPlayingHash.Count(a => a.PriorityType == audioPriorityType);
+            var canStop = amountAudio > 0;
+
+            if (canStop)
+            {
+                StopOneAudioPlayer(audioPriorityType);
+            }
+
+            return canStop;
         }
 
         private void StopOneAudioPlayer(AudioPriorityType audioPriorityType)

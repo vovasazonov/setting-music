@@ -57,7 +57,7 @@ namespace Audio
             audioPlayer.CheckAllowPlay += OnCheckAllowPlay;
             audioPlayer.StartPlay += OnStartPlay;
             audioPlayer.FinishPlay += OnFinishPlay;
-            audioPlayer.AudioDispose += OnAudioDispose;
+            audioPlayer.DisposeAudio += OnDisposeAudio;
         }
 
         private void RemoveAudioPlayerListener(IAudioPlayer audioPlayer)
@@ -65,7 +65,7 @@ namespace Audio
             audioPlayer.CheckAllowPlay -= OnCheckAllowPlay;
             audioPlayer.StartPlay -= OnStartPlay;
             audioPlayer.FinishPlay -= OnFinishPlay;
-            audioPlayer.AudioDispose -= OnAudioDispose;
+            audioPlayer.DisposeAudio -= OnDisposeAudio;
         }
 
         public void SetLimitPlaySameAudioTogether(string nameAudio, int maxAmount = 2)
@@ -137,7 +137,7 @@ namespace Audio
             }
         }
         
-        private void OnAudioDispose(IAudioPlayer audioPlayer)
+        private void OnDisposeAudio(IAudioPlayer audioPlayer)
         {
             RemoveAudioPlayerListener(audioPlayer);
             _audioInGameDic[audioPlayer.Id].Remove(audioPlayer);

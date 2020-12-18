@@ -9,7 +9,7 @@ namespace Audio
         event CheckAllowPlayHandler CheckAllowPlay;
         event StartPlayAudioHandler StartPlay;
         event FinishPlayAudioHandler FinishPlay;
-        event DisposeAudioHandler AudioDispose;
+        event DisposeAudioHandler DisposeAudio;
 
         bool IsLoop { get; set; }
         bool IsMute { get; set; }

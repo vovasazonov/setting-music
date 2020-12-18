@@ -10,7 +10,7 @@ namespace Audio
         public event CheckAllowPlayHandler CheckAllowPlay;
         public event StartPlayAudioHandler StartPlay;
         public event FinishPlayAudioHandler FinishPlay;
-        public event DisposeAudioHandler AudioDispose;
+        public event DisposeAudioHandler DisposeAudio;
         
         [SerializeField] private protected string _id;
         [SerializeField] private protected float _fadeInSeconds;
@@ -248,7 +248,7 @@ namespace Audio
 
         private void CallAudioDispose(IAudioPlayer audioPlayer)
         {
-            AudioDispose?.Invoke(audioPlayer);
+            DisposeAudio?.Invoke(audioPlayer);
         }
 
         private void CallCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)

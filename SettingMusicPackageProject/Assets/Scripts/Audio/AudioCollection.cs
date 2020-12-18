@@ -19,9 +19,7 @@ namespace Audio
         private readonly IDictionary<string, int> _amountAudioPlayerPlayingDic = new Dictionary<string, int>();
         private readonly IDictionary<string, HashSet<IAudioPlayer>> _audioInGameDic = new Dictionary<string, HashSet<IAudioPlayer>>();
         private AudioPool _audioPool;
-        private float _volumeAll;
-        private bool _isMuteAll;
-
+        
         public string Id => _name;
 
         private void Awake()
@@ -83,15 +81,11 @@ namespace Audio
 
         public void MuteAll(bool isMute)
         {
-            _isMuteAll = isMute;
-
             ActToAllAudioPlayers(audioPlayer => audioPlayer.IsMute = isMute);
         }
 
         public void SetVolumeAll(float volume)
         {
-            _volumeAll = volume;
-
             ActToAllAudioPlayers(audioPlayer => audioPlayer.Volume = volume);
         }
 

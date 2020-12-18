@@ -191,7 +191,7 @@ namespace Audio
             {
                 float currentSeconds = 0;
 
-                while (currentSeconds < _fadeOutSeconds)
+                while (currentSeconds < fadeSeconds)
                 {
                     if (!_isPause)
                     {
@@ -233,7 +233,7 @@ namespace Audio
 
         public void Dispose()
         {
-            CallAudioDispose(this);
+            CallDisposeAudio(this);
         }
 
         private void CallStartPlay(IAudioPlayer audioPlayer)
@@ -246,7 +246,7 @@ namespace Audio
             FinishPlay?.Invoke(audioPlayer);
         }
 
-        private void CallAudioDispose(IAudioPlayer audioPlayer)
+        private void CallDisposeAudio(IAudioPlayer audioPlayer)
         {
             DisposeAudio?.Invoke(audioPlayer);
         }

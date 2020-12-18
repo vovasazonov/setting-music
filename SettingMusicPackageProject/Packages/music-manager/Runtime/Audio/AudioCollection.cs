@@ -13,7 +13,7 @@ namespace Audio
         public event FinishPlayAudioHandler FinishPlay;
 
         [SerializeField] private protected string _name;
-        [SerializeField] private protected List<AudioPlayerSetting> _audioPlayerList;
+        [SerializeField] private protected List<AudioPlayerSetting> _audioPlayerPrefabList;
 
         private readonly IDictionary<string, int> _limitPlaySameAudioTogetherDic = new Dictionary<string, int>();
         private readonly IDictionary<string, int> _amountAudioPlayerPlayingDic = new Dictionary<string, int>();
@@ -25,12 +25,13 @@ namespace Audio
         private void Awake()
         {
             _audioPool = GetComponent<AudioPool>();
-            _audioPool.AudioPoolConstructor(_audioPlayerList.Select(s => s.AudioPlayer));
+            _audioPool.AudioPoolConstructor(_audioPlayerPrefabList.Select(s => s.AudioPlayer));
 
-            foreach (var audioPlayerSetting in _audioPlayerList)
+            foreach (var audioPlayerSetting in _audioPlayerPrefabList)
             {
                 SetLimitPlaySameAudioTogether(audioPlayerSetting.AudioPlayer.Id, audioPlayerSetting.AmountMaxPlayTogether);
                 _audioInGameDic[audioPlayerSetting.AudioPlayer.Id] = new HashSet<IAudioPlayer>();
+                _amountAudioPlayerPlayingDic[audioPlayerSetting.AudioPlayer.Id] = 0;
             }
         }
 

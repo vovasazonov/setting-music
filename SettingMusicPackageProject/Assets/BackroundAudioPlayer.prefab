@@ -141,6 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: backround
-  _fadeInSeconds: 0
-  _fadeOutSeconds: 0
+  _fadeInSeconds: 20
+  _fadeOutSeconds: 50
   _audioPriorityType: 0

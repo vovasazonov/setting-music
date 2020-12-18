@@ -4,10 +4,6 @@
     <e p="C:\Users\vovas\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
     <e p="C:\Users\vovas\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_SettingMusicPackageProject.-440846884.00" t="ExcludeRecursive" />
     <e p="D:\Users\vovas\Documents\Repos\setting-music\SettingMusicPackageProject" t="IncludeRecursive">
-      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
-      <e p="Assets" t="Include">
-        <e p="GameManager.cs" t="Include" />
-      </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive">
         <e p="music-manager" t="Include">

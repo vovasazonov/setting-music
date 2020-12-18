@@ -30,13 +30,11 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioRollof.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/RolloffType.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IGameObjectable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IGameObject.cs" />
@@ -87,6 +85,7 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/_ameManager.cs" />
       </list>
     </option>
   </component>
@@ -141,7 +140,7 @@
       <workItem from="1608082365484" duration="29929000" />
       <workItem from="1608185853194" duration="13868000" />
       <workItem from="1608207069221" duration="7017000" />
-      <workItem from="1608263966935" duration="21541000" />
+      <workItem from="1608263966935" duration="23443000" />
     </task>
     <servers />
   </component>

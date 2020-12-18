@@ -184,10 +184,8 @@ namespace Audio
                     StartCoroutine(Fade(Volume, 0, _fadeOutSeconds));
                     yield break;
                 }
-                else
-                {
-                    yield return null;
-                }
+
+                yield return null;
             }
         }
 

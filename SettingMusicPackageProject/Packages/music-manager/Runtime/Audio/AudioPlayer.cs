@@ -251,7 +251,7 @@ namespace Audio
 
         private void CallCheckAllowPlay(IAudioPlayer audioPlayer, out bool isAllowPlay, bool stopAudioToAllow)
         {
-            isAllowPlay = false;
+            isAllowPlay = true;
             CheckAllowPlay?.Invoke(audioPlayer, out isAllowPlay, stopAudioToAllow);
         }
     }

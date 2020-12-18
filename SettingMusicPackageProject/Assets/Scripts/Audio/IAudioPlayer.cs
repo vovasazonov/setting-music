@@ -2,9 +2,6 @@
 
 namespace Audio
 {
-    public delegate void CheckAllowPlayHandler(IAudioPlayer audioPlayer, ref bool isAllowPlay);
-    public delegate void StartPlayAudioHandler(IAudioPlayer audioPlayer);
-    public delegate void FinishPlayAudioHandler(IAudioPlayer audioPlayer);
     public delegate void DisposeAudioHandler(IAudioPlayer audioPlayer);
 
     public interface IAudioPlayer : IDisposable, IIdentifiable<string>

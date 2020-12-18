@@ -9,6 +9,7 @@
         <e p="Scripts" t="Include">
           <e p="Audio" t="Include">
             <e p="AudioCollection.cs" t="Include" />
+            <e p="AudioDelegates.cs" t="Include" />
             <e p="AudioManager.cs" t="Include" />
             <e p="AudioPlayer.cs" t="Include" />
             <e p="AudioPool.cs" t="Include" />

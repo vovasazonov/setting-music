@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Audio
 {
@@ -130,15 +131,15 @@ namespace Audio
 
             if (isAllowPlay)
             {
+                CallStartPlay(this);
+                _audioSource.Play();
+                
                 if (!_isOnPlayProcess)
                 {
                     _isOnPlayProcess = true;
                     StartCoroutine(Fade(0, Volume, _fadeInSeconds));
                     StartCoroutine(FollowAudioPlay());
                 }
-                
-                CallStartPlay(this);
-                _audioSource.Play();
             }
             else
             {

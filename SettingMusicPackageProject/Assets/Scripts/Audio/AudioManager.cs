@@ -100,28 +100,29 @@ namespace Audio
             _audioPlayerPlayingHash.Remove(audioPlayer);
         }
 
-        private void OnAudioPlayerInCollectionCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        private void OnAudioPlayerInCollectionCheckAllowPlay(IAudioPlayer audioPlayer, out bool isAllowPlay, bool stopAudioToAllow)
         {
-            if (_audioPlayerPlayingHash.Count < LimitPlayAudioTogether)
+            isAllowPlay = _audioPlayerPlayingHash.Count < LimitPlayAudioTogether;
+
+            if (!isAllowPlay && stopAudioToAllow)
             {
-                isAllowPlay = true;
-            }
-            else if (AudioPriorityType.High == audioPlayer.PriorityType)
-            {
-                isAllowPlay = TryStopOneAudioPlayer(AudioPriorityType.Low);
-                
-                if (!isAllowPlay)
+                if (AudioPriorityType.High == audioPlayer.PriorityType)
                 {
-                    isAllowPlay = TryStopOneAudioPlayer(AudioPriorityType.Medium);
+                    isAllowPlay = TryStopOneAudioPlayer(AudioPriorityType.Low);
+                
+                    if (!isAllowPlay)
+                    {
+                        isAllowPlay = TryStopOneAudioPlayer(AudioPriorityType.Medium);
+                    }
                 }
-            }
-            else if (AudioPriorityType.Medium == audioPlayer.PriorityType)
-            {
-                isAllowPlay = TryStopOneAudioPlayer(AudioPriorityType.Low);
-            }
-            else
-            {
-                isAllowPlay = false;
+                else if (AudioPriorityType.Medium == audioPlayer.PriorityType)
+                {
+                    isAllowPlay = TryStopOneAudioPlayer(AudioPriorityType.Low);
+                }
+                else
+                {
+                    isAllowPlay = false;
+                }
             }
         }
 

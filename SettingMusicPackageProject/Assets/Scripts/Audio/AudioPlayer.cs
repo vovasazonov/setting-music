@@ -126,8 +126,7 @@ namespace Audio
         public void Play()
         {
             _isPause = false;
-            bool isAllowPlay = true;
-            CallCheckAllowPlay(this, ref isAllowPlay);
+            CallCheckAllowPlay(this, out var isAllowPlay, true);
 
             if (isAllowPlay)
             {
@@ -250,9 +249,9 @@ namespace Audio
             DisposeAudio?.Invoke(audioPlayer);
         }
 
-        private void CallCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        private void CallCheckAllowPlay(IAudioPlayer audioPlayer, out bool isAllowPlay, bool stopAudioToAllow)
         {
-            CheckAllowPlay?.Invoke(audioPlayer, ref isAllowPlay);
+            CheckAllowPlay?.Invoke(audioPlayer, out isAllowPlay, stopAudioToAllow);
         }
     }
 }

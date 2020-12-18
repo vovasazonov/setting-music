@@ -112,7 +112,7 @@ namespace Audio
             _amountAudioPlayerPlayingDic[audioPlayer.Id] += 1;
         }
 
-        private void OnCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        private void OnCheckAllowPlay(IAudioPlayer audioPlayer, out bool isAllowPlay, bool stopAudioToAllow)
         {
             var maxAmountAudioInSameTime = _limitPlaySameAudioTogetherDic[audioPlayer.Id];
             var currentAmountAudioPlaying = _amountAudioPlayerPlayingDic[audioPlayer.Id];
@@ -120,7 +120,7 @@ namespace Audio
 
             if (isAllowPlay)
             {
-                CallCheckAllowPlay(audioPlayer, ref isAllowPlay);
+                CallCheckAllowPlay(audioPlayer, out isAllowPlay, stopAudioToAllow);
             }
         }
 
@@ -131,9 +131,9 @@ namespace Audio
             _audioPool.Return(audioPlayer);
         }
 
-        private void CallCheckAllowPlay(IAudioPlayer audioPlayer, ref bool isAllowPlay)
+        private void CallCheckAllowPlay(IAudioPlayer audioPlayer, out bool isAllowPlay, bool stopAudioToAllow)
         {
-            CheckAllowPlay?.Invoke(audioPlayer, ref isAllowPlay);
+            CheckAllowPlay?.Invoke(audioPlayer, out isAllowPlay, stopAudioToAllow);
         }
 
         private void CallFinishPlay(IAudioPlayer audioPlayer)

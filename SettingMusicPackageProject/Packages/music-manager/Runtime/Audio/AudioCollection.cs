@@ -60,7 +60,7 @@ namespace Audio
             audioPlayer.DisposeAudio -= OnDisposeAudio;
         }
 
-        public void SetLimitPlaySameAudioTogether(string nameAudio, int maxAmount = 2)
+        public void SetLimitPlaySameAudioTogether(string nameAudio, int maxAmount)
         {
             _limitPlaySameAudioTogetherDic[nameAudio] = maxAmount;
         }

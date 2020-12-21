@@ -7,7 +7,7 @@
         event FinishPlayAudioHandler FinishPlay;
         
         IAudioPlayer GetAudio(string idAudio);
-        void SetLimitPlaySameAudioTogether(string nameAudio, int maxAmount = 2);
+        void SetLimitPlaySameAudioTogether(string nameAudio, int maxAmount);
         void PlayAll();
         void PauseAll();
         void StopAll();

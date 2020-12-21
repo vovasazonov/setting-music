@@ -28,10 +28,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -56,7 +52,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioCollection.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioDelegates.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPriorityType.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioCollection.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPool.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IIdentifiable.cs" />
@@ -83,9 +78,10 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/_ameManager.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
       </list>
     </option>
   </component>
@@ -113,10 +109,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="9604">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="9604" />
+      <option name="pid" />
       <option name="selectedOptions">
         <set />
       </option>

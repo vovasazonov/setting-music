@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Audio
 {
-    public sealed class AmountPriorityAudioPlayerController
+    public sealed class AmountPriorityAudioPlayerController : IAmountPriorityAudioPlayerController
     {
         private readonly IDictionary<AudioPriorityType, int> _priorityByAudioPlayerAmountPlaying = new Dictionary<AudioPriorityType, int>();
         private readonly IDictionary<IAudioPlayer, AudioPriorityType> _audioPlayerPlayingByPriority = new Dictionary<IAudioPlayer, AudioPriorityType>();
@@ -23,7 +23,7 @@ namespace Audio
             }
         }
 
-        public bool FreeSpaceAvailable(AudioPriorityType audioPriorityType)
+        public bool CheckSpaceAvailable(AudioPriorityType audioPriorityType)
         {
             return _priorityByLimitPlayTogether[audioPriorityType] > _priorityByAudioPlayerAmountPlaying[audioPriorityType];
         }

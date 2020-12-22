@@ -2,7 +2,7 @@
 {
     public interface IAmountPriorityAudioPlayerController
     {
-        bool FreeSpaceAvailable(AudioPriorityType audioPriorityType);
+        bool CheckSpaceAvailable(AudioPriorityType audioPriorityType);
         void AddAudioPlayer(AudioPriorityType audioPriorityType, IAudioPlayer audioPlayer);
         void RemoveAudioPlayer(IAudioPlayer audioPlayer);
     }

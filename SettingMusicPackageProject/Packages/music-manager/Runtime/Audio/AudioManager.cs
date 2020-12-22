@@ -22,7 +22,7 @@ namespace Audio
         {
             bool isGetAudio = false;
 
-            if (_amountPriorityAudioPlayerController.FreeSpaceAvailable(audioPriorityType))
+            if (_amountPriorityAudioPlayerController.CheckSpaceAvailable(audioPriorityType))
             {
                 var idAudioCollection = _audioPlayerIdToAudioCollectionId[idAudio];
                 isGetAudio = _audioCollections[idAudioCollection].TryGetAudioPlayer(idAudio, audioPriorityType, out audioPlayer);

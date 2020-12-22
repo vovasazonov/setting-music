@@ -22,7 +22,7 @@ namespace Audio
         {
             bool isGetAudio;
 
-            if (_limitPlaySameAudioTogether[idAudio] > _audioPlayerPlayingDic[idAudio].Count && _amountPriorityAudioPlayerController.FreeSpaceAvailable(audioPriorityType))
+            if (_limitPlaySameAudioTogether[idAudio] > _audioPlayerPlayingDic[idAudio].Count && _amountPriorityAudioPlayerController.CheckSpaceAvailable(audioPriorityType))
             {
                 AddAudioPlayerExemplar(idAudio, audioPriorityType, out audioPlayer);
             }

@@ -77,15 +77,15 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPool.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/RolloffMode.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPriorityType.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AmountAudioPriotiryController.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AmountAudioPriorityController.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAmountPriorityAudioPlayerController.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AmountPriorityAudioPlayerController.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayer.cs" />
       </list>
     </option>
   </component>

@@ -5,40 +5,40 @@ namespace Audio
 {
     public sealed class AmountPriorityAudioPlayerController
     {
-        private readonly IDictionary<AudioPriorityType, int> _priorityToAudioPlayerAmountPlaying = new Dictionary<AudioPriorityType, int>();
-        private readonly IDictionary<IAudioPlayer, AudioPriorityType> _audioPlayerPlayingToPriority = new Dictionary<IAudioPlayer, AudioPriorityType>();
-        private readonly IDictionary<AudioPriorityType, int> _limitPlayTogether = new Dictionary<AudioPriorityType, int>();
+        private readonly IDictionary<AudioPriorityType, int> _priorityByAudioPlayerAmountPlaying = new Dictionary<AudioPriorityType, int>();
+        private readonly IDictionary<IAudioPlayer, AudioPriorityType> _audioPlayerPlayingByPriority = new Dictionary<IAudioPlayer, AudioPriorityType>();
+        private readonly IDictionary<AudioPriorityType, int> _priorityByLimitPlayTogether = new Dictionary<AudioPriorityType, int>();
 
         public AmountPriorityAudioPlayerController(IReadOnlyDictionary<AudioPriorityType, int> limitPlayTogether)
         {
             foreach (AudioPriorityType priority in Enum.GetValues(typeof(AudioPriorityType)))
             {
-                _priorityToAudioPlayerAmountPlaying[priority] = 0;
-                _limitPlayTogether[priority] = 0;
+                _priorityByAudioPlayerAmountPlaying[priority] = 0;
+                _priorityByLimitPlayTogether[priority] = 0;
             }
 
             foreach (var priority in limitPlayTogether.Keys)
             {
-                _limitPlayTogether[priority] = limitPlayTogether[priority];
+                _priorityByLimitPlayTogether[priority] = limitPlayTogether[priority];
             }
         }
 
         public bool FreeSpaceAvailable(AudioPriorityType audioPriorityType)
         {
-            return _limitPlayTogether[audioPriorityType] > _priorityToAudioPlayerAmountPlaying[audioPriorityType];
+            return _priorityByLimitPlayTogether[audioPriorityType] > _priorityByAudioPlayerAmountPlaying[audioPriorityType];
         }
 
         public void AddAudioPlayer(AudioPriorityType audioPriorityType, IAudioPlayer audioPlayer)
         {
-            _priorityToAudioPlayerAmountPlaying[audioPriorityType] += 1;
-            _audioPlayerPlayingToPriority[audioPlayer] = audioPriorityType;
+            _priorityByAudioPlayerAmountPlaying[audioPriorityType] += 1;
+            _audioPlayerPlayingByPriority[audioPlayer] = audioPriorityType;
         }
 
         public void RemoveAudioPlayer(IAudioPlayer audioPlayer)
         {
-            var priorityType = _audioPlayerPlayingToPriority[audioPlayer];
-            _audioPlayerPlayingToPriority.Remove(audioPlayer);
-            _priorityToAudioPlayerAmountPlaying[priorityType] -= 1;
+            var priorityType = _audioPlayerPlayingByPriority[audioPlayer];
+            _audioPlayerPlayingByPriority.Remove(audioPlayer);
+            _priorityByAudioPlayerAmountPlaying[priorityType] -= 1;
         }
     }
 }

@@ -39,9 +39,6 @@
             _audioSource.RolloffMode = audioPlayerDescription.RolloffMode;
         }
 
-        private float _fadeSecondsLeft;
-        private bool _isFading;
-
         public void Play()
         {
             _audioSource.Play();

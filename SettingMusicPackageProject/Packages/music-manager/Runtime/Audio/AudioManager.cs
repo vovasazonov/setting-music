@@ -48,14 +48,6 @@ namespace Audio
             return isGetAudio;
         }
 
-        public void Update()
-        {
-            foreach (var audioCollection in _audioCollections.Values)
-            {
-                audioCollection.Update();
-            }
-        }
-
         private void AddAudioPlayerListener(IAudioPlayer audioPlayer)
         {
             audioPlayer.Disposing += OnAudioDisposing;

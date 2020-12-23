@@ -32,11 +32,6 @@ namespace Audio
             _audioPlayerDescriptions = audioPlayerDescriptions;
         }
 
-        internal void Update()
-        {
-            ActToAllAudioPlayers(a => a.Update());
-        }
-
         internal bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
         {
             bool isGetAudio;

@@ -41,11 +41,8 @@ namespace Audio
             _audioSource.RolloffMode = audioPlayerDescription.RolloffMode;
         }
 
-        internal void Update()
-        {
-            throw new NotImplementedException();
-            // TODO: Fade realization.
-        }
+        private float _fadeSecondsLeft;
+        private bool _isFading;
 
         public void Play()
         {

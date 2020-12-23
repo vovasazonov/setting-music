@@ -13,9 +13,8 @@
         float MinDistance { get; set; }
         float MaxDistance { get; set; }
         RolloffMode RolloffMode { get; set; } 
-        bool IsPlaying { get; }
-        float Time { get; }
-        
+        float FadeSeconds { get; set; }
+
         void Play();
         void Stop();
         void SetPosition(IPosition position);

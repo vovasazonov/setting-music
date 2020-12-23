@@ -7,7 +7,11 @@
 
         public string Id { get; }
 
-        public float FadeSeconds { get; set; }
+        public float FadeSeconds
+        {
+            get => _audioSource.FadeSeconds;
+            set => _audioSource.FadeSeconds = value;
+        }
 
         public bool IsMute
         {
@@ -27,7 +31,8 @@
 
             Id = audioPlayerDescription.Id;
             FadeSeconds = audioPlayerDescription.FadeSeconds;
-            
+
+            _audioSource.FadeSeconds = audioPlayerDescription.FadeSeconds;
             _audioSource.IsLoop = audioPlayerDescription.IsLoop;
             _audioSource.Pitch = audioPlayerDescription.Pitch;
             _audioSource.SpatialBlend = audioPlayerDescription.SpatialBlend;

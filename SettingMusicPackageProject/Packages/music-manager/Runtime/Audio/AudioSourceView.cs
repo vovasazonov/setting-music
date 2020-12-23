@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -94,9 +95,7 @@ namespace Audio
             }
         }
 
-        public bool IsPlaying => _audioSource.isPlaying;
-
-        public float Time => _audioSource.time;
+        public float FadeSeconds { get; set; }
 
         internal void Init(IReadOnlyDictionary<string, AudioClip> audioClips)
         {
@@ -105,14 +104,55 @@ namespace Audio
 
         public void Play()
         {
+            StartCoroutine(FollowAudioPlay());
+            StartCoroutine(Fade(0, Volume, FadeSeconds));
             _audioSource.Play();
         }
         
         public void Stop()
         {
             _audioSource.Stop();
+            StopAllCoroutines();
         }
+        
+        private IEnumerator Fade(float startVolume, float targetVolume, float fadeSeconds)
+        {
+            var originalVolume = Volume;
 
+            if (fadeSeconds > 0)
+            {
+                float currentSeconds = 0;
+
+                while (currentSeconds < fadeSeconds)
+                {
+                    currentSeconds += Time.deltaTime;
+                    Volume = Mathf.Lerp(startVolume, targetVolume, currentSeconds / fadeSeconds);
+
+                    yield return null;
+                }
+
+                Volume = originalVolume;
+            }
+        }
+        
+        private IEnumerator FollowAudioPlay()
+        {
+            bool isFirstFrame = true;
+            
+            while (_audioSource.isPlaying || isFirstFrame)
+            {
+                isFirstFrame = false;
+                var timeAudioToEnd = _audioSource.clip.length - _audioSource.time;
+                if (timeAudioToEnd < FadeSeconds)
+                {
+                    StartCoroutine(Fade(Volume, 0, FadeSeconds));
+                    yield break;
+                }
+
+                yield return null;
+            }
+        }
+        
         public void SetPosition(IPosition position)
         {
             _audioSource.transform.position = new Vector3(position.X, position.Y, position.Z);

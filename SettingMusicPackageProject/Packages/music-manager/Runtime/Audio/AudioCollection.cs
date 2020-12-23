@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Audio
@@ -9,6 +10,7 @@ namespace Audio
         private readonly IDictionary<string, int> _limitPlaySameAudioTogether = new Dictionary<string, int>();
         private readonly IDictionary<string, HashSet<AudioPlayer>> _audioPlayerPlayingDic = new Dictionary<string, HashSet<AudioPlayer>>();
         private readonly IReadOnlyDictionary<string, IAudioPlayerDescription> _audioPlayerDescriptions;
+        private readonly IDictionary<IAudioPlayer, IAudioSource> _audioSourceToReturnDic = new Dictionary<IAudioPlayer, IAudioSource>();
         private readonly IAudioSourcePool _audioSourcePool;
 
         public string Id { get; }
@@ -60,14 +62,17 @@ namespace Audio
             var audioPlayerExemplar = new AudioPlayer(_audioPlayerDescriptions[idAudio], audioSource);
             _amountPriorityController.AddAudioPlayer(audioPriorityType, audioPlayerExemplar);
             _audioPlayerPlayingDic[idAudio].Add(audioPlayerExemplar);
-            AddAudioPlayerListener(audioPlayerExemplar);
+            _audioSourceToReturnDic[audioPlayerExemplar] = audioSource;
             audioPlayer = audioPlayerExemplar;
+            AddAudioPlayerListener(audioPlayerExemplar);
         }
 
         private void RemoveAudioPlayerExemplar(IAudioPlayer audioPlayer)
         {
             _amountPriorityController.RemoveAudioPlayer(audioPlayer);
-            _audioPlayerPlayingDic[audioPlayer.Id].Remove((AudioPlayer)audioPlayer);
+            _audioPlayerPlayingDic[audioPlayer.Id].Remove((AudioPlayer) audioPlayer);
+            _audioSourcePool.Return(_audioSourceToReturnDic[audioPlayer]);
+            _audioSourceToReturnDic.Remove(audioPlayer);
             RemoveAudioPlayerListener(audioPlayer);
         }
 
@@ -95,7 +100,7 @@ namespace Audio
         {
             ActToAllAudioPlayers(audioPlayer => audioPlayer.Play());
         }
-        
+
         public void StopAll()
         {
             ActToAllAudioPlayers(audioPlayer => audioPlayer.Stop());

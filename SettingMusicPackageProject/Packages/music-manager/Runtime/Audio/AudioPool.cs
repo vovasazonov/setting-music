@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Audio
@@ -9,6 +10,12 @@ namespace Audio
         private readonly Queue<AudioSource> _freeAudioSources = new Queue<AudioSource>();
         private readonly Dictionary<IAudioPlayer, AudioSource> _busyAudioSources;
 
+        public void Init(IEnumerable<IAudioPlayerDescription> audioPlayerDescriptions)
+        {
+            // TODO: keep in this class all description and reference to clips.
+            throw new NotImplementedException();
+        }
+        
         public IAudioPlayer Take(string idAudio)
         {
             if (_freeAudioSources.Count == 0)

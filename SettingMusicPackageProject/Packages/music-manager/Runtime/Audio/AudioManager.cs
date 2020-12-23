@@ -6,25 +6,31 @@ namespace Audio
 {
     public sealed class AudioManager : IAudioManager
     {
-        private readonly IAmountPriorityAudioPlayerController _amountPriorityAudioPlayerController;
-        private readonly IReadOnlyDictionary<string, string> _audioPlayerIdToAudioCollectionId;
-        private readonly IReadOnlyDictionary<string, AudioCollection> _audioCollections;
+        private readonly IAmountPriorityController _amountPriorityController;
+        private readonly IDictionary<string, string> _playerIdByCollectionId = new Dictionary<string, string>();
+        private readonly IDictionary<string, AudioCollection> _audioCollections = new Dictionary<string, AudioCollection>();
 
         public IReadOnlyDictionary<string, IAudioCollection> AudioCollections => _audioCollections.ToDictionary(k => k.Key, v => (IAudioCollection) v.Value);
 
-        public AudioManager()
+        public AudioManager(IAudioDatabase audioDatabase, IAudioPool audioPool)
         {
+            _amountPriorityController = new AmountPriorityController(audioDatabase.LimitPlayTogether);
+
+            foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescription)
+            {
+                _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription.Id, audioCollectionDescription, audioPool);
+            }
+
             throw new NotImplementedException();
-            // TODO: get description and init values.
         }
 
         public bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
         {
             bool isGetAudio = false;
 
-            if (_amountPriorityAudioPlayerController.CheckSpaceAvailable(audioPriorityType))
+            if (_amountPriorityController.CheckSpaceAvailable(audioPriorityType))
             {
-                var idAudioCollection = _audioPlayerIdToAudioCollectionId[idAudio];
+                var idAudioCollection = _playerIdByCollectionId[idAudio];
                 isGetAudio = _audioCollections[idAudioCollection].TryGetAudioPlayer(idAudio, audioPriorityType, out audioPlayer);
 
                 if (isGetAudio)
@@ -57,13 +63,13 @@ namespace Audio
 
         private void AddAudioPlayerExemplar(AudioPriorityType audioPriorityType, IAudioPlayer audioPlayer)
         {
-            _amountPriorityAudioPlayerController.AddAudioPlayer(audioPriorityType, audioPlayer);
+            _amountPriorityController.AddAudioPlayer(audioPriorityType, audioPlayer);
             AddAudioPlayerListener(audioPlayer);
         }
 
         private void RemoveAudioPlayerExemplar(IAudioPlayer audioPlayer)
         {
-            _amountPriorityAudioPlayerController.RemoveAudioPlayer(audioPlayer);
+            _amountPriorityController.RemoveAudioPlayer(audioPlayer);
             RemoveAudioPlayerListener(audioPlayer);
         }
     }

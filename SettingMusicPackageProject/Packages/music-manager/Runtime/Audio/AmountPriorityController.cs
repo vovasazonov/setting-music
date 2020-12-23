@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Audio
 {
-    public sealed class AmountPriorityAudioPlayerController : IAmountPriorityAudioPlayerController
+    public sealed class AmountPriorityController : IAmountPriorityController
     {
         private readonly IDictionary<AudioPriorityType, int> _priorityByAudioPlayerAmountPlaying = new Dictionary<AudioPriorityType, int>();
         private readonly IDictionary<IAudioPlayer, AudioPriorityType> _audioPlayerPlayingByPriority = new Dictionary<IAudioPlayer, AudioPriorityType>();
         private readonly IDictionary<AudioPriorityType, int> _priorityByLimitPlayTogether = new Dictionary<AudioPriorityType, int>();
 
-        public AmountPriorityAudioPlayerController(IReadOnlyDictionary<AudioPriorityType, int> limitPlayTogether)
+        public AmountPriorityController(IReadOnlyDictionary<AudioPriorityType, int> limitPlayTogether)
         {
             foreach (AudioPriorityType priority in Enum.GetValues(typeof(AudioPriorityType)))
             {

@@ -9,13 +9,21 @@
         <e p="music-manager" t="Include">
           <e p="Runtime" t="Include">
             <e p="Audio" t="Include">
-              <e p="AmountPriorityAudioPlayerController.cs" t="Include" />
+              <e p="AmountPriorityController.cs" t="Include" />
               <e p="AudioCollection.cs" t="Include" />
               <e p="AudioManager.cs" t="Include" />
               <e p="AudioPlayer.cs" t="Include" />
               <e p="AudioPool.cs" t="Include" />
               <e p="AudioPriorityType.cs" t="Include" />
-              <e p="IAmountPriorityAudioPlayerController.cs" t="Include" />
+              <e p="Descriptions" t="Include">
+                <e p="AudioCollectionDescription.cs" t="Include" />
+                <e p="AudioDatabase.cs" t="Include" />
+                <e p="AudioPlayerDescription.cs" t="Include" />
+                <e p="IAudioCollectionDescription.cs" t="Include" />
+                <e p="IAudioDatabase.cs" t="Include" />
+                <e p="IAudioPlayerDescription.cs" t="Include" />
+              </e>
+              <e p="IAmountPriorityController.cs" t="Include" />
               <e p="IAudioCollection.cs" t="Include" />
               <e p="IAudioManager.cs" t="Include" />
               <e p="IAudioPlayer.cs" t="Include" />

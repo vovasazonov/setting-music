@@ -5,30 +5,39 @@ namespace Audio
 {
     public sealed class AudioCollection : IAudioCollection
     {
-        private readonly IAmountPriorityAudioPlayerController _amountPriorityAudioPlayerController;
-        private readonly IDictionary<string, int> _limitPlaySameAudioTogether;
+        private readonly IAmountPriorityController _amountPriorityController;
+        private readonly IDictionary<string, int> _limitPlaySameAudioTogether = new Dictionary<string, int>();
         private readonly IDictionary<string, HashSet<IAudioPlayer>> _audioPlayerPlayingDic = new Dictionary<string, HashSet<IAudioPlayer>>();
         private readonly IAudioPool _audioPool;
         
         public string Id { get; }
 
-        public AudioCollection(string id)
+        public AudioCollection(string id, IAudioCollectionDescription audioCollectionDescription, IAudioPool audioPool)
         {
             Id = id;
-            throw new NotImplementedException();
+            _audioPool = audioPool;
+            _amountPriorityController = new AmountPriorityController(audioCollectionDescription.LimitPlayTogether);
+            
+            foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptions)
+            {
+                _audioPlayerPlayingDic[audioPlayerDescription.Id] = new HashSet<IAudioPlayer>();
+                _limitPlaySameAudioTogether[audioPlayerDescription.Id] = audioPlayerDescription.LimitPlayTogether;
+            }
         }
 
         public bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
         {
             bool isGetAudio;
 
-            if (_limitPlaySameAudioTogether[idAudio] > _audioPlayerPlayingDic[idAudio].Count && _amountPriorityAudioPlayerController.CheckSpaceAvailable(audioPriorityType))
+            if (_limitPlaySameAudioTogether[idAudio] > _audioPlayerPlayingDic[idAudio].Count && _amountPriorityController.CheckSpaceAvailable(audioPriorityType))
             {
                 AddAudioPlayerExemplar(idAudio, audioPriorityType, out audioPlayer);
+                isGetAudio = true;
             }
             else
             {
                 audioPlayer = null;
+                isGetAudio = false;
             }
 
             return isGetAudio;
@@ -38,14 +47,14 @@ namespace Audio
         {
             var audioPlayerExemplar = _audioPool.Take(idAudio);
             audioPlayer = audioPlayerExemplar;
-            _amountPriorityAudioPlayerController.AddAudioPlayer(audioPriorityType, audioPlayer);
+            _amountPriorityController.AddAudioPlayer(audioPriorityType, audioPlayer);
             _audioPlayerPlayingDic[idAudio].Add(audioPlayerExemplar);
             AddAudioPlayerListener(audioPlayer);
         }
 
         private void RemoveAudioPlayerExemplar(IAudioPlayer audioPlayer)
         {
-            _amountPriorityAudioPlayerController.RemoveAudioPlayer(audioPlayer);
+            _amountPriorityController.RemoveAudioPlayer(audioPlayer);
             _audioPlayerPlayingDic[audioPlayer.Id].Remove(audioPlayer);
             RemoveAudioPlayerListener(audioPlayer);
         }

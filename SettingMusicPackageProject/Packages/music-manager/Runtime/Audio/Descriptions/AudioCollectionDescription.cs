@@ -7,14 +7,14 @@ namespace Audio
     public class AudioCollectionDescription : ScriptableObject, IAudioCollectionDescription
     {
         [SerializeField] private protected string _id;
-        [SerializeField] private protected List<AudioPlayerDescription> _audioDescriptions;
+        [SerializeField] private protected List<AudioPlayerDescription> _audioPlayerDescriptions;
         [SerializeField] private protected int _limitImpotant;
         [SerializeField] private protected int _limitUnmpotant;
         [SerializeField] private protected int _limitLeast;
 
         public string Id => _id;
         public IReadOnlyDictionary<AudioPriorityType, int> LimitPlayTogether { get; private set; }
-        public IEnumerable<IAudioPlayerDescription> AudioPlayerDescriptions => _audioDescriptions;
+        public IEnumerable<IAudioPlayerDescription> AudioPlayerDescriptions => _audioPlayerDescriptions;
 
         private void Awake()
         {

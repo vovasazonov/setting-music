@@ -5,6 +5,6 @@ namespace Audio
     public interface IAudioDatabase
     {
         IReadOnlyDictionary<AudioPriorityType,int> LimitPlayTogether { get; }
-        IEnumerable<IAudioCollectionDescription> AudioCollectionDescription { get; }
+        IEnumerable<IAudioCollectionDescription> AudioCollectionDescriptions { get; }
     }
 }

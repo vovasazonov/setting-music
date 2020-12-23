@@ -16,7 +16,7 @@ namespace Audio
         {
             _amountPriorityController = new AmountPriorityController(audioDatabase.LimitPlayTogether);
 
-            foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescription)
+            foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescriptions)
             {
                 _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription.Id, audioCollectionDescription, audioPool);
             }

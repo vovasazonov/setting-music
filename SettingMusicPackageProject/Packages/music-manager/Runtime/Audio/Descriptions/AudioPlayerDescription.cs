@@ -20,7 +20,7 @@ namespace Audio
         [SerializeField] private protected RolloffMode _rolloffMode;
 
         public string Id => _audioId;
-        public int LimitPlayTogether { get; }
+        public int LimitPlayTogether => _limitPlayTogether;
         public bool IsLoop => _isLoop;
         public float FadeInSeconds => _fadeInSeconds;
         public float FadeOutSeconds =>_fadeOutSeconds;

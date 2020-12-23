@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Audio
+﻿namespace Audio
 {
     public sealed class AudioPlayer : IAudioPlayer
     {

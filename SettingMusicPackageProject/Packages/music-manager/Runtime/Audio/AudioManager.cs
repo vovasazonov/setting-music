@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Audio
@@ -19,9 +18,12 @@ namespace Audio
             foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescriptions)
             {
                 _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription, audioPool);
-            }
 
-            throw new NotImplementedException();
+                foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptions)
+                {
+                    _playerIdByCollectionId[audioPlayerDescription.Id] = audioCollectionDescription.Id;
+                }
+            }
         }
 
         public bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)

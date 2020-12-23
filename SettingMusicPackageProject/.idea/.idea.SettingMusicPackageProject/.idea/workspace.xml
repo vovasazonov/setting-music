@@ -35,7 +35,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPriorityType.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio/IAudioPlayer.cs" />
@@ -85,6 +84,7 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioDatabase.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioPlayerDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/TestScript.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
       </list>
     </option>

@@ -29,11 +29,22 @@ namespace Audio
 
             Id = audioPlayerDescription.Id;
             FadeSeconds = audioPlayerDescription.FadeSeconds;
+            
+            _audioSource.IsLoop = audioPlayerDescription.IsLoop;
+            _audioSource.Pitch = audioPlayerDescription.Pitch;
+            _audioSource.SpatialBlend = audioPlayerDescription.SpatialBlend;
+            _audioSource.StereoPan = audioPlayerDescription.StereoPan;
+            _audioSource.Spread = audioPlayerDescription.Spread;
+            _audioSource.DopplerLevel = audioPlayerDescription.DopplerLevel;
+            _audioSource.MinDistance = audioPlayerDescription.MinDistance;
+            _audioSource.MaxDistance = audioPlayerDescription.MaxDistance;
+            _audioSource.RolloffMode = audioPlayerDescription.RolloffMode;
         }
 
         internal void Update()
         {
             throw new NotImplementedException();
+            // TODO: Fade realization.
         }
 
         public void Play()

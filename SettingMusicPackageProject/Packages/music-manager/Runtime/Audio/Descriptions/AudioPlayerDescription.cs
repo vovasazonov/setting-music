@@ -8,8 +8,7 @@ namespace Audio
         [SerializeField] private protected string _audioId;
         [SerializeField] private protected int _limitPlayTogether;
         [SerializeField] private protected bool _isLoop;
-        [SerializeField] private protected float _fadeInSeconds;
-        [SerializeField] private protected float _fadeOutSeconds;
+        [SerializeField] private protected float _fadeSeconds;
         [SerializeField] private protected float _pitch;
         [SerializeField] private protected float _spatialBlend;
         [SerializeField] private protected float _stereoPan;
@@ -22,8 +21,7 @@ namespace Audio
         public string Id => _audioId;
         public int LimitPlayTogether => _limitPlayTogether;
         public bool IsLoop => _isLoop;
-        public float FadeInSeconds => _fadeInSeconds;
-        public float FadeOutSeconds =>_fadeOutSeconds;
+        public float FadeSeconds => _fadeSeconds;
         public float Pitch => _pitch;
         public float SpatialBlend => _spatialBlend;
         public float StereoPan => _stereoPan;

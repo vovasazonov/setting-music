@@ -5,8 +5,7 @@
         string Id { get; }
         int LimitPlayTogether { get; }
         bool IsLoop { get; }
-        float FadeInSeconds { get; }
-        float FadeOutSeconds { get; }
+        float FadeSeconds { get; }
         float Pitch { get;  }
         float SpatialBlend { get;  }
         float StereoPan { get; }

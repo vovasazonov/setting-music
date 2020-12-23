@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Audio
@@ -24,9 +25,7 @@ namespace Audio
             set => _audioSource.mute = value;
         }
 
-        public float FadeInSeconds { get; set; }
-
-        public float FadeOutSeconds { get; set; }
+        public float FadeSeconds { get; set; }
 
         public float Volume
         {
@@ -105,8 +104,7 @@ namespace Audio
             
             Id = audioPlayerDescription.Id;
             IsLoop = audioPlayerDescription.IsLoop;
-            FadeInSeconds = audioPlayerDescription.FadeInSeconds;
-            FadeOutSeconds = audioPlayerDescription.FadeOutSeconds;
+            FadeSeconds = audioPlayerDescription.FadeSeconds;
             Pitch = audioPlayerDescription.Pitch;
             SpatialBlend = audioPlayerDescription.SpatialBlend;
             StereoPan = audioPlayerDescription.StereoPan;

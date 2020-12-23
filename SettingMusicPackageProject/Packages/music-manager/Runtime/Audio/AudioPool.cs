@@ -42,6 +42,7 @@ namespace Audio
         {
             audioSource.enabled = false;
             audioSource.transform.SetParent(transform);
+            audioSource.clip = null;
         }
 
         private void SetToReleaseSettings(AudioSource audioSource)

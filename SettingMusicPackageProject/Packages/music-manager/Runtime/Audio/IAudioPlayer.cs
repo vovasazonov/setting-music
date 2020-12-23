@@ -9,8 +9,7 @@
         string Id { get; }
         bool IsLoop { get; set; }
         bool IsMute { get; set; }
-        float FadeInSeconds { get; set; }
-        float FadeOutSeconds { get; set; }
+        float FadeSeconds { get; set; }
         float Volume { get; set; }
         float Pitch { get; set; }
         float SpatialBlend { get; set; }

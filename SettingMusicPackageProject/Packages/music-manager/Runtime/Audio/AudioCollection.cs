@@ -25,7 +25,7 @@ namespace Audio
             }
         }
 
-        public bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
+        internal bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
         {
             bool isGetAudio;
 

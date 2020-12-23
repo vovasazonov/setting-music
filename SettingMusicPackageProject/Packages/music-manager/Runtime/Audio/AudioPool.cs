@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Audio
 {
-    public class AudioPool : MonoBehaviour, IAudioPool
+    public sealed class AudioPool : MonoBehaviour, IAudioPool
     {
-        [SerializeField] private protected AudioSource _audioSourcePrefab;
+        [SerializeField] private AudioSource _audioSourcePrefab;
         private readonly Queue<AudioSource> _freeAudioSources = new Queue<AudioSource>();
         private readonly Dictionary<IAudioPlayer, AudioSource> _busyAudioSources;
+        private IReadOnlyDictionary<string, IAudioPlayerDescription> _audioPlayerDescriptions;
 
         public void Init(IEnumerable<IAudioPlayerDescription> audioPlayerDescriptions)
         {
-            // TODO: keep in this class all description and reference to clips.
-            throw new NotImplementedException();
+            _audioPlayerDescriptions = audioPlayerDescriptions.ToDictionary(k => k.Id, v => v);
         }
-        
+
         public IAudioPlayer Take(string idAudio)
         {
             if (_freeAudioSources.Count == 0)
@@ -25,8 +25,8 @@ namespace Audio
 
             var audioSource = _freeAudioSources.Dequeue();
             SetToReleaseSettings(audioSource);
-            var audioPlayer = new AudioPlayer(idAudio, audioSource);
-            
+            var audioPlayer = new AudioPlayer(_audioPlayerDescriptions[idAudio], audioSource);
+
             return audioPlayer;
         }
 

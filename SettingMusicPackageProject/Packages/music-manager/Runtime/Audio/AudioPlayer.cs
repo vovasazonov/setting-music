@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Audio
 {
-    public class AudioPlayer : IAudioPlayer
+    public sealed class AudioPlayer : IAudioPlayer
     {
         public event DisposingHandler Disposing;
 
@@ -99,12 +99,22 @@ namespace Audio
             }
         }
 
-        public AudioPlayer(string id, AudioSource audioSource)
+        public AudioPlayer(IAudioPlayerDescription audioPlayerDescription, AudioSource audioSource)
         {
-            Id = id;
             _audioSource = audioSource;
             
-            throw new NotImplementedException();
+            Id = audioPlayerDescription.Id;
+            IsLoop = audioPlayerDescription.IsLoop;
+            FadeInSeconds = audioPlayerDescription.FadeInSeconds;
+            FadeOutSeconds = audioPlayerDescription.FadeOutSeconds;
+            Pitch = audioPlayerDescription.Pitch;
+            SpatialBlend = audioPlayerDescription.SpatialBlend;
+            StereoPan = audioPlayerDescription.StereoPan;
+            Spread = audioPlayerDescription.Spread;
+            DopplerLevel = audioPlayerDescription.DopplerLevel;
+            MinDistance = audioPlayerDescription.MinDistance;
+            MaxDistance = audioPlayerDescription.MaxDistance;
+            RolloffMode = audioPlayerDescription.RolloffMode;
         }
 
         public void Play()

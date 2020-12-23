@@ -18,7 +18,7 @@ namespace Audio
 
             foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescriptions)
             {
-                _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription.Id, audioCollectionDescription, audioPool);
+                _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription, audioPool);
             }
 
             throw new NotImplementedException();

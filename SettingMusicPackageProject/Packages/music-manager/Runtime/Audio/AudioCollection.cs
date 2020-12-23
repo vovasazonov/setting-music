@@ -12,9 +12,9 @@ namespace Audio
         
         public string Id { get; }
 
-        public AudioCollection(string id, IAudioCollectionDescription audioCollectionDescription, IAudioPool audioPool)
+        public AudioCollection(IAudioCollectionDescription audioCollectionDescription, IAudioPool audioPool)
         {
-            Id = id;
+            Id = audioCollectionDescription.Id;
             _audioPool = audioPool;
             _amountPriorityController = new AmountPriorityController(audioCollectionDescription.LimitPlayTogether);
             

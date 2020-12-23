@@ -78,14 +78,14 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioDatabase.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollectionDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayerDescription.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioDatabase.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioCollectionDescription.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioCollectionDescription.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioPlayerDescription.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPool.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioCollectionDescription.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioDatabase.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioPlayerDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPool.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
       </list>
     </option>
   </component>

@@ -134,10 +134,10 @@ namespace Audio
 
         public void Dispose()
         {
-            OnDisposing(this);
+            CallDisposing(this);
         }
 
-        private void OnDisposing(IAudioPlayer audioPlayer)
+        private void CallDisposing(IAudioPlayer audioPlayer)
         {
             Disposing?.Invoke(audioPlayer);
         }

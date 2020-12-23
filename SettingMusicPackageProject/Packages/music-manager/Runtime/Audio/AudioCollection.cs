@@ -7,22 +7,33 @@ namespace Audio
     {
         private readonly IAmountPriorityController _amountPriorityController;
         private readonly IDictionary<string, int> _limitPlaySameAudioTogether = new Dictionary<string, int>();
-        private readonly IDictionary<string, HashSet<IAudioPlayer>> _audioPlayerPlayingDic = new Dictionary<string, HashSet<IAudioPlayer>>();
-        private readonly IAudioPool _audioPool;
-        
+        private readonly IDictionary<string, HashSet<AudioPlayer>> _audioPlayerPlayingDic = new Dictionary<string, HashSet<AudioPlayer>>();
+        private readonly IReadOnlyDictionary<string, IAudioPlayerDescription> _audioPlayerDescriptions;
+        private readonly IAudioSourcePool _audioSourcePool;
+
         public string Id { get; }
 
-        public AudioCollection(IAudioCollectionDescription audioCollectionDescription, IAudioPool audioPool)
+        public AudioCollection(IAudioCollectionDescription audioCollectionDescription, IAudioSourcePool audioSourcePool)
         {
+            var audioPlayerDescriptions = new Dictionary<string, IAudioPlayerDescription>();
+
             Id = audioCollectionDescription.Id;
-            _audioPool = audioPool;
+            _audioSourcePool = audioSourcePool;
             _amountPriorityController = new AmountPriorityController(audioCollectionDescription.LimitPlayTogether);
-            
+
             foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptions)
             {
-                _audioPlayerPlayingDic[audioPlayerDescription.Id] = new HashSet<IAudioPlayer>();
+                _audioPlayerPlayingDic[audioPlayerDescription.Id] = new HashSet<AudioPlayer>();
                 _limitPlaySameAudioTogether[audioPlayerDescription.Id] = audioPlayerDescription.LimitPlayTogether;
+                audioPlayerDescriptions[audioPlayerDescription.Id] = audioPlayerDescription;
             }
+
+            _audioPlayerDescriptions = audioPlayerDescriptions;
+        }
+
+        internal void Update()
+        {
+            ActToAllAudioPlayers(a => a.Update());
         }
 
         internal bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
@@ -45,20 +56,21 @@ namespace Audio
 
         private void AddAudioPlayerExemplar(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
         {
-            var audioPlayerExemplar = _audioPool.Take(idAudio);
-            audioPlayer = audioPlayerExemplar;
-            _amountPriorityController.AddAudioPlayer(audioPriorityType, audioPlayer);
+            var audioSource = _audioSourcePool.Take();
+            var audioPlayerExemplar = new AudioPlayer(_audioPlayerDescriptions[idAudio], audioSource);
+            _amountPriorityController.AddAudioPlayer(audioPriorityType, audioPlayerExemplar);
             _audioPlayerPlayingDic[idAudio].Add(audioPlayerExemplar);
-            AddAudioPlayerListener(audioPlayer);
+            AddAudioPlayerListener(audioPlayerExemplar);
+            audioPlayer = audioPlayerExemplar;
         }
 
         private void RemoveAudioPlayerExemplar(IAudioPlayer audioPlayer)
         {
             _amountPriorityController.RemoveAudioPlayer(audioPlayer);
-            _audioPlayerPlayingDic[audioPlayer.Id].Remove(audioPlayer);
+            _audioPlayerPlayingDic[audioPlayer.Id].Remove((AudioPlayer)audioPlayer);
             RemoveAudioPlayerListener(audioPlayer);
         }
-        
+
         private void AddAudioPlayerListener(IAudioPlayer audioPlayer)
         {
             audioPlayer.Disposing += OnAudioDisposing;
@@ -83,12 +95,7 @@ namespace Audio
         {
             ActToAllAudioPlayers(audioPlayer => audioPlayer.Play());
         }
-
-        public void PauseAll()
-        {
-            ActToAllAudioPlayers(audioPlayer => audioPlayer.Pause());
-        }
-
+        
         public void StopAll()
         {
             ActToAllAudioPlayers(audioPlayer => audioPlayer.Stop());
@@ -104,7 +111,7 @@ namespace Audio
             ActToAllAudioPlayers(audioPlayer => audioPlayer.Volume = volume);
         }
 
-        private void ActToAllAudioPlayers(Action<IAudioPlayer> action)
+        private void ActToAllAudioPlayers(Action<AudioPlayer> action)
         {
             foreach (var audioPlayerHashSet in _audioPlayerPlayingDic.Values)
             {

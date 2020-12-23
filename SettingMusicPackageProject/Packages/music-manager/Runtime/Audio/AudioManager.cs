@@ -11,13 +11,13 @@ namespace Audio
 
         public IReadOnlyDictionary<string, IAudioCollection> AudioCollections => _audioCollections.ToDictionary(k => k.Key, v => (IAudioCollection) v.Value);
 
-        public AudioManager(IAudioDatabase audioDatabase, IAudioPool audioPool)
+        public AudioManager(IAudioDatabase audioDatabase, IAudioSourcePool audioSourcePool)
         {
             _amountPriorityController = new AmountPriorityController(audioDatabase.LimitPlayTogether);
 
             foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescriptions)
             {
-                _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription, audioPool);
+                _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription, audioSourcePool);
 
                 foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptions)
                 {
@@ -46,6 +46,14 @@ namespace Audio
             }
 
             return isGetAudio;
+        }
+
+        public void Update()
+        {
+            foreach (var audioCollection in _audioCollections.Values)
+            {
+                audioCollection.Update();
+            }
         }
 
         private void AddAudioPlayerListener(IAudioPlayer audioPlayer)

@@ -6,6 +6,7 @@ namespace Audio
     public class AudioPlayerDescription : ScriptableObject, IAudioPlayerDescription
     {
         [SerializeField] private protected string _audioId;
+        [SerializeField] private protected string _clipId;
         [SerializeField] private protected int _limitPlayTogether;
         [SerializeField] private protected bool _isLoop;
         [SerializeField] private protected float _fadeSeconds;
@@ -19,6 +20,7 @@ namespace Audio
         [SerializeField] private protected RolloffMode _rolloffMode;
 
         public string Id => _audioId;
+        public string ClipId => _clipId;
         public int LimitPlayTogether => _limitPlayTogether;
         public bool IsLoop => _isLoop;
         public float FadeSeconds => _fadeSeconds;

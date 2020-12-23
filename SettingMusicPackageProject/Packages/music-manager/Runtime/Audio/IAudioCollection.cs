@@ -6,7 +6,6 @@
         
         void SetLimitPlaySameAudioTogether(string idAudio, int maxAmount);
         void PlayAll();
-        void PauseAll();
         void StopAll();
         void MuteAll(bool isMute);
         void SetVolumeAll(float volume);

@@ -3,6 +3,7 @@
     public interface IAudioPlayerDescription
     {
         string Id { get; }
+        string ClipId { get; }
         int LimitPlayTogether { get; }
         bool IsLoop { get; }
         float FadeSeconds { get; }

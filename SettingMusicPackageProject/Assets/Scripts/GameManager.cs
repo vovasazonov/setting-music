@@ -10,7 +10,15 @@ public sealed class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _audioSourcePool.Init(_audioClipDatabase.AudioClips);
+        _audioSourcePool.Init(_audioClipDatabase.AudioClipDic);
         _audioManager = new AudioManager(_audioDatabase, _audioSourcePool);
+    }
+
+    public void Play(string audioSound)
+    {
+        if (_audioManager.TryGetAudioPlayer(audioSound, AudioPriorityType.Important, out var audioPlayer))
+        {
+            audioPlayer.Play();
+        }
     }
 }

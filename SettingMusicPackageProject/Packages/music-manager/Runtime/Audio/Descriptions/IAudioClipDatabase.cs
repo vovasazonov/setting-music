@@ -5,6 +5,6 @@ namespace Audio
 {
     public interface IAudioClipDatabase
     {
-        IReadOnlyDictionary<string, AudioClip> AudioClips { get; }
+        IReadOnlyDictionary<string, AudioClip> AudioClipDic { get; }
     }
 }

@@ -13,13 +13,13 @@ namespace Audio
 
         public AudioManager(IAudioDatabase audioDatabase, IAudioSourcePool audioSourcePool)
         {
-            _amountPriorityController = new AmountPriorityController(audioDatabase.LimitPriorityPlayTogether);
+            _amountPriorityController = new AmountPriorityController(audioDatabase.LimitAudioPriorityDic);
 
-            foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescriptions.Values)
+            foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescriptionDic.Values)
             {
                 _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription, audioSourcePool);
 
-                foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptions.Values)
+                foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptionDic.Values)
                 {
                     _playerIdByCollectionId[audioPlayerDescription.Id] = audioCollectionDescription.Id;
                 }

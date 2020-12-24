@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd71c01c95546a3aee2949cd780b40b, type: 3}
+  m_Name: AudioCollectionDescription
+  m_EditorClassIdentifier: 
+  _id: general
+  _audioPlayerDescriptions:
+  - {fileID: 11400000, guid: b79c7403da6f25046a46d914016f3221, type: 2}
+  _limitAudioPriority:
+    LimitImpotant: 2
+    LimitUnimpotant: 2
+    LimitLeast: 2

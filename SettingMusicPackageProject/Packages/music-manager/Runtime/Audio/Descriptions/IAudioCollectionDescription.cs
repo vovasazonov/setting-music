@@ -5,7 +5,7 @@ namespace Audio
     public interface IAudioCollectionDescription
     {
         string Id { get; }
-        IReadOnlyDictionary<AudioPriorityType,int> LimitAudioPriority { get; }
-        IReadOnlyDictionary<string, IAudioPlayerDescription> AudioPlayerDescriptions { get; }
+        IReadOnlyDictionary<AudioPriorityType,int> LimitAudioPriorityDic { get; }
+        IReadOnlyDictionary<string, IAudioPlayerDescription> AudioPlayerDescriptionDic { get; }
     }
 }

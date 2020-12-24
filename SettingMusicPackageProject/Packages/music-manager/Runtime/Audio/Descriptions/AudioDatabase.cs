@@ -7,16 +7,36 @@ namespace Audio
     [CreateAssetMenu(fileName = "AudioDatabase", menuName = "AudioPackage/AudioDatabase", order = 0)]
     public sealed class AudioDatabase : ScriptableObject, IAudioDatabase
     {
-        [SerializeField] private List<AudioCollectionDescription> _audioCollectionDescriptionList;
+        [SerializeField] private List<AudioCollectionDescription> _audioCollectionDescriptions;
         [SerializeField] private LimitAudioPriority _limitAudioPriority;
 
-        public IReadOnlyDictionary<AudioPriorityType, int> LimitPriorityPlayTogether { get; private set; }
-        public IReadOnlyDictionary<string, IAudioCollectionDescription> AudioCollectionDescriptions { get; private set; }
+        private Dictionary<AudioPriorityType, int> _limitAudioPriorityDic;
+        private Dictionary<string, IAudioCollectionDescription> _audioCollectionDescriptionDic;
 
-        private void Awake()
+        public IReadOnlyDictionary<AudioPriorityType, int> LimitAudioPriorityDic
         {
-            LimitPriorityPlayTogether = _limitAudioPriority.ConvertToDictionary();
-            AudioCollectionDescriptions = _audioCollectionDescriptionList.ToDictionary(k => k.Id, v => (IAudioCollectionDescription) v);
+            get
+            {
+                if (_limitAudioPriorityDic == null)
+                {
+                    _limitAudioPriorityDic = _limitAudioPriority.ConvertToDictionary();
+                }
+
+                return _limitAudioPriorityDic;
+            }
+        }
+        
+        public IReadOnlyDictionary<string, IAudioCollectionDescription> AudioCollectionDescriptionDic
+        {
+            get
+            {
+                if (_audioCollectionDescriptionDic == null)
+                {
+                    _audioCollectionDescriptionDic = _audioCollectionDescriptions.ToDictionary(k => k.Id, v => (IAudioCollectionDescription) v);
+                }
+
+                return _audioCollectionDescriptionDic;
+            }
         }
     }
 }

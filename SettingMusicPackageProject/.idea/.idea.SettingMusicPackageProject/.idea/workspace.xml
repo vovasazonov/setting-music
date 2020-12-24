@@ -75,18 +75,18 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/LimitPriority.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/LimitPriorityPlayTogether.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/LimitAudioPriority.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioDatabase.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioDatabase.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IClipDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioClipDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioClipDatabase.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioClipDescription.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioClipDatabase.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioCollectionDescription.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioCollectionDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioDatabase.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioClipDatabase.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioCollectionDescription.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioDatabase.cs" />
       </list>
     </option>
   </component>
@@ -142,7 +142,7 @@
       <workItem from="1608185853194" duration="13868000" />
       <workItem from="1608207069221" duration="7017000" />
       <workItem from="1608263966935" duration="23443000" />
-      <workItem from="1608789704571" duration="6026000" />
+      <workItem from="1608789704571" duration="10037000" />
     </task>
     <servers />
   </component>

@@ -8,12 +8,20 @@ namespace Audio
     public sealed class AudioClipDatabase : ScriptableObject, IAudioClipDatabase
     {
         [SerializeField] private List<AudioClipDescription> _audioClipDescriptions;
-        
-        public IReadOnlyDictionary<string, AudioClip> AudioClips { get; private set; }
 
-        private void Awake()
+        private Dictionary<string, AudioClip> _audioClipDic;
+
+        public IReadOnlyDictionary<string, AudioClip> AudioClipDic
         {
-            AudioClips = _audioClipDescriptions.ToDictionary(k => k.Id, v => v.AudioClip);
+            get
+            {
+                if (_audioClipDic == null)
+                {
+                    _audioClipDic = _audioClipDescriptions.ToDictionary(k => k.Id, v => v.AudioClip);
+                }
+
+                return _audioClipDic;
+            }
         }
     }
 }

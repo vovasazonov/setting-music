@@ -11,14 +11,35 @@ namespace Audio
         [SerializeField] private List<AudioPlayerDescription> _audioPlayerDescriptions;
         [SerializeField] private LimitAudioPriority _limitAudioPriority;
 
+        private Dictionary<AudioPriorityType, int> _limitAudioPriorityDic;
+        private Dictionary<string, IAudioPlayerDescription> _audioPlayerDescriptionDic;
+        
         public string Id => _id;
-        public IReadOnlyDictionary<AudioPriorityType, int> LimitAudioPriority { get; private set; }
-        public IReadOnlyDictionary<string, IAudioPlayerDescription> AudioPlayerDescriptions { get; private set; }
 
-        private void Awake()
+        public IReadOnlyDictionary<AudioPriorityType, int> LimitAudioPriorityDic
         {
-            LimitAudioPriority = _limitAudioPriority.ConvertToDictionary();
-            AudioPlayerDescriptions = _audioPlayerDescriptions.ToDictionary(k => k.Id, v => (IAudioPlayerDescription) v);
+            get
+            {
+                if (_limitAudioPriorityDic == null)
+                {
+                    _limitAudioPriorityDic = _limitAudioPriority.ConvertToDictionary();
+                }
+
+                return _limitAudioPriorityDic;
+            }
+        }
+
+        public IReadOnlyDictionary<string, IAudioPlayerDescription> AudioPlayerDescriptionDic
+        {
+            get
+            {
+                if (_audioPlayerDescriptionDic == null)
+                {
+                    _audioPlayerDescriptionDic = _audioPlayerDescriptions.ToDictionary(k => k.Id, v => (IAudioPlayerDescription) v);
+                }
+
+                return _audioPlayerDescriptionDic;
+            }
         }
     }
 }

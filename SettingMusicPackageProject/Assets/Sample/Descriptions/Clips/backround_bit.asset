@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a8126de3f7c45d68c323cc2b4b26dba, type: 3}
-  m_Name: AudioClipDescription
+  m_Name: backround_bit
   m_EditorClassIdentifier: 
-  _id: zvuk_krik_zombie
-  _audioClip: {fileID: 8300000, guid: 3045d052e8f564a4794dcb61b74b92d6, type: 3}
+  _id: backround_bit
+  _audioClip: {fileID: 8300000, guid: a4eb00f138cb6394aa29e7c0d1201225, type: 3}

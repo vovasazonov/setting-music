@@ -94,6 +94,7 @@ namespace Audio
 
         public void Play()
         {
+            StopAllCoroutines();
             StartCoroutine(FollowAudioPlay());
             StartCoroutine(Fade(0, Volume, FadeSeconds));
             _audioSource.Play();

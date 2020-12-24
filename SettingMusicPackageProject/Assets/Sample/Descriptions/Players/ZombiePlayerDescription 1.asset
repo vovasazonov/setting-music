@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88695c8a67b418d9bc47aa83af7ab76, type: 3}
+  m_Name: ZombiePlayerDescription 1
+  m_EditorClassIdentifier: 
+  _audioId: zombie_audio_player
+  _clipId: zvuk_krik_zombie
+  _limitPlayTogether: 1
+  _isLoop: 0
+  _fadeSeconds: 0
+  _pitch: 1
+  _spatialBlend: 0
+  _stereoPan: 0
+  _spread: 0
+  _dopplerLevel: 1
+  _minDistance: 0
+  _maxDistance: 0
+  _rolloffMode: 0

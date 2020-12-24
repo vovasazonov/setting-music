@@ -6,8 +6,12 @@
     <e p="D:\Users\vovas\Documents\Repos\setting-music\SettingMusicPackageProject" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Scripts" t="Include">
-          <e p="GameManager.cs" t="Include" />
+        <e p="Samples" t="Include">
+          <e p="1" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="GameManager.cs" t="Include" />
+            </e>
+          </e>
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

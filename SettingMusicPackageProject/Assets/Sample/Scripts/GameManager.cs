@@ -1,4 +1,5 @@
-﻿using Audio;
+﻿using System.Collections.Generic;
+using Audio;
 using UnityEngine;
 
 public sealed class GameManager : MonoBehaviour
@@ -7,6 +8,7 @@ public sealed class GameManager : MonoBehaviour
     [SerializeField] private AudioDatabase _audioDatabase;
     [SerializeField] private AudioClipDatabase _audioClipDatabase;
     private IAudioManager _audioManager;
+    private Queue<IAudioPlayer> _audioPlayers = new Queue<IAudioPlayer>();
 
     private void Awake()
     {
@@ -16,6 +18,14 @@ public sealed class GameManager : MonoBehaviour
 
     public void Play(string audioSound)
     {
-        var audioPlayer = _audioManager.Play(audioSound, new PlaySetting{AudioPriorityType = AudioPriorityType.Important, ObjectToAttach = transform});
+        _audioPlayers.Enqueue(_audioManager.Play(audioSound, new PlaySetting {AudioPriorityType = AudioPriorityType.Important, ObjectToAttach = transform}));
+    }
+
+    public void DisposeRandomAudio()
+    {
+        if (_audioPlayers.Count > 0)
+        {
+            _audioPlayers.Dequeue().Dispose();
+        }
     }
 }

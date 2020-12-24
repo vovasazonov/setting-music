@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e88695c8a67b418d9bc47aa83af7ab76, type: 3}
-  m_Name: ZombieAudioPlayerDescription 1
+  m_Name: BackroundPlayer
   m_EditorClassIdentifier: 
-  _audioId: 
-  _clipId: 
-  _limitPlayTogether: 0
+  _audioId: backround_bit_audio_player
+  _clipId: backround_bit
+  _limitPlayTogether: 2
   _isLoop: 0
   _fadeSeconds: 0
   _pitch: 1

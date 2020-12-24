@@ -7,10 +7,10 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea1010726f444a6da86e379127098f82, type: 3}
-  m_Name: AudioClipDatabase
+  m_Script: {fileID: 11500000, guid: 5a8126de3f7c45d68c323cc2b4b26dba, type: 3}
+  m_Name: zvuk_krik_zombie
   m_EditorClassIdentifier: 
-  _audioClipDescriptions:
-  - {fileID: 11400000, guid: 54c3bba41ce9a524a8a97a12b6e08dcb, type: 2}
+  _id: zvuk_krik_zombie
+  _audioClip: {fileID: 8300000, guid: 3045d052e8f564a4794dcb61b74b92d6, type: 3}

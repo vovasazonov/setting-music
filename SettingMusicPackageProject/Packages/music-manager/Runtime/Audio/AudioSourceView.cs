@@ -14,67 +14,57 @@ namespace Audio
 
         public bool IsLoop
         {
-            get => _audioSource.loop;
             set => _audioSource.loop = value;
         }
 
         public bool IsMute
         {
-            get => _audioSource.mute;
             set => _audioSource.mute = value;
         }
 
         public float Volume
         {
-            get => _audioSource.volume;
+            private get => _audioSource.volume;
             set => _audioSource.volume = value;
         }
 
         public float Pitch
         {
-            get => _audioSource.pitch;
             set => _audioSource.pitch = value;
         }
 
         public float SpatialBlend
         {
-            get => _audioSource.spatialBlend;
             set => _audioSource.spatialBlend = value;
         }
 
         public float StereoPan
         {
-            get => _audioSource.panStereo;
             set => _audioSource.panStereo = value;
         }
 
         public float Spread
         {
-            get => _audioSource.spread;
             set => _audioSource.spread = value;
         }
 
         public float DopplerLevel
         {
-            get => _audioSource.dopplerLevel;
             set => _audioSource.dopplerLevel = value;
         }
 
         public float MinDistance
         {
-            get => _audioSource.minDistance;
             set => _audioSource.minDistance = value;
         }
 
         public float MaxDistance
         {
-            get => _audioSource.maxDistance;
             set => _audioSource.maxDistance = value;
         }
 
         public RolloffMode RolloffMode
         {
-            get => _rolloffMode;
             set
             {
                 _rolloffMode = value;
@@ -95,7 +85,7 @@ namespace Audio
             }
         }
 
-        public float FadeSeconds { get; set; }
+        public float FadeSeconds { private get; set; }
 
         internal void Init(IReadOnlyDictionary<string, AudioClip> audioClips)
         {

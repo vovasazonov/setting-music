@@ -2,18 +2,18 @@
 {
     public interface IAudioSource
     {
-        bool IsLoop { get; set; }
-        bool IsMute { get; set; }
-        float Volume { get; set; }
-        float Pitch { get; set; }
-        float SpatialBlend { get; set; }
-        float StereoPan { get; set; }
-        float Spread { get; set; }
-        float DopplerLevel { get; set; }
-        float MinDistance { get; set; }
-        float MaxDistance { get; set; }
-        RolloffMode RolloffMode { get; set; } 
-        float FadeSeconds { get; set; }
+        bool IsLoop { set; }
+        bool IsMute { set; }
+        float Volume { set; }
+        float Pitch { set; }
+        float SpatialBlend { set; }
+        float StereoPan { set; }
+        float Spread { set; }
+        float DopplerLevel { set; }
+        float MinDistance { set; }
+        float MaxDistance { set; }
+        RolloffMode RolloffMode { set; } 
+        float FadeSeconds { set; }
 
         void Play();
         void Stop();

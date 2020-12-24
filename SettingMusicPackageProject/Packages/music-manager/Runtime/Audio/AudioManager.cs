@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Audio
@@ -20,10 +19,15 @@ namespace Audio
             {
                 _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription, audioSourcePool);
 
-                foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptionDic.Values)
-                {
-                    _playerIdByCollectionId[audioPlayerDescription.Id] = audioCollectionDescription.Id;
-                }
+                SetPlayerIdBelongCollectionId(audioCollectionDescription);
+            }
+        }
+
+        private void SetPlayerIdBelongCollectionId(IAudioCollectionDescription collectionDescription)
+        {
+            foreach (var playerDescription in collectionDescription.AudioPlayerDescriptionDic.Values)
+            {
+                _playerIdByCollectionId[playerDescription.Id] = collectionDescription.Id;
             }
         }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b568696549444e0baecfff2bd4309a3, type: 3}
   m_Name: AudioDatabase
   m_EditorClassIdentifier: 
-  _audioCollectionDescriptionList:
+  _audioCollectionDescriptions:
   - {fileID: 11400000, guid: 1d9027075c1001d4bb468217bcf90a98, type: 2}
   _limitAudioPriority:
     LimitImpotant: 2

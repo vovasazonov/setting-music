@@ -32,6 +32,7 @@
             Id = audioPlayerDescription.Id;
             FadeSeconds = audioPlayerDescription.FadeSeconds;
 
+            _audioSource.SetClip(audioPlayerDescription.ClipId);
             _audioSource.FadeSeconds = audioPlayerDescription.FadeSeconds;
             _audioSource.IsLoop = audioPlayerDescription.IsLoop;
             _audioSource.Pitch = audioPlayerDescription.Pitch;

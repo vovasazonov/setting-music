@@ -4,7 +4,7 @@ namespace Audio
 {
     public interface IAudioDatabase
     {
-        IReadOnlyDictionary<AudioPriorityType,int> LimitPlayTogether { get; }
-        IEnumerable<IAudioCollectionDescription> AudioCollectionDescriptions { get; }
+        IReadOnlyDictionary<AudioPriorityType, int> LimitPriorityPlayTogether { get; }
+        IReadOnlyDictionary<string, IAudioCollectionDescription> AudioCollectionDescriptions { get; }
     }
 }

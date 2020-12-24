@@ -13,9 +13,9 @@ namespace Audio
 
         public AudioManager(IAudioDatabase audioDatabase, IAudioSourcePool audioSourcePool)
         {
-            _amountPriorityController = new AmountPriorityController(audioDatabase.LimitPlayTogether);
+            _amountPriorityController = new AmountPriorityController(audioDatabase.LimitPriorityPlayTogether);
 
-            foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescriptions)
+            foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescriptions.Values)
             {
                 _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription, audioSourcePool);
 

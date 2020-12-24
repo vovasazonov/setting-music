@@ -14,11 +14,18 @@ public sealed class GameManager : MonoBehaviour
         _audioManager = new AudioManager(_audioDatabase, _audioSourcePool);
     }
 
+    private IAudioPlayer _audioPlayer;
+
     public void Play(string audioSound)
     {
-        if (_audioManager.TryGetAudioPlayer(audioSound, AudioPriorityType.Important, out var audioPlayer))
+        if (_audioPlayer == null)
         {
-            audioPlayer.Play();
+            if (_audioManager.TryGetAudioPlayer(audioSound, AudioPriorityType.Important, out var audioPlayer))
+            {
+                _audioPlayer = audioPlayer;
+            }
         }
+
+        _audioPlayer.Play();
     }
 }

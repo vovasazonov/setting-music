@@ -43,7 +43,7 @@ namespace Audio
         private void SetToFactorySettings(IAudioSource audioSource)
         {
             audioSource.SetEnable(false);
-            audioSource.Stop();
+            audioSource.Attach(transform);
         }
 
         private void SetToReleaseSettings(IAudioSource audioSource)

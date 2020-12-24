@@ -160,7 +160,7 @@ namespace Audio
 
         public void Attach(object audioAttachableObject)
         {
-            _audioSource.transform.SetParent(((MonoBehaviour) audioAttachableObject).transform);
+            _audioSource.transform.SetParent(((Transform) audioAttachableObject).transform);
         }
 
         public void SetEnable(bool isEnable)

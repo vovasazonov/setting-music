@@ -9,19 +9,16 @@
 
         public float FadeSeconds
         {
-            get => _audioSource.FadeSeconds;
             set => _audioSource.FadeSeconds = value;
         }
 
-        public bool IsMute
+        internal bool IsMute
         {
-            get => _audioSource.IsMute;
             set => _audioSource.IsMute = value;
         }
 
-        public float Volume
+        internal float Volume
         {
-            get => _audioSource.Volume;
             set => _audioSource.Volume = value;
         }
 

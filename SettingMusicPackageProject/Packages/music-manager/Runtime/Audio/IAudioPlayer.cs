@@ -7,9 +7,7 @@
         event DisposingHandler Disposing;
         
         string Id { get; }
-        bool IsMute { get; set; }
-        float FadeSeconds { get; set; }
-        float Volume { get; set; }
+        float FadeSeconds { set; }
 
         void Play();
         void Stop();

@@ -16,6 +16,6 @@ public sealed class GameManager : MonoBehaviour
 
     public void Play(string audioSound)
     {
-        var audioPlayer = _audioManager.Play(audioSound, new PlaySetting{AudioPriorityType = AudioPriorityType.Important});
+        var audioPlayer = _audioManager.Play(audioSound, new PlaySetting{AudioPriorityType = AudioPriorityType.Important, ObjectToAttach = transform});
     }
 }

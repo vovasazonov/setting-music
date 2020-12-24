@@ -6,6 +6,6 @@ namespace Audio
     {
         IReadOnlyDictionary<string, IAudioCollection> AudioCollections { get; }
 
-        bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer);
+        IAudioPlayer Play(string idAudio, PlaySetting playSetting = new PlaySetting());
     }
 }

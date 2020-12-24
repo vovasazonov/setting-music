@@ -42,6 +42,7 @@
               <e p="IAudioSource.cs" t="Include" />
               <e p="IAudioSourcePool.cs" t="Include" />
               <e p="IPosition.cs" t="Include" />
+              <e p="PlaySetting.cs" t="Include" />
               <e p="Position.cs" t="Include" />
               <e p="RolloffMode.cs" t="Include" />
             </e>

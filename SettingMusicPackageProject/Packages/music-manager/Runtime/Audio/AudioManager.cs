@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Audio
@@ -26,7 +27,24 @@ namespace Audio
             }
         }
 
-        public bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
+        public IAudioPlayer Play(string idAudio, PlaySetting playSetting = new PlaySetting())
+        {
+            if (TryGetAudioPlayer(idAudio, playSetting.AudioPriorityType, out var audioPlayer))
+            { 
+                if (playSetting.ObjectToAttach != null)
+                {
+                    audioPlayer.Attach(playSetting.ObjectToAttach);
+                }
+                audioPlayer.FadeSeconds = playSetting.FadeSeconds;
+                playSetting.Position = playSetting.Position;
+                
+                audioPlayer.Play();
+            }
+
+            return audioPlayer;
+        }
+
+        private bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
         {
             bool isGetAudio = false;
 

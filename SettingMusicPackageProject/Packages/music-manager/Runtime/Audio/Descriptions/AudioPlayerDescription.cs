@@ -7,17 +7,17 @@ namespace Audio
     {
         [SerializeField] private protected string _audioId;
         [SerializeField] private protected string _clipId;
-        [SerializeField] private protected int _limitPlayTogether;
+        [SerializeField] private protected int _limitPlayTogether = 2;
         [SerializeField] private protected bool _isLoop;
         [SerializeField] private protected float _fadeSeconds;
-        [SerializeField] private protected float _pitch;
+        [SerializeField] private protected float _pitch = 1;
         [SerializeField] private protected float _spatialBlend;
         [SerializeField] private protected float _stereoPan;
         [SerializeField] private protected float _spread;
-        [SerializeField] private protected float _dopplerLevel;
+        [SerializeField] private protected float _dopplerLevel = 1;
         [SerializeField] private protected float _minDistance;
         [SerializeField] private protected float _maxDistance;
-        [SerializeField] private protected RolloffMode _rolloffMode;
+        [SerializeField] private protected RolloffMode _rolloffMode = RolloffMode.Logarithmic;
 
         public string Id => _audioId;
         public string ClipId => _clipId;

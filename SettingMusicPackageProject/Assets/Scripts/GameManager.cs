@@ -25,7 +25,7 @@ public sealed class GameManager : MonoBehaviour
                 _audioPlayer = audioPlayer;
             }
         }
-
+        
         _audioPlayer.Play();
     }
 }

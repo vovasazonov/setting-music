@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Audio
 {
-    public sealed class AudioPool : MonoBehaviour, IAudioSourcePool
+    public sealed class AudioSourcePool : MonoBehaviour, IAudioSourcePool
     {
         [SerializeField] private AudioSourceView _audioSourcePrefab;
         private readonly Queue<IAudioSource> _freeAudioSources = new Queue<IAudioSource>();

@@ -18,7 +18,6 @@ namespace Audio
             foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescriptionDic.Values)
             {
                 _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription, audioSourcePool);
-
                 SetPlayerIdBelongCollectionId(audioCollectionDescription);
             }
         }

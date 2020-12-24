@@ -76,7 +76,6 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioCollectionDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioDatabase.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioSourcePool.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioSourceView.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioPlayerDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/PlaySetting.cs" />
@@ -85,8 +84,9 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioSource.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioSource.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioSourceView.cs" />
       </list>
     </option>
   </component>
@@ -142,7 +142,7 @@
       <workItem from="1608185853194" duration="13868000" />
       <workItem from="1608207069221" duration="7017000" />
       <workItem from="1608263966935" duration="23443000" />
-      <workItem from="1608789704571" duration="20404000" />
+      <workItem from="1608789704571" duration="20715000" />
     </task>
     <servers />
   </component>

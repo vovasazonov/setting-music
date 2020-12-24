@@ -4,6 +4,7 @@
     {
         string Id { get; }
         string ClipId { get; }
+        float Volume { get; }
         int LimitPlayTogether { get; }
         bool IsLoop { get; }
         float FadeSeconds { get; }

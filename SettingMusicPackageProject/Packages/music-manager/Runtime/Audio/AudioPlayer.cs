@@ -2,9 +2,12 @@
 {
     public sealed class AudioPlayer : IAudioPlayer
     {
-        private readonly IAudioSource _audioSource;
         public event DisposingHandler Disposing;
-
+        
+        private readonly IAudioSource _audioSource;
+        private readonly float _originalVolume;
+        private float _percentageVolume;
+        
         public string Id { get; }
 
         public float FadeSeconds
@@ -17,9 +20,13 @@
             set => _audioSource.IsMute = value;
         }
 
-        internal float Volume
+        internal float PercentageVolume
         {
-            set => _audioSource.Volume = value;
+            set
+            {
+                _percentageVolume = value;
+                _audioSource.Volume = _originalVolume * _percentageVolume;
+            }
         }
 
         public AudioPlayer(IAudioPlayerDescription audioPlayerDescription, IAudioSource audioSource)
@@ -29,6 +36,7 @@
             Id = audioPlayerDescription.Id;
             FadeSeconds = audioPlayerDescription.FadeSeconds;
 
+            _originalVolume = audioPlayerDescription.Volume;
             _audioSource.SetClip(audioPlayerDescription.ClipId);
             _audioSource.FadeSeconds = audioPlayerDescription.FadeSeconds;
             _audioSource.IsLoop = audioPlayerDescription.IsLoop;

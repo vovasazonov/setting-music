@@ -1,29 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Audio
 {
     [CreateAssetMenu(fileName = "AudioCollectionDescription", menuName = "AudioPackage/AudioCollectionDescription", order = 0)]
-    public class AudioCollectionDescription : ScriptableObject, IAudioCollectionDescription
+    public sealed class AudioCollectionDescription : ScriptableObject, IAudioCollectionDescription
     {
-        [SerializeField] private protected string _id;
-        [SerializeField] private protected List<AudioPlayerDescription> _audioPlayerDescriptions;
-        [SerializeField] private protected int _limitImpotant;
-        [SerializeField] private protected int _limitUnmpotant;
-        [SerializeField] private protected int _limitLeast;
+        [SerializeField] private string _id;
+        [SerializeField] private List<AudioPlayerDescription> _audioPlayerDescriptions;
+        [SerializeField] private LimitAudioPriority _limitAudioPriority;
 
         public string Id => _id;
-        public IReadOnlyDictionary<AudioPriorityType, int> LimitPlayTogether { get; private set; }
-        public IEnumerable<IAudioPlayerDescription> AudioPlayerDescriptions => _audioPlayerDescriptions;
+        public IReadOnlyDictionary<AudioPriorityType, int> LimitAudioPriority { get; private set; }
+        public IReadOnlyDictionary<string, IAudioPlayerDescription> AudioPlayerDescriptions { get; private set; }
 
         private void Awake()
         {
-            LimitPlayTogether = new Dictionary<AudioPriorityType, int>
-            {
-                {AudioPriorityType.Important, _limitImpotant},
-                {AudioPriorityType.Unimportant, _limitUnmpotant},
-                {AudioPriorityType.Least, _limitLeast}
-            };
+            LimitAudioPriority = _limitAudioPriority.ConvertToDictionary();
+            AudioPlayerDescriptions = _audioPlayerDescriptions.ToDictionary(k => k.Id, v => (IAudioPlayerDescription) v);
         }
     }
 }

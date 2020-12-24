@@ -20,9 +20,9 @@ namespace Audio
 
             Id = audioCollectionDescription.Id;
             _audioSourcePool = audioSourcePool;
-            _amountPriorityController = new AmountPriorityController(audioCollectionDescription.LimitPlayTogether);
+            _amountPriorityController = new AmountPriorityController(audioCollectionDescription.LimitAudioPriority);
 
-            foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptions)
+            foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptions.Values)
             {
                 _audioPlayerPlayingDic[audioPlayerDescription.Id] = new HashSet<AudioPlayer>();
                 _limitPlaySameAudioTogether[audioPlayerDescription.Id] = audioPlayerDescription.LimitPlayTogether;

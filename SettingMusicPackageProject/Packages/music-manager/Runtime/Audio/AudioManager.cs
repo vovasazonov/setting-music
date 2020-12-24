@@ -19,7 +19,7 @@ namespace Audio
             {
                 _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription, audioSourcePool);
 
-                foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptions)
+                foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptions.Values)
                 {
                     _playerIdByCollectionId[audioPlayerDescription.Id] = audioCollectionDescription.Id;
                 }

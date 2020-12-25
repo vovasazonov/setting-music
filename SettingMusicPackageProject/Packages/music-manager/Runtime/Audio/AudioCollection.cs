@@ -9,6 +9,7 @@ namespace Audio
         private readonly IAmountPriorityController _amountPriorityController;
         private readonly HashSet<IAudioPlayer> _playingAudioPlayers = new HashSet<IAudioPlayer>();
         private float _volume;
+        private bool _isMute;
 
         public string Id { get; }
 
@@ -42,6 +43,7 @@ namespace Audio
         private void AddAudioPlayer(IAudioPlayer audioPlayer, AudioPriorityType audioPriorityType)
         {
             audioPlayer.Volume = _volume;
+            audioPlayer.IsMute = _isMute;
             _amountPriorityController.AddAudioPlayer(audioPriorityType, audioPlayer);
             AddAudioPlayerListener(audioPlayer);
             _playingAudioPlayers.Add(audioPlayer);
@@ -76,6 +78,7 @@ namespace Audio
 
         public void MuteAll(bool isMute)
         {
+            _isMute = isMute;
             ActToAllAudioPlayers(audioPlayer => audioPlayer.IsMute = isMute);
         }
 

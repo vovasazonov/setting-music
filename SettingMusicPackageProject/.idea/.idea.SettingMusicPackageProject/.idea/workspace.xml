@@ -78,7 +78,6 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioCollectionDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioCollectionDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Sample/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioPlayerDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioPlayerDescription.cs" />
@@ -86,6 +85,7 @@
         <option value="$PROJECT_DIR$/Assets/Sample/Scripts/ZombieModel.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/PlaySetting.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioSourceView.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayerController.cs" />
       </list>
     </option>
   </component>
@@ -142,7 +142,7 @@
       <workItem from="1608207069221" duration="7017000" />
       <workItem from="1608263966935" duration="23443000" />
       <workItem from="1608789704571" duration="24149000" />
-      <workItem from="1608874481812" duration="16958000" />
+      <workItem from="1608874481812" duration="17310000" />
     </task>
     <servers />
   </component>

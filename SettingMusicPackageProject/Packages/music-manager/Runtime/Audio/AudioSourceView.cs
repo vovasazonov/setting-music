@@ -12,10 +12,7 @@ namespace Audio
         private IReadOnlyDictionary<string, AudioClip> _audioClips;
         private RolloffMode _rolloffMode;
 
-        public bool IsLoop
-        {
-            set => _audioSource.loop = value;
-        }
+        public bool IsLoop { private get; set; }
 
         public bool IsMute
         {
@@ -94,18 +91,16 @@ namespace Audio
 
         public void Play()
         {
-            StopAllCoroutines();
-            StartCoroutine(FollowAudioPlay());
-            StartCoroutine(Fade(0, Volume, FadeSeconds));
+            StartCoroutine(FollowAudioPlayToFade());
             _audioSource.Play();
         }
-        
+
         public void Stop()
         {
             _audioSource.Stop();
             StopAllCoroutines();
         }
-        
+
         private IEnumerator Fade(float startVolume, float targetVolume, float fadeSeconds)
         {
             var originalVolume = Volume;
@@ -125,25 +120,55 @@ namespace Audio
                 Volume = originalVolume;
             }
         }
-        
-        private IEnumerator FollowAudioPlay()
+
+        private IEnumerator FollowAudioPlayToFade()
         {
-            bool isFirstFrame = true;
-            
-            while (_audioSource.isPlaying || isFirstFrame)
+            bool isFadeIn = false;
+            bool isFadeOut = false;
+
+            while (_audioSource.isPlaying || IsLoop)
             {
-                isFirstFrame = false;
-                var timeAudioToEnd = _audioSource.clip.length - _audioSource.time;
-                if (timeAudioToEnd < FadeSeconds)
+                if (!isFadeIn)
                 {
-                    StartCoroutine(Fade(Volume, 0, FadeSeconds));
-                    yield break;
+                    isFadeIn = FadeIn();
+                }
+
+                if (_audioSource.isPlaying)
+                {
+                    if (!isFadeOut)
+                    {
+                        isFadeOut = FadeOut();
+                    }
+                }
+                else if (IsLoop)
+                {
+                    isFadeOut = false;
+                    isFadeIn = false;
                 }
 
                 yield return null;
             }
         }
-        
+
+        private bool FadeIn()
+        {
+            StartCoroutine(Fade(0, Volume, FadeSeconds));
+            return true;
+        }
+
+        private bool FadeOut()
+        {
+            bool isFadeOut;
+            var timeAudioToEnd = _audioSource.clip.length - _audioSource.time;
+            if (timeAudioToEnd < FadeSeconds)
+            {
+                StartCoroutine(Fade(Volume, 0, FadeSeconds));
+                isFadeOut = true;
+            }
+
+            return isFadeOut;
+        }
+
         public void SetPosition(IPosition position)
         {
             _audioSource.transform.position = new Vector3(position.X, position.Y, position.Z);

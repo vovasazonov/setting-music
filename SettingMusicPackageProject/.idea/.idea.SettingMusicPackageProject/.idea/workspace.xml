@@ -45,7 +45,6 @@
         <option value="$PROJECT_DIR$/Assets/Scenes/TestScript.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Position.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioSoruce.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioPlayerDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPool.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPool.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioSourcePool.cs" />
@@ -63,17 +62,13 @@
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioCollectionDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioDatabase.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioSourcePool.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioPlayerDescription.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/PlaySetting.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AmountPriorityController.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/IAudioSource.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Samples/1/Scripts/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayer.cs" />
         <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioSourceView.cs" />
         <option value="$PROJECT_DIR$/Assets/Sample/Scripts/IPlayButtonView.cs" />
         <option value="$PROJECT_DIR$/Assets/Sample/Scripts/IAudioPlayView.cs" />
@@ -86,6 +81,11 @@
         <option value="$PROJECT_DIR$/Assets/Sample/Scripts/ZombieModel.cs" />
         <option value="$PROJECT_DIR$/Assets/Sample/Scripts/CharacterPresenter.cs" />
         <option value="$PROJECT_DIR$/Assets/Sample/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/IAudioPlayerDescription.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioCollection.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/Descriptions/AudioPlayerDescription.cs" />
+        <option value="$PROJECT_DIR$/Packages/music-manager/Runtime/Audio/AudioManager.cs" />
       </list>
     </option>
   </component>
@@ -113,10 +113,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="3288">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="3288" />
+      <option name="pid" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -142,6 +142,7 @@
       <workItem from="1608207069221" duration="7017000" />
       <workItem from="1608263966935" duration="23443000" />
       <workItem from="1608789704571" duration="24149000" />
+      <workItem from="1608874481812" duration="2048000" />
     </task>
     <servers />
   </component>

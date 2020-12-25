@@ -4,7 +4,7 @@
     {
         private readonly IAudioPlayer _audioPlayer;
 
-        public AudioStopper(IAudioPlayer audioPlayer)
+        internal AudioStopper(IAudioPlayer audioPlayer)
         {
             _audioPlayer = audioPlayer;
         }

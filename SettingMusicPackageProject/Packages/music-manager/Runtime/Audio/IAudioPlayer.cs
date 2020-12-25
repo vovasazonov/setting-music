@@ -1,8 +1,8 @@
 ﻿namespace Audio
 {
-    public delegate void DisposingHandler(IAudioPlayer audioPlayer);
+    internal delegate void DisposingHandler(IAudioPlayer audioPlayer);
     
-    public interface IAudioPlayer
+    internal interface IAudioPlayer
     {
         event DisposingHandler Disposing;
         

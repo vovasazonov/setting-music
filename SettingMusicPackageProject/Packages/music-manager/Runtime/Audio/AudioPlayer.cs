@@ -1,6 +1,6 @@
 ﻿namespace Audio
 {
-    public sealed class AudioPlayer : IAudioPlayer
+    internal sealed class AudioPlayer : IAudioPlayer
     {
         public event DisposingHandler Disposing;
 

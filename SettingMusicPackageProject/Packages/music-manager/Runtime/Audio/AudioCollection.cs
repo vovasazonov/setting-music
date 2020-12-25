@@ -12,7 +12,7 @@ namespace Audio
 
         public string Id { get; }
 
-        public AudioCollection(IAudioCollectionDescription audioCollectionDescription, IReadOnlyDictionary<string, IAudioPlayerController> audioPlayerControllers)
+        internal AudioCollection(IAudioCollectionDescription audioCollectionDescription, IReadOnlyDictionary<string, IAudioPlayerController> audioPlayerControllers)
         {
             Id = audioCollectionDescription.Id;
             _volume = audioCollectionDescription.Volume;

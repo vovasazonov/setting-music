@@ -2,7 +2,7 @@
 
 namespace Audio
 {
-    public sealed class AudioPlayerController : IAudioPlayerController
+    internal sealed class AudioPlayerController : IAudioPlayerController
     {
         private readonly IAudioPlayerDescription _audioPlayerDescription;
         private readonly IAudioSourcePool _audioSourcePool;

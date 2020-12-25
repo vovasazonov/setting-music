@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Audio
 {
-    public sealed class AmountPriorityController : IAmountPriorityController
+    internal sealed class AmountPriorityController : IAmountPriorityController
     {
         private readonly IDictionary<AudioPriorityType, int> _priorityByAmountPlaying = new Dictionary<AudioPriorityType, int>();
         private readonly IDictionary<IAudioPlayer, AudioPriorityType> _audioPlayingByAudioPriority = new Dictionary<IAudioPlayer, AudioPriorityType>();

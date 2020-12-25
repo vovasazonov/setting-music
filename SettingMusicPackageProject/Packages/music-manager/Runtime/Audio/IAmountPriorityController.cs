@@ -1,6 +1,6 @@
 ﻿namespace Audio
 {
-    public interface IAmountPriorityController
+    internal interface IAmountPriorityController
     {
         bool CheckSpaceAvailable(AudioPriorityType audioPriorityType);
         void AddAudioPlayer(AudioPriorityType audioPriorityType, IAudioPlayer audioPlayer);

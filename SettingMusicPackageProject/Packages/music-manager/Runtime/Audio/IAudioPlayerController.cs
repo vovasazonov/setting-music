@@ -1,6 +1,6 @@
 ﻿namespace Audio
 {
-    public interface IAudioPlayerController
+    internal interface IAudioPlayerController
     {
         bool IsAmountPlayingLessLimit();
         IAudioPlayer GetAudioPlayer();

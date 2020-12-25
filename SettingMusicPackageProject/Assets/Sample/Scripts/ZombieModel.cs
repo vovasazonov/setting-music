@@ -7,7 +7,6 @@ namespace Sample.Scripts
         private readonly IAudioManager _audioManager;
         private readonly string _shoutZombieAudioId;
         private readonly string _audioCollectionId;
-        private IAudioPlayer _audioPlayer;
 
         public ZombieModel(IAudioManager audioManager, string shoutZombieAudioId, string audioCollectionId)
         {

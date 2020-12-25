@@ -7,7 +7,7 @@ namespace Audio
     {
         private readonly Dictionary<string, AudioCollection> _audioCollections = new Dictionary<string, AudioCollection>();
         private readonly Dictionary<string, IAudioPlayerController> _audioPlayerControllers = new Dictionary<string, IAudioPlayerController>();
-        
+
         public IReadOnlyDictionary<string, IAudioCollection> AudioCollections => _audioCollections.ToDictionary(k => k.Key, v => (IAudioCollection) v.Value);
 
         public AudioManager(IAudioDatabase audioDatabase, IAudioSourcePool audioSourcePool)
@@ -56,7 +56,10 @@ namespace Audio
                 audioPlayer.SetPosition(playSetting.Position);
             }
 
-            audioPlayer.FadeSeconds = playSetting.FadeSeconds;
+            if (playSetting.FadeSeconds != null)
+            {
+                audioPlayer.FadeSeconds = (float) playSetting.FadeSeconds;
+            }
         }
     }
 }

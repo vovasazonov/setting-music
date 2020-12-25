@@ -11,6 +11,8 @@ namespace Audio
 
         private IReadOnlyDictionary<string, AudioClip> _audioClips;
         private RolloffMode _rolloffMode;
+        private float _volume;
+        private bool _isFading;
 
         public bool IsLoop { private get; set; }
 
@@ -21,8 +23,14 @@ namespace Audio
 
         public float Volume
         {
-            private get => _audioSource.volume;
-            set => _audioSource.volume = value;
+            set
+            {
+                _volume = value;
+                if (!_isFading)
+                {
+                    _audioSource.volume = value;
+                }
+            }
         }
 
         public float Pitch
@@ -91,41 +99,48 @@ namespace Audio
 
         public void Play()
         {
-            StartCoroutine(FollowAudioPlayToFade());
-            _audioSource.Play();
+            StartCoroutine(FollowAudioPlay());
         }
 
         public void Stop()
         {
             _audioSource.Stop();
             StopAllCoroutines();
+            ResetVariablesBeforeFading();
         }
-
+        
+        
         private IEnumerator Fade(float startVolume, float targetVolume, float fadeSeconds)
         {
-            var originalVolume = Volume;
-
             if (fadeSeconds > 0)
             {
+                _isFading = true;
                 float currentSeconds = 0;
 
                 while (currentSeconds < fadeSeconds)
                 {
                     currentSeconds += Time.deltaTime;
-                    Volume = Mathf.Lerp(startVolume, targetVolume, currentSeconds / fadeSeconds);
+                    _audioSource.volume = Mathf.Lerp(startVolume, targetVolume, currentSeconds / fadeSeconds);
 
                     yield return null;
                 }
 
-                Volume = originalVolume;
+                ResetVariablesBeforeFading();
             }
         }
 
-        private IEnumerator FollowAudioPlayToFade()
+        private void ResetVariablesBeforeFading()
+        {
+            _isFading = false;
+            _audioSource.volume = _volume;
+        }
+
+        private IEnumerator FollowAudioPlay()
         {
             bool isFadeIn = false;
             bool isFadeOut = false;
-
+            _audioSource.Play();
+            
             while (_audioSource.isPlaying || IsLoop)
             {
                 if (!isFadeIn)
@@ -144,6 +159,7 @@ namespace Audio
                 {
                     isFadeOut = false;
                     isFadeIn = false;
+                    _audioSource.Play();
                 }
 
                 yield return null;
@@ -152,17 +168,17 @@ namespace Audio
 
         private bool FadeIn()
         {
-            StartCoroutine(Fade(0, Volume, FadeSeconds));
+            StartCoroutine(Fade(0, _volume, FadeSeconds));
             return true;
         }
 
         private bool FadeOut()
         {
-            bool isFadeOut;
+            bool isFadeOut = false;
             var timeAudioToEnd = _audioSource.clip.length - _audioSource.time;
             if (timeAudioToEnd < FadeSeconds)
             {
-                StartCoroutine(Fade(Volume, 0, FadeSeconds));
+                StartCoroutine(Fade(_volume, 0, FadeSeconds));
                 isFadeOut = true;
             }
 

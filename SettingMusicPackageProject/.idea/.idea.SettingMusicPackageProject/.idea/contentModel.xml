@@ -59,6 +59,7 @@
             </e>
             <e p="Unity.music-manager.asmdef" t="Include" />
           </e>
+          <e p="Tests" t="Include" />
         </e>
       </e>
       <e p="SettingMusicPackageProject.sln" t="IncludeFlat" />

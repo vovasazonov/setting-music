@@ -1,7 +1,11 @@
 ﻿namespace Audio
 {
+    public delegate void StoppedHandler();
+
     public interface IAudioSource
     {
+        event StoppedHandler Stopped;
+        
         bool IsLoop { set; }
         bool IsMute { set; }
         float Volume { set; }

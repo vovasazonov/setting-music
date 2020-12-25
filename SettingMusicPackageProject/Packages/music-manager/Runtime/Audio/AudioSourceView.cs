@@ -7,6 +7,8 @@ namespace Audio
 {
     public class AudioSourceView : MonoBehaviour, IAudioSource
     {
+        public event StoppedHandler Stopped;
+        
         [SerializeField] private protected AudioSource _audioSource;
 
         private IReadOnlyDictionary<string, AudioClip> _audioClips;
@@ -107,9 +109,9 @@ namespace Audio
             _audioSource.Stop();
             StopAllCoroutines();
             ResetVariablesBeforeFading();
+            CallStopped();
         }
-        
-        
+
         private IEnumerator Fade(float startVolume, float targetVolume, float fadeSeconds)
         {
             if (fadeSeconds > 0)
@@ -164,6 +166,8 @@ namespace Audio
 
                 yield return null;
             }
+
+            CallStopped();
         }
 
         private bool FadeIn()
@@ -203,6 +207,11 @@ namespace Audio
         public void SetClip(string idClip)
         {
             _audioSource.clip = _audioClips[idClip];
+        }
+
+        private void CallStopped()
+        {
+            Stopped?.Invoke();
         }
     }
 }

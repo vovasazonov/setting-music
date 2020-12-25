@@ -28,6 +28,7 @@
         {
             _audioPlayerDescription = audioPlayerDescription;
             _audioSource = audioSource;
+            AddAudioSourceListener();
 
             Id = audioPlayerDescription.Id;
             FadeSeconds = audioPlayerDescription.FadeSeconds;
@@ -42,6 +43,16 @@
             _audioSource.MinDistance = audioPlayerDescription.MinDistance;
             _audioSource.MaxDistance = audioPlayerDescription.MaxDistance;
             _audioSource.RolloffMode = audioPlayerDescription.RolloffMode;
+        }
+
+        private void AddAudioSourceListener()
+        {
+            _audioSource.Stopped += OnStopped;
+        }
+        
+        private void RemoveAudioSourceListener()
+        {
+            _audioSource.Stopped -= OnStopped;
         }
 
         public void Play()
@@ -72,6 +83,12 @@
         private void CallDisposing(IAudioPlayer audioPlayer)
         {
             Disposing?.Invoke(audioPlayer);
+        }
+        
+        private void OnStopped()
+        {
+            RemoveAudioSourceListener();
+            Dispose();
         }
     }
 }

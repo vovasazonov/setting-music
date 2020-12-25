@@ -26,6 +26,7 @@
               <e p="AudioCollection.cs" t="Include" />
               <e p="AudioManager.cs" t="Include" />
               <e p="AudioPlayer.cs" t="Include" />
+              <e p="AudioPlayerController.cs" t="Include" />
               <e p="AudioPriorityType.cs" t="Include" />
               <e p="AudioSourcePool.cs" t="Include" />
               <e p="AudioSourceView.cs" t="Include" />
@@ -46,6 +47,7 @@
               <e p="IAudioCollection.cs" t="Include" />
               <e p="IAudioManager.cs" t="Include" />
               <e p="IAudioPlayer.cs" t="Include" />
+              <e p="IAudioPlayerController.cs" t="Include" />
               <e p="IAudioSource.cs" t="Include" />
               <e p="IAudioSourcePool.cs" t="Include" />
               <e p="IPosition.cs" t="Include" />

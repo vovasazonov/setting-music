@@ -1,24 +1,20 @@
 ﻿namespace Audio
 {
-    public struct PlaySetting
+    public readonly struct PlaySetting
     {
-        private AudioPriorityType? _audioPriorityType;
-        private IPosition _position;
-        
-        public AudioPriorityType AudioPriorityType
-        {
-            get => _audioPriorityType ?? AudioPriorityType.Important;
-            set => _audioPriorityType = value;
-        }
+        private readonly AudioPriorityType? _audioPriorityType;
+        private readonly IPosition _position;
+        public AudioPriorityType AudioPriorityType => _audioPriorityType ?? AudioPriorityType.Important;
+        public IPosition Position => _position ?? new Position();
+        public float FadeSeconds { get; }
+        public object ObjectToAttach { get; }
 
-        public IPosition Position
+        public PlaySetting(AudioPriorityType audioPriorityType = AudioPriorityType.Important, IPosition position = null, float fadeSeconds = 0, object objectToAttach = null)
         {
-            get => _position ?? new Position(0,0,0);
-            set => _position = value;
+            _audioPriorityType = audioPriorityType;
+            _position = position;
+            FadeSeconds = fadeSeconds;
+            ObjectToAttach = objectToAttach;
         }
-        
-        public float FadeSeconds { get; set; }
-
-        public object ObjectToAttach { get; set; }
     }
 }

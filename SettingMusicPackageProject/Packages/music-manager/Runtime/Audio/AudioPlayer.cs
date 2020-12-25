@@ -15,12 +15,12 @@
             set => _audioSource.FadeSeconds = value;
         }
 
-        internal bool IsMute
+        public bool IsMute
         {
             set => _audioSource.IsMute = value;
         }
 
-        internal float PercentageVolume
+        public float PercentageVolume
         {
             set
             {

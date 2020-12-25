@@ -5,71 +5,50 @@ namespace Audio
 {
     public sealed class AudioCollection : IAudioCollection
     {
+        private readonly IReadOnlyDictionary<string, IAudioPlayerController> _audioPlayerControllers;
         private readonly IAmountPriorityController _amountPriorityController;
-        private readonly IDictionary<string, int> _audioPlayerByLimitPlay = new Dictionary<string, int>();
-        private readonly IDictionary<string, HashSet<AudioPlayer>> _audioPlayerPlayingDic = new Dictionary<string, HashSet<AudioPlayer>>();
-        private readonly IReadOnlyDictionary<string, IAudioPlayerDescription> _audioPlayerDescriptionDic;
-        private readonly IDictionary<IAudioPlayer, IAudioSource> _audioSourceToReturnDic = new Dictionary<IAudioPlayer, IAudioSource>();
-        private readonly IAudioSourcePool _audioSourcePool;
+        private readonly HashSet<IAudioPlayer> _playingAudioPlayers = new HashSet<IAudioPlayer>();
         private float _percentageVolume = 1;
 
         public string Id { get; }
 
-        public AudioCollection(IAudioCollectionDescription audioCollectionDescription, IAudioSourcePool audioSourcePool)
+        public AudioCollection(IAudioCollectionDescription audioCollectionDescription, IReadOnlyDictionary<string, IAudioPlayerController> audioPlayerControllers)
         {
-            var audioPlayerDescriptionDic = new Dictionary<string, IAudioPlayerDescription>();
-
             Id = audioCollectionDescription.Id;
-            _audioSourcePool = audioSourcePool;
+            _audioPlayerControllers = audioPlayerControllers;
             _amountPriorityController = new AmountPriorityController(audioCollectionDescription.LimitAudioPriorityDic);
-
-            foreach (var audioPlayerDescription in audioCollectionDescription.AudioPlayerDescriptionDic.Values)
-            {
-                _audioPlayerPlayingDic[audioPlayerDescription.Id] = new HashSet<AudioPlayer>();
-                _audioPlayerByLimitPlay[audioPlayerDescription.Id] = audioPlayerDescription.LimitPlayTogether;
-                audioPlayerDescriptionDic[audioPlayerDescription.Id] = audioPlayerDescription;
-            }
-
-            _audioPlayerDescriptionDic = audioPlayerDescriptionDic;
         }
 
         internal bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
         {
-            bool isGetAudio;
-            bool isAmountAudioPlayingLessThanLimit = _audioPlayerByLimitPlay[idAudio] > _audioPlayerPlayingDic[idAudio].Count;
-            
-            if (isAmountAudioPlayingLessThanLimit && _amountPriorityController.CheckSpaceAvailable(audioPriorityType))
+            bool isGetAudio = false;
+            audioPlayer = null;
+
+            if (_audioPlayerControllers[idAudio].IsAmountPlayingLessLimit())
             {
-                audioPlayer = TakeAudioPlayerExemplar(idAudio, audioPriorityType);
-                isGetAudio = true;
-            }
-            else
-            {
-                audioPlayer = null;
-                isGetAudio = false;
+                if (_amountPriorityController.CheckSpaceAvailable(audioPriorityType))
+                {
+                    isGetAudio = true;
+                    audioPlayer = _audioPlayerControllers[idAudio].GetAudioPlayer();
+                    AddAudioPlayer(audioPlayer, audioPriorityType);
+                }
             }
 
             return isGetAudio;
         }
 
-        private IAudioPlayer TakeAudioPlayerExemplar(string idAudio, AudioPriorityType audioPriorityType)
+        private void AddAudioPlayer(IAudioPlayer audioPlayer, AudioPriorityType audioPriorityType)
         {
-            var audioSource = _audioSourcePool.Take();
-            var audioPlayer = new AudioPlayer(_audioPlayerDescriptionDic[idAudio], audioSource) {PercentageVolume = _percentageVolume};
-            AddAudioPlayerListener(audioPlayer);
+            audioPlayer.PercentageVolume = _percentageVolume;
             _amountPriorityController.AddAudioPlayer(audioPriorityType, audioPlayer);
-            _audioPlayerPlayingDic[idAudio].Add(audioPlayer);
-            _audioSourceToReturnDic[audioPlayer] = audioSource;
-
-            return audioPlayer;
+            AddAudioPlayerListener(audioPlayer);
+            _playingAudioPlayers.Add(audioPlayer);
         }
 
-        private void ReturnAudioPlayerExemplar(IAudioPlayer audioPlayer)
+        private void RemoveAudioPlayer(IAudioPlayer audioPlayer)
         {
             _amountPriorityController.RemoveAudioPlayer(audioPlayer);
-            _audioPlayerPlayingDic[audioPlayer.Id].Remove((AudioPlayer) audioPlayer);
-            _audioSourcePool.Return(_audioSourceToReturnDic[audioPlayer]);
-            _audioSourceToReturnDic.Remove(audioPlayer);
+            _playingAudioPlayers.Remove(audioPlayer);
             RemoveAudioPlayerListener(audioPlayer);
         }
 
@@ -85,12 +64,7 @@ namespace Audio
 
         private void OnAudioDisposing(IAudioPlayer audioPlayer)
         {
-            ReturnAudioPlayerExemplar(audioPlayer);
-        }
-
-        public void SetLimitPlaySameAudioTogether(string idAudio, int maxAmount)
-        {
-            _audioPlayerByLimitPlay[idAudio] = maxAmount;
+            RemoveAudioPlayer(audioPlayer);
         }
 
         public void PlayAll()
@@ -114,14 +88,11 @@ namespace Audio
             ActToAllAudioPlayers(audioPlayer => audioPlayer.PercentageVolume = _percentageVolume);
         }
 
-        private void ActToAllAudioPlayers(Action<AudioPlayer> action)
+        private void ActToAllAudioPlayers(Action<IAudioPlayer> action)
         {
-            foreach (var audioPlayerHashSet in _audioPlayerPlayingDic.Values)
+            foreach (var playingAudioPlayer in _playingAudioPlayers)
             {
-                foreach (var audioPlayerExemplar in audioPlayerHashSet)
-                {
-                    action.Invoke(audioPlayerExemplar);
-                }
+                action.Invoke(playingAudioPlayer);
             }
         }
     }

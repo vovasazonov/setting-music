@@ -16,7 +16,7 @@ public sealed class GameManager : MonoBehaviour
         _audioSourcePool.Init(_audioClipDatabase.AudioClipDic);
         _audioManager = new AudioManager(_audioDatabase, _audioSourcePool);
 
-        var zombieModel = new ZombieModel(_audioManager, "zombie_audio_player");
+        var zombieModel = new ZombieModel(_audioManager, "zombie_audio_player", "general");
         var zombiePresenter = new CharacterPresenter(_zombieButtonView, zombieModel);
     }
 }

@@ -7,35 +7,35 @@ namespace Audio
     [CreateAssetMenu(fileName = "AudioDatabase", menuName = "AudioPackage/AudioDatabase", order = 0)]
     public sealed class AudioDatabase : ScriptableObject, IAudioDatabase
     {
-        [SerializeField] private List<AudioCollectionDescription> _audioCollectionDescriptions;
-        [SerializeField] private LimitAudioPriority _limitAudioPriority;
+        [SerializeField] private List<AudioCollectionDescription> _audioCollectionDescriptionList;
+        [SerializeField] private List<AudioPlayerDescription> _audioPlayerDescriptionList;
 
-        private Dictionary<AudioPriorityType, int> _limitAudioPriorityDic;
         private Dictionary<string, IAudioCollectionDescription> _audioCollectionDescriptionDic;
+        private Dictionary<string, IAudioPlayerDescription> _audioPlayerDescriptionDic;
 
-        public IReadOnlyDictionary<AudioPriorityType, int> LimitAudioPriorityDic
-        {
-            get
-            {
-                if (_limitAudioPriorityDic == null)
-                {
-                    _limitAudioPriorityDic = _limitAudioPriority.ConvertToDictionary();
-                }
-
-                return _limitAudioPriorityDic;
-            }
-        }
-        
         public IReadOnlyDictionary<string, IAudioCollectionDescription> AudioCollectionDescriptionDic
         {
             get
             {
                 if (_audioCollectionDescriptionDic == null)
                 {
-                    _audioCollectionDescriptionDic = _audioCollectionDescriptions.ToDictionary(k => k.Id, v => (IAudioCollectionDescription) v);
+                    _audioCollectionDescriptionDic = _audioCollectionDescriptionList.ToDictionary(k => k.Id, v => (IAudioCollectionDescription) v);
                 }
 
                 return _audioCollectionDescriptionDic;
+            }
+        }
+
+        public IReadOnlyDictionary<string, IAudioPlayerDescription> AudioPlayerDescriptionDic
+        {
+            get
+            {
+                if (_audioPlayerDescriptionDic == null)
+                {
+                    _audioPlayerDescriptionDic = _audioPlayerDescriptionList.ToDictionary(k => k.Id, v => (IAudioPlayerDescription) v);
+                }
+
+                return _audioPlayerDescriptionDic;
             }
         }
     }

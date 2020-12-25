@@ -6,6 +6,5 @@ namespace Audio
     {
         string Id { get; }
         IReadOnlyDictionary<AudioPriorityType,int> LimitAudioPriorityDic { get; }
-        IReadOnlyDictionary<string, IAudioPlayerDescription> AudioPlayerDescriptionDic { get; }
     }
 }

@@ -108,7 +108,7 @@ namespace Audio
         {
             _audioSource.Stop();
             StopAllCoroutines();
-            ResetVariablesBeforeFading();
+            ResetVariablesChangedByFadingToOrigins();
             CallStopped();
         }
 
@@ -127,11 +127,11 @@ namespace Audio
                     yield return null;
                 }
 
-                ResetVariablesBeforeFading();
+                ResetVariablesChangedByFadingToOrigins();
             }
         }
 
-        private void ResetVariablesBeforeFading()
+        private void ResetVariablesChangedByFadingToOrigins()
         {
             _isFading = false;
             _audioSource.volume = _volume;

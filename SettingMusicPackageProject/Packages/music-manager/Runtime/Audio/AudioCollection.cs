@@ -69,11 +69,6 @@ namespace Audio
             RemoveAudioPlayer(audioPlayer);
         }
 
-        public void PlayAll()
-        {
-            ActToAllAudioPlayers(audioPlayer => audioPlayer.Play());
-        }
-
         public void StopAll()
         {
             ActToAllAudioPlayers(audioPlayer => audioPlayer.Stop());

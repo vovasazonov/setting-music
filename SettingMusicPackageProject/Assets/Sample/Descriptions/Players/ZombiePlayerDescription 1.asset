@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioId: zombie_audio_player
   _clipId: zvuk_krik_zombie
+  _volume: 1
   _limitPlayTogether: 4
   _isLoop: 0
   _fadeSeconds: 0

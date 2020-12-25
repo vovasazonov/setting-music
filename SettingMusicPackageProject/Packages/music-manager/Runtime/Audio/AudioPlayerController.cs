@@ -7,8 +7,8 @@ namespace Audio
         private readonly IAudioPlayerDescription _audioPlayerDescription;
         private readonly IAudioSourcePool _audioSourcePool;
         private readonly HashSet<IAudioPlayer> _playingAudioPlayers = new HashSet<IAudioPlayer>();
-        private readonly IDictionary<IAudioPlayer,IAudioSource> _toReturnAudioSources = new Dictionary<IAudioPlayer, IAudioSource>();
-        
+        private readonly IDictionary<IAudioPlayer, IAudioSource> _toReturnAudioSources = new Dictionary<IAudioPlayer, IAudioSource>();
+
         public AudioPlayerController(IAudioPlayerDescription audioPlayerDescription, IAudioSourcePool audioSourcePool)
         {
             _audioPlayerDescription = audioPlayerDescription;
@@ -17,7 +17,7 @@ namespace Audio
 
         public bool IsAmountPlayingLessLimit()
         {
-            return _playingAudioPlayers.Count > _audioPlayerDescription.LimitPlayTogether;
+            return _audioPlayerDescription.LimitPlayTogether > _playingAudioPlayers.Count;
         }
 
         public IAudioPlayer GetAudioPlayer()
@@ -35,7 +35,7 @@ namespace Audio
         {
             audioPlayer.Disposing += OnDisposing;
         }
-        
+
         private void RemoveAudioPlayerListener(IAudioPlayer audioPlayer)
         {
             audioPlayer.Disposing -= OnDisposing;

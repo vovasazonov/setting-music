@@ -9,7 +9,7 @@
         string Id { get; }
         float FadeSeconds { set; }
         bool IsMute { set; }
-        float PercentageVolume { set; }
+        float Volume { set; }
 
         void Play();
         void Stop();

@@ -8,10 +8,12 @@ namespace Audio
     {
         [SerializeField] private string _id;
         [SerializeField] private LimitAudioPriority _limitAudioPriority;
+        [SerializeField] private float _volume = 1;
 
         private Dictionary<AudioPriorityType, int> _limitAudioPriorityDic;
         
         public string Id => _id;
+        public float Volume => _volume;
 
         public IReadOnlyDictionary<AudioPriorityType, int> LimitAudioPriorityDic
         {

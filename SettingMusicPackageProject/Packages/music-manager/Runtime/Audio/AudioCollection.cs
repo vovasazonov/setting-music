@@ -8,13 +8,15 @@ namespace Audio
         private readonly IReadOnlyDictionary<string, IAudioPlayerController> _audioPlayerControllers;
         private readonly IAmountPriorityController _amountPriorityController;
         private readonly HashSet<IAudioPlayer> _playingAudioPlayers = new HashSet<IAudioPlayer>();
-        private float _percentageVolume = 1;
+        private float _volume;
 
         public string Id { get; }
 
         public AudioCollection(IAudioCollectionDescription audioCollectionDescription, IReadOnlyDictionary<string, IAudioPlayerController> audioPlayerControllers)
         {
             Id = audioCollectionDescription.Id;
+            _volume = audioCollectionDescription.Volume;
+            
             _audioPlayerControllers = audioPlayerControllers;
             _amountPriorityController = new AmountPriorityController(audioCollectionDescription.LimitAudioPriorityDic);
         }
@@ -39,7 +41,7 @@ namespace Audio
 
         private void AddAudioPlayer(IAudioPlayer audioPlayer, AudioPriorityType audioPriorityType)
         {
-            audioPlayer.PercentageVolume = _percentageVolume;
+            audioPlayer.Volume = _volume;
             _amountPriorityController.AddAudioPlayer(audioPriorityType, audioPlayer);
             AddAudioPlayerListener(audioPlayer);
             _playingAudioPlayers.Add(audioPlayer);
@@ -84,8 +86,8 @@ namespace Audio
 
         public void SetVolumeAll(float volume)
         {
-            _percentageVolume = volume;
-            ActToAllAudioPlayers(audioPlayer => audioPlayer.PercentageVolume = _percentageVolume);
+            _volume = volume;
+            ActToAllAudioPlayers(audioPlayer => audioPlayer.Volume = _volume);
         }
 
         private void ActToAllAudioPlayers(Action<IAudioPlayer> action)

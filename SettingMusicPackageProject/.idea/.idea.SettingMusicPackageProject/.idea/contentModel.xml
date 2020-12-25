@@ -30,6 +30,7 @@
               <e p="AudioPriorityType.cs" t="Include" />
               <e p="AudioSourcePool.cs" t="Include" />
               <e p="AudioSourceView.cs" t="Include" />
+              <e p="AudioStopper.cs" t="Include" />
               <e p="Descriptions" t="Include">
                 <e p="AudioClipDatabase.cs" t="Include" />
                 <e p="AudioClipDescription.cs" t="Include" />
@@ -50,6 +51,7 @@
               <e p="IAudioPlayerController.cs" t="Include" />
               <e p="IAudioSource.cs" t="Include" />
               <e p="IAudioSourcePool.cs" t="Include" />
+              <e p="IAudioStopper.cs" t="Include" />
               <e p="IPosition.cs" t="Include" />
               <e p="PlaySetting.cs" t="Include" />
               <e p="Position.cs" t="Include" />

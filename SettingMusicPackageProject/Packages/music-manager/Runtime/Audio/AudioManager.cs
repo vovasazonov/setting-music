@@ -32,7 +32,7 @@ namespace Audio
             }
         }
 
-        public IAudioPlayer Play(string audioId, string collectionId, PlaySetting playSetting = new PlaySetting())
+        public IAudioStopper Play(string audioId, string collectionId, PlaySetting playSetting = new PlaySetting())
         {
             if (_audioCollections[collectionId].TryGetAudioPlayer(audioId, playSetting.AudioPriorityType, out var audioPlayer))
             {
@@ -41,7 +41,7 @@ namespace Audio
                 audioPlayer.Play();
             }
 
-            return audioPlayer;
+            return new AudioStopper(audioPlayer);
         }
 
         private static void SetPlaySetting(PlaySetting playSetting, IAudioPlayer audioPlayer)

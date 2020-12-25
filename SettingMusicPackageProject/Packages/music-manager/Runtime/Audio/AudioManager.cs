@@ -44,7 +44,7 @@ namespace Audio
             return new AudioStopper(audioPlayer);
         }
 
-        private static void SetPlaySetting(PlaySetting playSetting, IAudioPlayer audioPlayer)
+        private void SetPlaySetting(PlaySetting playSetting, IAudioPlayer audioPlayer)
         {
             if (playSetting.ObjectToAttach != null)
             {

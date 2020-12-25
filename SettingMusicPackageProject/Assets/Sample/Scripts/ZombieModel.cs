@@ -18,7 +18,7 @@ namespace Sample.Scripts
 
         public void HitMe()
         {
-            _audioManager.Play(_shoutZombieAudioId, _audioCollectionId, new PlaySetting(fadeSeconds:2));
+            _audioManager.Play(_shoutZombieAudioId, _audioCollectionId);
         }
     }
 }

@@ -22,11 +22,9 @@ namespace Audio
 
         public IAudioPlayer GetAudioPlayer()
         {
-            var audioSource = _audioSourcePool.Take();
-            var audioPlayer = new AudioPlayer(_audioPlayerDescription, audioSource);
+            var audioPlayer = TakeAudioFromPool();
             AddAudioPlayerListener(audioPlayer);
             _playingAudioPlayers.Add(audioPlayer);
-            _toReturnAudioSources[audioPlayer] = audioSource;
 
             return audioPlayer;
         }
@@ -44,6 +42,20 @@ namespace Audio
         private void OnDisposing(IAudioPlayer audioPlayer)
         {
             RemoveAudioPlayerListener(audioPlayer);
+            ReturnAudioToPool(audioPlayer);
+            _playingAudioPlayers.Remove(audioPlayer);
+        }
+
+        private AudioPlayer TakeAudioFromPool()
+        {
+            var audioSource = _audioSourcePool.Take();
+            var audioPlayer = new AudioPlayer(_audioPlayerDescription, audioSource);
+            _toReturnAudioSources[audioPlayer] = audioSource;
+            return audioPlayer;
+        }
+        
+        private void ReturnAudioToPool(IAudioPlayer audioPlayer)
+        {
             var toReturnAudioSource = _toReturnAudioSources[audioPlayer];
             _audioSourcePool.Return(toReturnAudioSource);
             _toReturnAudioSources.Remove(audioPlayer);

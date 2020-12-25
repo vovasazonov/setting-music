@@ -4,6 +4,7 @@
     {
         private readonly AudioPriorityType? _audioPriorityType;
         private readonly IPosition _position;
+        
         public AudioPriorityType AudioPriorityType => _audioPriorityType ?? AudioPriorityType.Important;
         public IPosition Position => _position ?? new Position();
         public float? FadeSeconds { get; }

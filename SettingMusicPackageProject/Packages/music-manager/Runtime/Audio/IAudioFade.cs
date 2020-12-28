@@ -1,6 +1,6 @@
 ﻿namespace Audio
 {
-    public interface IAudioFade
+    internal interface IAudioFade
     {
         bool IsFading { get; }
         float FadeSeconds { get; set; }

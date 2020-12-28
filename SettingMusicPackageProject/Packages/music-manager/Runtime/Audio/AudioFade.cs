@@ -2,7 +2,7 @@
 
 namespace Audio
 {
-    public class AudioFade : IAudioFade
+    internal class AudioFade : IAudioFade
     {
         private readonly AudioSource _audioSource;
         private float _originalVolume;

@@ -143,7 +143,7 @@ namespace Audio
             _isTimeSoundLessFadeSeconds = false;
             _audioSource.Play();
             _audioFade.StopFade();
-            _audioFade.StartFadeOut();
+            _audioFade.StartFadeIn();
         }
 
         public void Stop()

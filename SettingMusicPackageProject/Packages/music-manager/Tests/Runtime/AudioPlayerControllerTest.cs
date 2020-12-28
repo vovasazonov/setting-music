@@ -26,7 +26,7 @@ namespace Tests
         
         [Test]
         [TestCase(2,3)]
-        public void IsAmountPlayingLessLimit_AudioPlayersPlayingMoreLimit_ReturnTrue(int limit, int amountPlaying)
+        public void IsAmountPlayingLessLimit_AudioPlayersPlayingMoreLimit_ReturnFalse(int limit, int amountPlaying)
         {
             var audioPlayerDescription = Substitute.For<IAudioPlayerDescription>();
             audioPlayerDescription.LimitPlayTogether.Returns(limit);
@@ -38,7 +38,7 @@ namespace Tests
                 audioPlayerController.GetAudioPlayer();
             }
             
-            Assert.IsTrue(audioPlayerController.IsAmountPlayingLessLimit());
+            Assert.IsFalse(audioPlayerController.IsAmountPlayingLessLimit());
         }
         
         [Test]
@@ -55,7 +55,7 @@ namespace Tests
                 audioPlayerController.GetAudioPlayer();
             }
             
-            Assert.IsTrue(audioPlayerController.IsAmountPlayingLessLimit());
+            Assert.IsFalse(audioPlayerController.IsAmountPlayingLessLimit());
         }
 
         [Test]

@@ -43,7 +43,7 @@ namespace Tests
         
         [Test]
         [TestCase(2,2)]
-        public void IsAmountPlayingLessLimit_AudioPlayersPlayingQuealsLimit_ReturnFalse(int limit, int amountPlaying)
+        public void IsAmountPlayingLessLimit_AudioPlayersPlayingEqualsLimit_ReturnFalse(int limit, int amountPlaying)
         {
             var audioPlayerDescription = Substitute.For<IAudioPlayerDescription>();
             audioPlayerDescription.LimitPlayTogether.Returns(limit);

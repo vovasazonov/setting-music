@@ -1,15 +1,24 @@
 {
     "name": "Unity.music-manager.Tests",
     "references": [
-        "GUID:a97994e6bd15a0d41a9f7474630aadf2"
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Unity.music-manager"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "NSubstitute.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
     "versionDefines": [],
     "noEngineReferences": false
 }

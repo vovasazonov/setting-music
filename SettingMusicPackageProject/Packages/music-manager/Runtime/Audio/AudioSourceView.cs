@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +7,13 @@ namespace Audio
     public class AudioSourceView : MonoBehaviour, IAudioSource
     {
         public event StoppedHandler Stopped;
-        
+
         [SerializeField] private protected AudioSource _audioSource;
 
         private IReadOnlyDictionary<string, AudioClip> _audioClips;
         private RolloffMode _rolloffMode;
-        private float _volume;
-        private bool _isFading;
+        private IAudioFade _audioFade;
+        private bool _isTimeSoundLessFadeSeconds;
 
         public bool IsLoop { private get; set; }
 
@@ -27,8 +26,11 @@ namespace Audio
         {
             set
             {
-                _volume = value;
-                if (!_isFading)
+                if (_audioFade.IsFading)
+                {
+                    _audioFade.UpdateVolume(value);
+                }
+                else
                 {
                     _audioSource.volume = value;
                 }
@@ -92,101 +94,62 @@ namespace Audio
             }
         }
 
-        public float FadeSeconds { private get; set; }
+        public float FadeSeconds
+        {
+            set => _audioFade.FadeSeconds = value;
+        }
+        
+        private void Update()
+        {
+            if (_audioSource.isPlaying)
+            {
+                CheckStartFadeOut();
+
+                _audioFade.Update();
+            }
+            else if (IsLoop)
+            {
+                Play();
+            }
+            else
+            {
+                Stop();
+            }
+        }
+
+        private void CheckStartFadeOut()
+        {
+            if (!_isTimeSoundLessFadeSeconds)
+            {
+                var timeAudioToEnd = _audioSource.clip.length - _audioSource.time;
+                _isTimeSoundLessFadeSeconds = timeAudioToEnd < _audioFade.FadeSeconds;
+
+                if (_isTimeSoundLessFadeSeconds)
+                {
+                    _audioFade.StopFade();
+                    _audioFade.StartFadeOut();
+                }
+            }
+        }
 
         internal void Init(IReadOnlyDictionary<string, AudioClip> audioClips)
         {
             _audioClips = audioClips;
+            _audioFade = new AudioFade(_audioSource);
         }
 
         public void Play()
         {
-            StartCoroutine(FollowAudioPlay());
+            _isTimeSoundLessFadeSeconds = false;
+            _audioSource.Play();
+            _audioFade.StopFade();
+            _audioFade.StartFadeOut();
         }
 
         public void Stop()
         {
             _audioSource.Stop();
-            StopAllCoroutines();
-            ResetVariablesChangedByFadingToOrigins();
             CallStopped();
-        }
-
-        private IEnumerator Fade(float startVolume, float targetVolume, float fadeSeconds)
-        {
-            if (fadeSeconds > 0)
-            {
-                _isFading = true;
-                float currentSeconds = 0;
-
-                while (currentSeconds < fadeSeconds)
-                {
-                    currentSeconds += Time.deltaTime;
-                    _audioSource.volume = Mathf.Lerp(startVolume, targetVolume, currentSeconds / fadeSeconds);
-
-                    yield return null;
-                }
-
-                ResetVariablesChangedByFadingToOrigins();
-            }
-        }
-
-        private void ResetVariablesChangedByFadingToOrigins()
-        {
-            _isFading = false;
-            _audioSource.volume = _volume;
-        }
-
-        private IEnumerator FollowAudioPlay()
-        {
-            bool isFadeIn = false;
-            bool isFadeOut = false;
-            _audioSource.Play();
-            
-            while (_audioSource.isPlaying || IsLoop)
-            {
-                if (!isFadeIn)
-                {
-                    isFadeIn = FadeIn();
-                }
-
-                if (_audioSource.isPlaying)
-                {
-                    if (!isFadeOut)
-                    {
-                        isFadeOut = FadeOut();
-                    }
-                }
-                else if (IsLoop)
-                {
-                    isFadeOut = false;
-                    isFadeIn = false;
-                    _audioSource.Play();
-                }
-
-                yield return null;
-            }
-
-            CallStopped();
-        }
-
-        private bool FadeIn()
-        {
-            StartCoroutine(Fade(0, _volume, FadeSeconds));
-            return true;
-        }
-
-        private bool FadeOut()
-        {
-            bool isFadeOut = false;
-            var timeAudioToEnd = _audioSource.clip.length - _audioSource.time;
-            if (timeAudioToEnd < FadeSeconds)
-            {
-                StartCoroutine(Fade(_volume, 0, FadeSeconds));
-                isFadeOut = true;
-            }
-
-            return isFadeOut;
         }
 
         public void SetPosition(IPosition position)

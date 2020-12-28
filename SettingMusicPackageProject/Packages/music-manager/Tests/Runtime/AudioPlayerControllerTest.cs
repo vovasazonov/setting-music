@@ -1,4 +1,5 @@
-﻿using Audio;
+﻿using System.Collections.Generic;
+using Audio;
 using NUnit.Framework;
 using NSubstitute;
 
@@ -56,6 +57,29 @@ namespace Tests
             }
             
             Assert.IsFalse(audioPlayerController.IsAmountPlayingLessLimit());
+        }
+        
+        [Test]
+        [TestCase(2,5, 4)]
+        public void IsAmountPlayingLessLimit_DisposeSpaceToLessLimit_AmountPlayersLessLimit(int limit, int amountPlaying, int amountDispose)
+        {
+            var audioPlayerDescription = Substitute.For<IAudioPlayerDescription>();
+            audioPlayerDescription.LimitPlayTogether.Returns(limit);
+            var audioSourcePool = Substitute.For<IAudioSourcePool>();
+            AudioPlayerController audioPlayerController = new AudioPlayerController(audioPlayerDescription, audioSourcePool);
+            var audioPlayers = new List<IAudioPlayer>();
+            
+            for (int i = 0; i < amountPlaying; i++)
+            {
+                audioPlayers.Add(audioPlayerController.GetAudioPlayer());
+            }
+
+            for (int i = 0; i < amountDispose; i++)
+            {
+                audioPlayers[i].Dispose();
+            }
+            
+            Assert.IsTrue(audioPlayerController.IsAmountPlayingLessLimit());
         }
 
         [Test]

@@ -126,7 +126,11 @@ namespace Audio
 
                 if (_isTimeSoundLessFadeSeconds)
                 {
-                    _audioFade.StopFade();
+                    if (_audioFade.IsFading)
+                    {
+                        _audioFade.StopFade();
+                    }
+                    
                     _audioFade.StartFadeOut();
                 }
             }

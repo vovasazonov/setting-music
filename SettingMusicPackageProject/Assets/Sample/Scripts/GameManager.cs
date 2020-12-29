@@ -21,7 +21,7 @@ public sealed class GameManager : MonoBehaviour
         var zombieModel = new ZombieModel(_audioManager, "zombie_audio_player", "general");
         var collectionVolumeModel = new CollectionVolumeModel(_audioManager.AudioCollections["general"], 0.1f);
         var zombiePresenter = new CharacterPresenter(_zombieButtonView, zombieModel);
-        var increaseAudioCollectionVolumePresenter = new IncreaseAudioCollectionVolumePresenter(_increaseVolumeZombieButtonView,collectionVolumeModel);
-        var decreaseAudioCollectionVolumePresenter = new DecreaseAudioCollectionVolumePresenter(_decreaseVolumeZombieButtonView,collectionVolumeModel);
+        var increaseAudioCollectionVolumePresenter = new IncreaseAudioCollectionVolumePresenter(_increaseVolumeZombieButtonView, collectionVolumeModel);
+        var decreaseAudioCollectionVolumePresenter = new DecreaseAudioCollectionVolumePresenter(_decreaseVolumeZombieButtonView, collectionVolumeModel);
     }
 }

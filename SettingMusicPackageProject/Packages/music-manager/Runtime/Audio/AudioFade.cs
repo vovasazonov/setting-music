@@ -28,6 +28,7 @@
         public void StartFadeIn()
         {
             IsFading = true;
+            _originalVolume = _volume.Volume;
             _currentSeconds = 0;
             _startVolume = 0;
             _targetVolume = _originalVolume;
@@ -36,6 +37,7 @@
         public void StartFadeOut()
         {
             IsFading = true;
+            _originalVolume = _volume.Volume;
             _currentSeconds = 0;
             _startVolume = _originalVolume;
             _targetVolume = 0;

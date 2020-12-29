@@ -16,8 +16,8 @@ MonoBehaviour:
   _clipId: zvuk_krik_zombie
   _volume: 1
   _limitPlayTogether: 4
-  _isLoop: 0
-  _fadeSeconds: 0
+  _isLoop: 1
+  _fadeSeconds: 1
   _pitch: 1
   _spatialBlend: 0
   _stereoPan: 0

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Audio;
 
 namespace Tests
@@ -7,11 +8,11 @@ namespace Tests
     public class AudioStopperTest
     {
         [Test]
-        public void Stop_AudioPlayerIsNull_NotThrowException()
+        public void Stop_AudioPlayerIsNull_ThrowNullReferenceException()
         {
             var audioStopper = new AudioStopper(null);
 
-            Assert.DoesNotThrow(()=>audioStopper.Stop());
+            Assert.Throws<NullReferenceException>(()=>audioStopper.Stop());
         }
     }
 }

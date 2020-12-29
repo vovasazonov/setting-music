@@ -8,7 +8,7 @@ namespace Tests
     public class AudioPlayerTest
     {
         [Test]
-        public void Stop_AudioPlayerDisposing_AudioDisposingTrue()
+        public void Stop_StopAudio_DisposeCalled()
         {
             var audioPlayerDescription = Substitute.For<IAudioPlayerDescription>();
             var audioSource = Substitute.For<IAudioSource>();

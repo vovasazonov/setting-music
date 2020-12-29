@@ -11,7 +11,7 @@
 
         public void Stop()
         {
-            _audioPlayer?.Stop();
+            _audioPlayer.Stop();
         }
     }
 }

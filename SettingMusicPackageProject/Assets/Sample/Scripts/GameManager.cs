@@ -1,7 +1,6 @@
 ﻿using Audio;
 using Sample.Scripts;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public sealed class GameManager : MonoBehaviour
 {

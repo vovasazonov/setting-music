@@ -383,11 +383,11 @@ MonoBehaviour:
   _audioSourcePool: {fileID: 613930016}
   _audioDatabase: {fileID: 11400000, guid: 88794414e4f1105409273d727c5a357e, type: 2}
   _audioClipDatabase: {fileID: 11400000, guid: fde2f5c8b2ad39c46a0835e836639097, type: 2}
-  _zombieButtonView: {fileID: 94969842}
-  _increaseVolumeZombieButtonView: {fileID: 2044734319}
-  _decreaseVolumeZombieButtonView: {fileID: 2089178214}
-  _muteVolumeZombieButtonView: {fileID: 688093278}
-  _stopCollectionButtonView: {fileID: 1389959432}
+  _playAudioButtonView: {fileID: 94969842}
+  _increaseVolumeAudioCollectionButtonView: {fileID: 2044734319}
+  _decreaseVolumeAudioCollectionButtonView: {fileID: 2089178214}
+  _muteAudioCollectionButtonView: {fileID: 688093278}
+  _stopAudioCollectionButtonView: {fileID: 1389959432}
 --- !u!1 &513773121
 GameObject:
   m_ObjectHideFlags: 0

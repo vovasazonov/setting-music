@@ -9,6 +9,6 @@
         void StartFadeIn();
         void StartFadeOut();
         void StopFade();
-        void Update();
+        void Update(float deltaTime);
     }
 }

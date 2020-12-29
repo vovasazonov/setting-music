@@ -1,10 +1,8 @@
-﻿using UnityEngine;
-
-namespace Audio
+﻿namespace Audio
 {
     internal sealed class AudioFade : IAudioFade
     {
-        private readonly AudioSource _audioSource;
+        private readonly IVolume _volume;
         private float _originalVolume;
         private float _startVolume;
         private float _targetVolume;
@@ -13,10 +11,10 @@ namespace Audio
         public bool IsFading { get; private set; }
         public float FadeSeconds { get; set; }
 
-        public AudioFade(AudioSource audioSource)
+        public AudioFade(IVolume volume)
         {
-            _audioSource = audioSource;
-            _originalVolume = audioSource.volume;
+            _volume = volume;
+            _originalVolume = _volume.Volume;
         }
         
         public void UpdateVolume(float volume)
@@ -24,7 +22,7 @@ namespace Audio
             _originalVolume = volume;
             _startVolume *= volume;
             _targetVolume *= volume;
-            _audioSource.volume *= volume;
+            _volume.Volume *= volume;
         }
 
         public void StartFadeIn()
@@ -46,23 +44,28 @@ namespace Audio
         public void StopFade()
         {
             IsFading = false;
-            _audioSource.volume = _originalVolume;
+            _volume.Volume = _originalVolume;
         }
 
-        public void Update()
+        public void Update(float deltaTime)
         {
             if (IsFading)
             {
                 if (_currentSeconds < FadeSeconds)
                 {
-                    _currentSeconds += Time.deltaTime;
-                    _audioSource.volume = Mathf.Lerp(_startVolume, _targetVolume, _currentSeconds / FadeSeconds);
+                    _currentSeconds += deltaTime;
+                    _volume.Volume = Lerp(_startVolume, _targetVolume, _currentSeconds / FadeSeconds);
                 }
                 else
                 {
                     StopFade();
                 }
             }
+        }
+        
+        private float Lerp(float start, float end, float interpolationBetweenStartEnd)
+        {
+            return start * (1 - interpolationBetweenStartEnd) + end * interpolationBetweenStartEnd;
         }
     }
 }

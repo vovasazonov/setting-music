@@ -105,7 +105,7 @@ namespace Audio
             {
                 CheckStartFadeOut();
 
-                _audioFade.Update();
+                _audioFade.Update(Time.deltaTime);
             }
             else if (IsLoop)
             {
@@ -135,7 +135,7 @@ namespace Audio
         internal void Init(IReadOnlyDictionary<string, AudioClip> audioClips)
         {
             _audioClips = audioClips;
-            _audioFade = new AudioFade(_audioSource);
+            _audioFade = new AudioFade(new AudioSourceVolume(_audioSource));
         }
 
         public void Play()

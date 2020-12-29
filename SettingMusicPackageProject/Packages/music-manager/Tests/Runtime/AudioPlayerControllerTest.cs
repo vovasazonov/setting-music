@@ -43,7 +43,7 @@ namespace Tests
         
         [Test]
         [TestCase(2,5, 4)]
-        public void IsAmountPlayingLessLimit_DisposeSpaceToLessLimit_AmountPlayersLessLimit(int limit, int amountPlaying, int amountDispose)
+        public void IsAmountPlayingLessLimit_DisposeAudioPlayersToGetLessLimit_ReturnIsLessLimitTrue(int limit, int amountPlaying, int amountDispose)
         {
             AudioPlayerController audioPlayerController = CreateAudioPlayerController(limit);
 

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 94969839}
   - component: {fileID: 94969842}
   m_Layer: 5
-  m_Name: ZombieButton
+  m_Name: PlayZombieButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,8 +160,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0.000011444, y: -25.7}
+  m_SizeDelta: {x: 160, y: 81.341324}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94969839
 MonoBehaviour:
@@ -326,7 +326,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Increase volume zombie
+  m_Text: ' Increase Volume General Collection
+
+'
 --- !u!222 &303703205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -384,7 +386,7 @@ MonoBehaviour:
   _zombieButtonView: {fileID: 94969842}
   _increaseVolumeZombieButtonView: {fileID: 2044734319}
   _decreaseVolumeZombieButtonView: {fileID: 2089178214}
-  _muteVolumeZombieButtonView: {fileID: 0}
+  _muteVolumeZombieButtonView: {fileID: 688093278}
 --- !u!1 &513773121
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +511,7 @@ GameObject:
   - component: {fileID: 688093279}
   - component: {fileID: 688093278}
   m_Layer: 5
-  m_Name: MuteVolumeAudioZombieBtn
+  m_Name: MuteGeneralCollectionBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,7 +792,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mute volume zombie
+  m_Text: Mute General Collection
 --- !u!222 &766659749
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -952,7 +954,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Decrease volume zombie
+  m_Text: Decrease Volume General Collection
 --- !u!222 &1026716325
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1133,7 +1135,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click me. I'm zombie
+  m_Text: 'Play
+
+    (Take sound from "general AudioCollection" and play)
+
+'
 --- !u!222 &1365234817
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1156,7 +1162,7 @@ GameObject:
   - component: {fileID: 2044734316}
   - component: {fileID: 2044734319}
   m_Layer: 5
-  m_Name: IncreaseVolumeAudioZombieBtn
+  m_Name: IncreaseVolumeGeneralCollectionBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1179,8 +1185,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -246, y: 112}
-  m_SizeDelta: {x: 166.03836, y: 30}
+  m_AnchoredPosition: {x: -188.62, y: 112}
+  m_SizeDelta: {x: 280.79333, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2044734316
 MonoBehaviour:
@@ -1289,7 +1295,7 @@ GameObject:
   - component: {fileID: 2089178211}
   - component: {fileID: 2089178214}
   m_Layer: 5
-  m_Name: DecreaseVolumeAudioZombieBtn
+  m_Name: DecreaseVolumeGeneralCollectionBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1312,8 +1318,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -245.99, y: 82}
-  m_SizeDelta: {x: 166.0192, y: 30}
+  m_AnchoredPosition: {x: -188.6, y: 82}
+  m_SizeDelta: {x: 280.74832, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2089178211
 MonoBehaviour:

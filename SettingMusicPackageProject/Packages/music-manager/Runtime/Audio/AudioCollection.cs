@@ -90,9 +90,10 @@ namespace Audio
 
         private void ActToAllAudioPlayers(Action<IAudioPlayer> action)
         {
-            foreach (var playingAudioPlayer in _playingAudioPlayers)
+            List<IAudioPlayer> audioPlayers = new List<IAudioPlayer>(_playingAudioPlayers);
+            foreach (var audioPlayer in audioPlayers)
             {
-                action.Invoke(playingAudioPlayer);
+                action.Invoke(audioPlayer);
             }
         }
     }

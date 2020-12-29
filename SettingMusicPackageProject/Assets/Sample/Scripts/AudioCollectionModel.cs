@@ -32,5 +32,10 @@ namespace Sample.Scripts
             _isMute = !_isMute;
             _collection.MuteAll(_isMute);
         }
+
+        public void Stop()
+        {
+            _collection.StopAll();
+        }
     }
 }

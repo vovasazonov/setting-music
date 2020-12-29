@@ -11,6 +11,7 @@ public sealed class GameManager : MonoBehaviour
     [SerializeField] private ButtonView _increaseVolumeZombieButtonView;
     [SerializeField] private ButtonView _decreaseVolumeZombieButtonView;
     [SerializeField] private ButtonView _muteVolumeZombieButtonView;
+    [SerializeField] private ButtonView _stopCollectionButtonView;
 
     private IAudioManager _audioManager;
 
@@ -22,8 +23,9 @@ public sealed class GameManager : MonoBehaviour
         var zombieModel = new ZombieModel(_audioManager, "zombie_audio_player", "general");
         var collectionVolumeModel = new AudioCollectionModel(_audioManager.AudioCollections["general"], 0.1f);
         var zombiePresenter = new CharacterPresenter(_zombieButtonView, zombieModel);
-        var increaseAudioCollectionVolumePresenter = new IncreaseAudioCollectionVolumePresenter(_increaseVolumeZombieButtonView, collectionVolumeModel);
-        var decreaseAudioCollectionVolumePresenter = new DecreaseAudioCollectionVolumePresenter(_decreaseVolumeZombieButtonView, collectionVolumeModel);
+        var increaseAudioCollectionVolumePresenter = new IncreaseVolumeAudioCollectionPresenter(_increaseVolumeZombieButtonView, collectionVolumeModel);
+        var decreaseAudioCollectionVolumePresenter = new DecreaseVolumeAudioCollectionPresenter(_decreaseVolumeZombieButtonView, collectionVolumeModel);
         var muteAudioCollectionPresenter = new MuteAudioCollectionPresenter(_muteVolumeZombieButtonView, collectionVolumeModel);
+        var stopAudioCollectionPresenter = new StopAudioCollectionPresenter(_stopCollectionButtonView, collectionVolumeModel);
     }
 }

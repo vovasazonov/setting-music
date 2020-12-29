@@ -5,5 +5,6 @@
         void IncreaseVolume();
         void DecreaseVolume();
         void Mute();
+        void Stop();
     }
 }

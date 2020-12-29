@@ -12,7 +12,7 @@ namespace Tests
         [TestCase(2,1)]
         public void IsAmountPlayingLessLimit_AudioPlayersPlayingNotMoreLimit_ReturnTrue(int limit, int amountPlaying)
         {
-            var audioPlayerController = CreateAuiAudioPlayerController(limit);
+            var audioPlayerController = CreateAudioPlayerController(limit);
 
             var audioPlayers = GetAudioPlayers(amountPlaying, audioPlayerController);
 
@@ -23,7 +23,7 @@ namespace Tests
         [TestCase(2,3)]
         public void IsAmountPlayingLessLimit_AudioPlayersPlayingMoreLimit_ReturnFalse(int limit, int amountPlaying)
         {
-            AudioPlayerController audioPlayerController = CreateAuiAudioPlayerController(limit);
+            AudioPlayerController audioPlayerController = CreateAudioPlayerController(limit);
 
             var audioPlayers = GetAudioPlayers(amountPlaying, audioPlayerController);
 
@@ -34,7 +34,7 @@ namespace Tests
         [TestCase(2,2)]
         public void IsAmountPlayingLessLimit_AudioPlayersPlayingEqualsLimit_ReturnFalse(int limit, int amountPlaying)
         {
-            AudioPlayerController audioPlayerController = CreateAuiAudioPlayerController(limit);
+            AudioPlayerController audioPlayerController = CreateAudioPlayerController(limit);
 
             var audioPlayers = GetAudioPlayers(amountPlaying, audioPlayerController);
 
@@ -45,7 +45,7 @@ namespace Tests
         [TestCase(2,5, 4)]
         public void IsAmountPlayingLessLimit_DisposeSpaceToLessLimit_AmountPlayersLessLimit(int limit, int amountPlaying, int amountDispose)
         {
-            AudioPlayerController audioPlayerController = CreateAuiAudioPlayerController(limit);
+            AudioPlayerController audioPlayerController = CreateAudioPlayerController(limit);
 
             var audioPlayers = GetAudioPlayers(amountPlaying, audioPlayerController);
             DisposeAudioPlayers(amountDispose, audioPlayers);
@@ -56,7 +56,7 @@ namespace Tests
         [Test]
         public void GetAudioPlayer_NotNull_True()
         {
-            AudioPlayerController audioPlayerController = CreateAuiAudioPlayerController(0);
+            AudioPlayerController audioPlayerController = CreateAudioPlayerController(0);
 
             var audioPlayer = audioPlayerController.GetAudioPlayer();
             
@@ -83,7 +83,7 @@ namespace Tests
             }
         }
         
-        private static AudioPlayerController CreateAuiAudioPlayerController(int limit)
+        private static AudioPlayerController CreateAudioPlayerController(int limit)
         {
             var audioPlayerDescription = Substitute.For<IAudioPlayerDescription>();
             audioPlayerDescription.LimitPlayTogether.Returns(limit);

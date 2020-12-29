@@ -1,11 +1,11 @@
 ﻿namespace Sample.Scripts
 {
-    public class IncreaseCollectionVolumePresenter
+    public class DecreaseAudioCollectionVolumePresenter
     {
         private readonly IButtonView _view;
         private readonly IVolumeModel _model;
         
-        public IncreaseCollectionVolumePresenter(IButtonView view, IVolumeModel model)
+        public DecreaseAudioCollectionVolumePresenter(IButtonView view, IVolumeModel model)
         {
             _view = view;
             _model = model;
@@ -25,7 +25,7 @@
 
         private void OnClick()
         {
-            _model.Increase();
+            _model.Decrease();
         }
     }
 }

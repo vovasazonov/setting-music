@@ -34,14 +34,17 @@ namespace Audio
 
         public IAudioStopper Play(string audioId, string collectionId, PlaySetting playSetting = new PlaySetting())
         {
+            IAudioStopper audioStopper = null;
+            
             if (_audioCollections[collectionId].TryGetAudioPlayer(audioId, playSetting.AudioPriorityType, out var audioPlayer))
             {
                 SetPlaySetting(playSetting, audioPlayer);
 
                 audioPlayer.Play();
+                audioStopper = new AudioStopper(audioPlayer);
             }
 
-            return new AudioStopper(audioPlayer);
+            return audioStopper;
         }
 
         private void SetPlaySetting(PlaySetting playSetting, IAudioPlayer audioPlayer)

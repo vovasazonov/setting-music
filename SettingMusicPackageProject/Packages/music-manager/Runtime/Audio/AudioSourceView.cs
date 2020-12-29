@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Audio
 {
-    public class AudioSourceView : MonoBehaviour, IAudioSource
+    public sealed class AudioSourceView : MonoBehaviour, IAudioSource
     {
         public event StoppedHandler Stopped;
 
-        [SerializeField] private protected AudioSource _audioSource;
+        [SerializeField] private AudioSource _audioSource;
 
         private IReadOnlyDictionary<string, AudioClip> _audioClips;
         private RolloffMode _rolloffMode;
@@ -98,7 +98,7 @@ namespace Audio
         {
             set => _audioFade.FadeSeconds = value;
         }
-        
+
         private void Update()
         {
             if (_audioSource.isPlaying)

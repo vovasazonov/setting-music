@@ -13,7 +13,7 @@ namespace Tests
         [TestCase(AudioPriorityType.Important, 2, 1)]
         [TestCase(AudioPriorityType.Least, 2, 1)]
         [TestCase(AudioPriorityType.Unimportant, 2, 1)]
-        public void CheckSpaceAvailable_ThereIsSpace_SpaceAvailableTrue(AudioPriorityType audioPriorityType, int limit, int amountPlayers)
+        public void CheckSpaceAvailable_PlayingLessLimit_SpaceAvailable(AudioPriorityType audioPriorityType, int limit, int amountPlayers)
         {
             var amountPriorityController = CreateAmountPriorityController(audioPriorityType, limit);
 
@@ -26,7 +26,7 @@ namespace Tests
         [TestCase(AudioPriorityType.Important, 2, 2)]
         [TestCase(AudioPriorityType.Least, 2, 2)]
         [TestCase(AudioPriorityType.Unimportant, 5, 9)]
-        public void CheckSpaceAvailable_ThereIsNoSpace_SpaceAvailableFalse(AudioPriorityType audioPriorityType, int limit, int amountPlayers)
+        public void CheckSpaceAvailable_PlayingMoreLimit_SpaceNotAvailable(AudioPriorityType audioPriorityType, int limit, int amountPlayers)
         {
             var amountPriorityController = CreateAmountPriorityController(audioPriorityType, limit);
 

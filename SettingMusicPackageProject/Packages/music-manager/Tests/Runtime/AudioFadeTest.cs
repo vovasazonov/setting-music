@@ -8,7 +8,7 @@ namespace Tests
     public class AudioFadeTest
     {
         [Test]
-        public void StartFadeIn_IsFading_True()
+        public void StartFadeIn_IsFading_ReturnTrue()
         {
             var volume = Substitute.For<IVolume>();
             var audioFade = new AudioFade(volume);
@@ -19,7 +19,7 @@ namespace Tests
         }
         
         [Test]
-        public void StartFadeOut_IsFading_True()
+        public void StartFadeOut_IsFading_ReturnTrue()
         {
             var volume = Substitute.For<IVolume>();
             var audioFade = new AudioFade(volume);
@@ -30,7 +30,7 @@ namespace Tests
         }
         
         [Test]
-        public void StopFade_IsFading_True()
+        public void StopFade_IsFading_ReturnFalse()
         {
             var volume = Substitute.For<IVolume>();
             var audioFade = new AudioFade(volume);

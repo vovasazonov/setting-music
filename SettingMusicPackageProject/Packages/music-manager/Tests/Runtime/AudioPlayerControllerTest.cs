@@ -75,7 +75,7 @@ namespace Tests
             return players;
         }
         
-        private static void DisposeAudioPlayers(int amountDispose, List<IAudioPlayer> audioPlayers)
+        private void DisposeAudioPlayers(int amountDispose, List<IAudioPlayer> audioPlayers)
         {
             for (int i = 0; i < amountDispose; i++)
             {
@@ -83,7 +83,7 @@ namespace Tests
             }
         }
         
-        private static AudioPlayerController CreateAudioPlayerController(int limit)
+        private AudioPlayerController CreateAudioPlayerController(int limit)
         {
             var audioPlayerDescription = Substitute.For<IAudioPlayerDescription>();
             audioPlayerDescription.LimitPlayTogether.Returns(limit);

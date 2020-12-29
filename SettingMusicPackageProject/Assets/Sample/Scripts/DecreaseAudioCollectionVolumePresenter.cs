@@ -3,9 +3,9 @@
     public class DecreaseAudioCollectionVolumePresenter
     {
         private readonly IButtonView _view;
-        private readonly IVolumeModel _model;
+        private readonly IAudioCollectionModel _model;
         
-        public DecreaseAudioCollectionVolumePresenter(IButtonView view, IVolumeModel model)
+        public DecreaseAudioCollectionVolumePresenter(IButtonView view, IAudioCollectionModel model)
         {
             _view = view;
             _model = model;
@@ -25,7 +25,7 @@
 
         private void OnClick()
         {
-            _model.Decrease();
+            _model.DecreaseVolume();
         }
     }
 }

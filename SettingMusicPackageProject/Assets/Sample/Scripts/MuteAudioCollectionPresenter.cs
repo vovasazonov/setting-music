@@ -1,11 +1,11 @@
 ﻿namespace Sample.Scripts
 {
-    public class IncreaseAudioCollectionVolumePresenter
+    public class MuteAudioCollectionPresenter
     {
         private readonly IButtonView _view;
         private readonly IAudioCollectionModel _model;
         
-        public IncreaseAudioCollectionVolumePresenter(IButtonView view, IAudioCollectionModel model)
+        public MuteAudioCollectionPresenter(IButtonView view, IAudioCollectionModel model)
         {
             _view = view;
             _model = model;
@@ -25,7 +25,7 @@
 
         private void OnClick()
         {
-            _model.IncreaseVolume();
+            _model.Mute();
         }
     }
 }

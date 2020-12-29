@@ -10,7 +10,7 @@ namespace Tests
     {
         [Test]
         [TestCase(2,1)]
-        public void IsAmountPlayingLessLimit_AudioPlayersPlayingNotMoreLimit_ReturnTrue(int limit, int amountPlaying)
+        public void IsAmountPlayingLessLimit_AmountPlayingLessLimit_ReturnTrue(int limit, int amountPlaying)
         {
             var audioPlayerController = CreateAudioPlayerController(limit);
 
@@ -21,7 +21,7 @@ namespace Tests
 
         [Test]
         [TestCase(2,3)]
-        public void IsAmountPlayingLessLimit_AudioPlayersPlayingMoreLimit_ReturnFalse(int limit, int amountPlaying)
+        public void IsAmountPlayingLessLimit_AmountPlayingMoreLimit_ReturnFalse(int limit, int amountPlaying)
         {
             AudioPlayerController audioPlayerController = CreateAudioPlayerController(limit);
 
@@ -32,7 +32,7 @@ namespace Tests
         
         [Test]
         [TestCase(2,2)]
-        public void IsAmountPlayingLessLimit_AudioPlayersPlayingEqualsLimit_ReturnFalse(int limit, int amountPlaying)
+        public void IsAmountPlayingLessLimit_AmountPlayingEqualsLimit_ReturnFalse(int limit, int amountPlaying)
         {
             AudioPlayerController audioPlayerController = CreateAudioPlayerController(limit);
 
@@ -43,7 +43,7 @@ namespace Tests
         
         [Test]
         [TestCase(2,5, 4)]
-        public void IsAmountPlayingLessLimit_DisposeAudioPlayersToGetLessLimit_ReturnIsLessLimitTrue(int limit, int amountPlaying, int amountDispose)
+        public void IsAmountPlayingLessLimit_AudioPlayersDisposedToGetLessLimit_ReturnTrue(int limit, int amountPlaying, int amountDispose)
         {
             AudioPlayerController audioPlayerController = CreateAudioPlayerController(limit);
 
@@ -54,7 +54,7 @@ namespace Tests
         }
 
         [Test]
-        public void GetAudioPlayer_NotNull_True()
+        public void GetAudioPlayer_AmountPlayingEqualsOrMoreLimit_ReturnNotNull()
         {
             AudioPlayerController audioPlayerController = CreateAudioPlayerController(0);
 

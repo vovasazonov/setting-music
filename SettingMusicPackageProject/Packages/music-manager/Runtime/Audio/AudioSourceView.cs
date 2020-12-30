@@ -10,14 +10,19 @@ namespace Audio
 
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Transform _transform;
-        
+
         private IReadOnlyDictionary<string, AudioClip> _audioClips;
         private RolloffMode _rolloffMode;
         private IAudioFade _audioFade;
-        private bool _isTimeSoundLessFadeSeconds;
         private Transform _transformToFollow;
+        private float _lastTime;
+        private bool _isBeginPlay;
+        private bool _isAlreadyFadeOut;
 
-        public bool IsLoop { private get; set; }
+        public bool IsLoop
+        {
+            set => _audioSource.loop = value;
+        }
 
         public bool IsMute
         {
@@ -101,22 +106,96 @@ namespace Audio
             set => _audioFade.FadeSeconds = value;
         }
 
+        internal void Init(IReadOnlyDictionary<string, AudioClip> audioClips)
+        {
+            _audioClips = audioClips;
+            _audioFade = new AudioFade(new AudioSourceVolume(_audioSource));
+        }
+
         private void Update()
         {
             if (_audioSource.isPlaying)
             {
-                CheckStartFadeOut();
+                CheckIsBeginPlay();
+                CheckStartFade();
                 FollowObject();
                 _audioFade.Update(Time.deltaTime);
             }
-            else if (IsLoop)
+            else
             {
-                Play();
+                CallStopped();
+            }
+        }
+
+        private void CheckStartFade()
+        {
+            CheckStartFadeIn();
+            CheckStartFadeOut();
+        }
+
+        private void CheckIsBeginPlay()
+        {
+            var time = _audioSource.time;
+
+            if (_lastTime == 0 && time == 0)
+            {
+                _isBeginPlay = true;
             }
             else
             {
-                Stop();
+                _isBeginPlay = !(time >= _lastTime);
             }
+
+            _lastTime = time;
+        }
+
+        private void CheckStartFadeIn()
+        {
+            if (_isBeginPlay)
+            {
+                if (_audioFade.IsFading)
+                {
+                    _audioFade.StopFade();
+                }
+
+                _audioFade.StartFadeIn();
+            }
+        }
+
+        private void CheckStartFadeOut()
+        {
+            var timeAudioToEnd = _audioSource.clip.length - _audioSource.time;
+            var isTimeSoundLessFadeSeconds = timeAudioToEnd < _audioFade.FadeSeconds;
+
+            if (isTimeSoundLessFadeSeconds && !_isAlreadyFadeOut)
+            {
+                _isAlreadyFadeOut = true;
+
+                if (_audioFade.IsFading)
+                {
+                    _audioFade.StopFade();
+                }
+
+                _audioFade.StartFadeOut();
+            }
+            else if (!isTimeSoundLessFadeSeconds && _isAlreadyFadeOut)
+            {
+                _isAlreadyFadeOut = false;
+            }
+        }
+
+        public void Play()
+        {
+            _lastTime = _audioSource.clip.length;
+            _isAlreadyFadeOut = false;
+
+            _audioSource.Play();
+        }
+
+        public void Stop()
+        {
+            _audioSource.Stop();
+            CallStopped();
         }
 
         private void FollowObject()
@@ -125,48 +204,6 @@ namespace Audio
             {
                 _transform.position = _transformToFollow.position;
             }
-        }
-
-        private void CheckStartFadeOut()
-        {
-            if (!_isTimeSoundLessFadeSeconds)
-            {
-                var timeAudioToEnd = _audioSource.clip.length - _audioSource.time;
-                _isTimeSoundLessFadeSeconds = timeAudioToEnd < _audioFade.FadeSeconds;
-
-                if (_isTimeSoundLessFadeSeconds)
-                {
-                    if (_audioFade.IsFading)
-                    {
-                        _audioFade.StopFade();
-                    }
-                    
-                    _audioFade.StartFadeOut();
-                }
-            }
-        }
-
-        internal void Init(IReadOnlyDictionary<string, AudioClip> audioClips)
-        {
-            _audioClips = audioClips;
-            _audioFade = new AudioFade(new AudioSourceVolume(_audioSource));
-        }
-
-        public void Play()
-        {
-            _isTimeSoundLessFadeSeconds = false;
-            _audioSource.Play();
-            if (_audioFade.IsFading)
-            {
-                _audioFade.StopFade();
-            }
-            _audioFade.StartFadeIn();
-        }
-
-        public void Stop()
-        {
-            _audioSource.Stop();
-            CallStopped();
         }
 
         public void SetPosition(IPosition position)

@@ -14,7 +14,7 @@
         void Play();
         void Stop();
         void SetPosition(IPosition position);
-        void Attach(object audioAttachableObject);
+        void Attach(ITransform transform);
         void Dispose();
     }
 }

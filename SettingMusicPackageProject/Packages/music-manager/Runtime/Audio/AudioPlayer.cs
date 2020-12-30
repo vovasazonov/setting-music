@@ -70,9 +70,9 @@
             _audioSource.SetPosition(position);
         }
 
-        public void Attach(object audioAttachableObject)
+        public void Attach(ITransform transform)
         {
-            _audioSource.Attach(audioAttachableObject);
+            _audioSource.Attach(transform);
         }
 
         public void Dispose()

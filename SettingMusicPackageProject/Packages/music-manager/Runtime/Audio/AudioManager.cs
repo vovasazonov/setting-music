@@ -49,9 +49,9 @@ namespace Audio
 
         private void SetPlaySetting(PlaySetting playSetting, IAudioPlayer audioPlayer)
         {
-            if (playSetting.ObjectToAttach != null)
+            if (playSetting.FollowTransform != null)
             {
-                audioPlayer.Attach(playSetting.ObjectToAttach);
+                audioPlayer.Attach(playSetting.FollowTransform);
             }
 
             if (playSetting.Position != null)

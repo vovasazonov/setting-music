@@ -22,7 +22,7 @@
         void Play();
         void Stop();
         void SetPosition(IPosition position);
-        void Attach(object transformToFollow);
+        void Attach(ITransform transform);
         void SetEnable(bool isEnable);
         void SetClip(string idClip);
     }

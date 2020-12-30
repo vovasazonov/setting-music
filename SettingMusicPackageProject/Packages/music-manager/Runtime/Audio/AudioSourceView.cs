@@ -14,7 +14,7 @@ namespace Audio
         private IReadOnlyDictionary<string, AudioClip> _audioClips;
         private RolloffMode _rolloffMode;
         private IAudioFade _audioFade;
-        private Transform _transformToFollow;
+        private ITransform _transformToFollow;
         private float _lastTime;
         private bool _isBeginPlay;
         private bool _isAlreadyFadeOut;
@@ -202,7 +202,8 @@ namespace Audio
         {
             if (_transformToFollow != null)
             {
-                _transform.position = _transformToFollow.position;
+                var position = _transformToFollow.Position;
+                _transform.position = new Vector3(position.X, position.Y, position.Z);
             }
         }
 
@@ -211,9 +212,9 @@ namespace Audio
             _audioSource.transform.position = new Vector3(position.X, position.Y, position.Z);
         }
 
-        public void Attach(object transformToFollow)
+        public void Attach(ITransform transform)
         {
-            _transformToFollow = (Transform) transformToFollow;
+            _transformToFollow = transform;
         }
 
         public void SetEnable(bool isEnable)

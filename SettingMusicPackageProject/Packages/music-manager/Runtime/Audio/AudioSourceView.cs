@@ -9,11 +9,13 @@ namespace Audio
         public event StoppedHandler Stopped;
 
         [SerializeField] private AudioSource _audioSource;
-
+        [SerializeField] private Transform _transform;
+        
         private IReadOnlyDictionary<string, AudioClip> _audioClips;
         private RolloffMode _rolloffMode;
         private IAudioFade _audioFade;
         private bool _isTimeSoundLessFadeSeconds;
+        private Transform _transformToFollow;
 
         public bool IsLoop { private get; set; }
 
@@ -104,7 +106,7 @@ namespace Audio
             if (_audioSource.isPlaying)
             {
                 CheckStartFadeOut();
-
+                FollowObject();
                 _audioFade.Update(Time.deltaTime);
             }
             else if (IsLoop)
@@ -114,6 +116,14 @@ namespace Audio
             else
             {
                 Stop();
+            }
+        }
+
+        private void FollowObject()
+        {
+            if (_transformToFollow != null)
+            {
+                _transform.position = _transformToFollow.position;
             }
         }
 
@@ -164,9 +174,9 @@ namespace Audio
             _audioSource.transform.position = new Vector3(position.X, position.Y, position.Z);
         }
 
-        public void Attach(object audioAttachableObject)
+        public void Attach(object transformToFollow)
         {
-            _audioSource.transform.SetParent(((Transform) audioAttachableObject).transform);
+            _transformToFollow = (Transform) transformToFollow;
         }
 
         public void SetEnable(bool isEnable)

@@ -35,7 +35,7 @@ namespace Audio
 
         private void InstantiateAudioSource()
         {
-            var exemplar = Instantiate(_audioSourcePrefab);
+            var exemplar = Instantiate(_audioSourcePrefab, transform, true);
             exemplar.Init(_audioClips);
             Return(exemplar);
         }
@@ -43,7 +43,7 @@ namespace Audio
         private void SetToFactorySettings(IAudioSource audioSource)
         {
             audioSource.SetEnable(false);
-            audioSource.Attach(transform);
+            audioSource.SetPosition(new Position());
         }
 
         private void SetToReleaseSettings(IAudioSource audioSource)

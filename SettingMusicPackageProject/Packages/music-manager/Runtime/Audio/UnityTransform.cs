@@ -2,10 +2,11 @@
 
 namespace Audio
 {
-    public class UnityTransform : ITransform
+    public sealed class UnityTransform : ITransform
     {
         private readonly Transform _transform;
-
+        internal bool IsNull => _transform == null;
+        
         public UnityTransform(Transform transform)
         {
             _transform = transform;

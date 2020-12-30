@@ -200,7 +200,9 @@ namespace Audio
 
         private void FollowObject()
         {
-            if (_followTransform != null)
+            var isTransformNull = ((UnityTransform) _followTransform).IsNull;
+            
+            if (!isTransformNull)
             {
                 var position = _followTransform.Position;
                 _transform.position = new Vector3(position.X, position.Y, position.Z);

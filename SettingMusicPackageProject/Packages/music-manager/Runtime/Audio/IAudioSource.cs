@@ -22,7 +22,7 @@
         void Play();
         void Stop();
         void SetPosition(IPosition position);
-        void Attach(ITransform transform);
+        void Attach(ITransform followTransform);
         void SetEnable(bool isEnable);
         void SetClip(string idClip);
     }

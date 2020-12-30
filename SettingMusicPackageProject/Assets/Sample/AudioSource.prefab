@@ -141,3 +141,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1722720165923581865}
+  _transform: {fileID: 4992913831615524063}

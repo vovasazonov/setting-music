@@ -118,7 +118,7 @@ namespace Audio
             {
                 CheckIsBeginPlay();
                 CheckStartFade();
-                FollowObject();
+                FollowTransform();
                 _audioFade.Update(Time.deltaTime);
             }
             else
@@ -198,7 +198,7 @@ namespace Audio
             CallStopped();
         }
 
-        private void FollowObject()
+        private void FollowTransform()
         {
             if (!_followTransform.Equals(null))
             {

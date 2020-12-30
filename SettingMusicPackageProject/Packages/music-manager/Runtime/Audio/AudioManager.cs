@@ -32,9 +32,10 @@ namespace Audio
             }
         }
 
-        public IAudioStopper Play(string audioId, string collectionId, PlaySetting playSetting = new PlaySetting())
+        public IAudioStopper Play(string audioId, string collectionId, IPlaySetting playSetting = null)
         {
             IAudioStopper audioStopper = null;
+            playSetting = playSetting ?? new PlaySetting();
             
             if (_audioCollections[collectionId].TryGetAudioPlayer(audioId, playSetting.AudioPriorityType, out var audioPlayer))
             {
@@ -47,7 +48,7 @@ namespace Audio
             return audioStopper;
         }
 
-        private void SetPlaySetting(PlaySetting playSetting, IAudioPlayer audioPlayer)
+        private void SetPlaySetting(IPlaySetting playSetting, IAudioPlayer audioPlayer)
         {
             if (playSetting.FollowTransform != null)
             {

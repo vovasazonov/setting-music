@@ -1,6 +1,6 @@
 ﻿namespace Audio
 {
-    internal readonly struct AudioStopper : IAudioStopper
+    internal class AudioStopper : IAudioStopper
     {
         private readonly IAudioPlayer _audioPlayer;
 

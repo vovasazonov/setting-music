@@ -20,11 +20,6 @@ namespace Audio
             }
         }
 
-        private bool Equals(ITransform other)
-        {
-            return Equals(_transform, (other as UnityTransform)?._transform);
-        }
-
         public override bool Equals(object obj)
         {
             bool equals;
@@ -35,7 +30,7 @@ namespace Audio
             }
             else
             {
-                equals = ReferenceEquals(this, obj) || obj is UnityTransform other && Equals(other);
+                equals = ReferenceEquals(this, obj);
             }
 
             return equals;

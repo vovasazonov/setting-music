@@ -24,21 +24,28 @@ namespace Audio
 
         internal bool TryGetAudioPlayer(string idAudio, AudioPriorityType audioPriorityType, out IAudioPlayer audioPlayer)
         {
-            bool isGetAudio = false;
-            audioPlayer = null;
             var audioPlayerController = _audioPlayerControllers[idAudio];
-            
-            if (audioPlayerController.IsAmountPlayingLessLimit())
+            var canGetAudio = CanGetAudio(audioPriorityType);
+
+            if (canGetAudio)
             {
-                if (_amountPriorityController.CheckSpaceAvailable(audioPriorityType))
-                {
-                    isGetAudio = true;
-                    audioPlayer = audioPlayerController.GetAudioPlayer();
-                    AddAudioPlayer(audioPlayer, audioPriorityType);
-                }
+                audioPlayer = audioPlayerController.GetAudioPlayer();
+                AddAudioPlayer(audioPlayer, audioPriorityType);
+            }
+            else
+            {
+                audioPlayer = null;
             }
 
-            return isGetAudio;
+            return canGetAudio;
+        }
+
+        private bool CanGetAudio(AudioPriorityType audioPriorityType)
+        {
+            var isAmountPlayingLessLimitPriority = _amountPriorityController.CheckSpaceAvailable(audioPriorityType);
+            var isAmountPlayingLessLimitGeneral = _amountPriorityController.CheckSpaceAvailable(audioPriorityType);
+            
+            return isAmountPlayingLessLimitPriority && isAmountPlayingLessLimitGeneral;
         }
 
         private void AddAudioPlayer(IAudioPlayer audioPlayer, AudioPriorityType audioPriorityType)
@@ -92,6 +99,7 @@ namespace Audio
         private void ActToAllAudioPlayers(Action<IAudioPlayer> action)
         {
             List<IAudioPlayer> audioPlayers = new List<IAudioPlayer>(_playingAudioPlayers);
+            
             foreach (var audioPlayer in audioPlayers)
             {
                 action.Invoke(audioPlayer);

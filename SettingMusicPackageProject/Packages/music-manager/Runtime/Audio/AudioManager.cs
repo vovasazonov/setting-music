@@ -36,7 +36,7 @@ namespace Audio
         
         public IAudioStopper Play(string audioId, string collectionId)
         {
-            return Play(audioId, collectionId, new PlaySetting());
+            return Play(audioId, collectionId, PlaySetting.Default());
         }
         
         public IAudioStopper Play(string audioId, string collectionId, IPlaySetting playSetting)

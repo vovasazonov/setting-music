@@ -11,7 +11,7 @@
         public IPosition Position { get; }
         public ITransform FollowTransform { get; }
 
-        public PlaySetting(AudioPriorityType audioPriorityType = AudioPriorityType.Important, float fadeSeconds = -1, IPosition position = null, ITransform followTransform = null)
+        public PlaySetting(AudioPriorityType audioPriorityType, float fadeSeconds = -1, IPosition position = null, ITransform followTransform = null)
         {
             AudioPriorityType = audioPriorityType;
 
@@ -32,6 +32,11 @@
                 CanFade = true;
                 FadeSeconds = fadeSeconds;
             }
+        }
+
+        public static PlaySetting Default()
+        {
+            return new PlaySetting(AudioPriorityType.Important);
         }
     }
 }

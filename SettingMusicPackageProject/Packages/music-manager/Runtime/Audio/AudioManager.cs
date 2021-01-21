@@ -20,7 +20,8 @@ namespace Audio
         {
             foreach (var audioPlayerDescription in audioDatabase.AudioPlayerDescriptionDic.Values)
             {
-                _audioPlayerControllers[audioPlayerDescription.Id] = new AudioPlayerController(audioPlayerDescription, audioSourcePool);
+                var audioPlayerController = new AudioPlayerController(audioPlayerDescription, audioSourcePool);
+                _audioPlayerControllers.Add(audioPlayerDescription.Id, audioPlayerController);
             }
         }
 
@@ -28,7 +29,8 @@ namespace Audio
         {
             foreach (var audioCollectionDescription in audioDatabase.AudioCollectionDescriptionDic.Values)
             {
-                _audioCollections[audioCollectionDescription.Id] = new AudioCollection(audioCollectionDescription, _audioPlayerControllers);
+                var audioCollection = new AudioCollection(audioCollectionDescription, _audioPlayerControllers);
+                _audioCollections.Add(audioCollectionDescription.Id, audioCollection);
             }
         }
 

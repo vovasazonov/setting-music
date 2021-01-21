@@ -1,20 +1,37 @@
 ﻿namespace Audio
 {
-    public readonly struct PlaySetting : IPlaySetting
+    public sealed class PlaySetting : IPlaySetting
     {
-        private readonly AudioPriorityType? _audioPriorityType;
+        public bool CanFade { get; }
+        public bool HasPosition { get; }
+        public bool CanFollowTransform { get; }
 
-        public AudioPriorityType AudioPriorityType => _audioPriorityType ?? AudioPriorityType.Important;
+        public AudioPriorityType AudioPriorityType { get; }
+        public float FadeSeconds { get; }
         public IPosition Position { get; }
-        public float? FadeSeconds { get; }
         public ITransform FollowTransform { get; }
 
-        public PlaySetting(AudioPriorityType audioPriorityType = AudioPriorityType.Important, IPosition position = null, float? fadeSeconds = null, ITransform followTransform = null)
+        public PlaySetting(AudioPriorityType audioPriorityType = AudioPriorityType.Important, float fadeSeconds = -1, IPosition position = null, ITransform followTransform = null)
         {
-            _audioPriorityType = audioPriorityType;
-            Position = position;
-            FadeSeconds = fadeSeconds;
-            FollowTransform = followTransform;
+            AudioPriorityType = audioPriorityType;
+
+            if (position != null)
+            {
+                HasPosition = true;
+                Position = position;
+            }
+
+            if (followTransform != null)
+            {
+                CanFollowTransform = true;
+                FollowTransform = followTransform;
+            }
+
+            if (fadeSeconds >= 0)
+            {
+                CanFade = true;
+                FadeSeconds = fadeSeconds;
+            }
         }
     }
 }

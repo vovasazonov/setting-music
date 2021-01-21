@@ -33,18 +33,27 @@ namespace Audio
                 _audioCollections.Add(audioCollectionDescription.Id, audioCollection);
             }
         }
-
-        public IAudioStopper Play(string audioId, string collectionId, IPlaySetting playSetting = null)
+        
+        public IAudioStopper Play(string audioId, string collectionId)
         {
-            IAudioStopper audioStopper = null;
-            playSetting = playSetting ?? new PlaySetting();
+            return Play(audioId, collectionId, new PlaySetting());
+        }
+        
+        public IAudioStopper Play(string audioId, string collectionId, IPlaySetting playSetting)
+        {
+            IAudioStopper audioStopper;
+            var audioCollection = _audioCollections[collectionId];
             
-            if (_audioCollections[collectionId].TryGetAudioPlayer(audioId, playSetting.AudioPriorityType, out var audioPlayer))
+            if (audioCollection.TryGetAudioPlayer(audioId, playSetting.AudioPriorityType, out var audioPlayer))
             {
                 SetPlaySetting(playSetting, audioPlayer);
 
                 audioPlayer.Play();
                 audioStopper = new AudioStopper(audioPlayer);
+            }
+            else
+            {
+                audioStopper = null;
             }
 
             return audioStopper;
@@ -52,19 +61,19 @@ namespace Audio
 
         private void SetPlaySetting(IPlaySetting playSetting, IAudioPlayer audioPlayer)
         {
-            if (playSetting.FollowTransform != null)
+            if (playSetting.CanFollowTransform)
             {
                 audioPlayer.Attach(playSetting.FollowTransform);
             }
 
-            if (playSetting.Position != null)
+            if (playSetting.HasPosition)
             {
                 audioPlayer.SetPosition(playSetting.Position);
             }
 
-            if (playSetting.FadeSeconds != null)
+            if (playSetting.CanFade)
             {
-                audioPlayer.FadeSeconds = (float) playSetting.FadeSeconds;
+                audioPlayer.FadeSeconds = playSetting.FadeSeconds;
             }
         }
     }

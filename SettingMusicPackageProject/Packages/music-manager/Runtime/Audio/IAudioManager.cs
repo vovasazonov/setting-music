@@ -6,6 +6,7 @@ namespace Audio
     {
         IReadOnlyDictionary<string, IAudioCollection> AudioCollections { get; }
 
+        IAudioStopper Play(string audioId, string collectionId);
         IAudioStopper Play(string audioId, string collectionId, IPlaySetting playSetting);
     }
 }

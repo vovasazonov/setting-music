@@ -11,27 +11,40 @@ namespace Audio
 
         public AmountPriorityController(IReadOnlyDictionary<AudioPriorityType, int> priorityByLimitPlay)
         {
+            InitializeToDefault();
+            UpdateLimitPlay(priorityByLimitPlay);
+        }
+
+        private void InitializeToDefault()
+        {
             foreach (AudioPriorityType priority in Enum.GetValues(typeof(AudioPriorityType)))
             {
-                _priorityByAmountPlaying[priority] = 0;
-                _priorityByLimitPlay[priority] = 0;
+                _priorityByAmountPlaying.Add(priority, 0);
+                _priorityByLimitPlay.Add(priority, 0);
             }
+        }
 
+        private void UpdateLimitPlay(IReadOnlyDictionary<AudioPriorityType, int> priorityByLimitPlay)
+        {
             foreach (var priority in priorityByLimitPlay.Keys)
             {
-                _priorityByLimitPlay[priority] = priorityByLimitPlay[priority];
+                var limitPlay = priorityByLimitPlay[priority];
+                _priorityByLimitPlay[priority] = limitPlay;
             }
         }
 
         public bool CheckSpaceAvailable(AudioPriorityType audioPriorityType)
         {
-            return _priorityByLimitPlay[audioPriorityType] > _priorityByAmountPlaying[audioPriorityType];
+            var limitPlay = _priorityByLimitPlay[audioPriorityType];
+            var amountPlaying = _priorityByAmountPlaying[audioPriorityType];
+
+            return limitPlay > amountPlaying;
         }
 
         public void AddAudioPlayer(AudioPriorityType audioPriorityType, IAudioPlayer audioPlayer)
         {
             _priorityByAmountPlaying[audioPriorityType] += 1;
-            _audioPlayingByAudioPriority[audioPlayer] = audioPriorityType;
+            _audioPlayingByAudioPriority.Add(audioPlayer, audioPriorityType);
         }
 
         public void RemoveAudioPlayer(IAudioPlayer audioPlayer)

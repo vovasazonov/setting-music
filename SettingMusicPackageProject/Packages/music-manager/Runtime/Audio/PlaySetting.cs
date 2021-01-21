@@ -11,7 +11,7 @@
         public IPosition Position { get; }
         public ITransform FollowTransform { get; }
 
-        public PlaySetting(AudioPriorityType audioPriorityType = AudioPriorityType.Important, float fadeSeconds = -1, IPosition position = null, ITransform followTransform = null)
+        public PlaySetting(AudioPriorityType audioPriorityType, float fadeSeconds, IPosition position, ITransform followTransform)
         {
             AudioPriorityType = audioPriorityType;
 
@@ -36,7 +36,12 @@
 
         public static PlaySetting Default()
         {
-            return new PlaySetting(AudioPriorityType.Important);
+            return new PlaySetting(AudioPriorityType.Important, -1, null, null);
+        }
+
+        public static PlaySetting Custom(AudioPriorityType audioPriorityType = AudioPriorityType.Important, float fadeSeconds = -1, IPosition position = null, ITransform followTransform = null)
+        {
+            return new PlaySetting(audioPriorityType, fadeSeconds, position, followTransform);
         }
     }
 }

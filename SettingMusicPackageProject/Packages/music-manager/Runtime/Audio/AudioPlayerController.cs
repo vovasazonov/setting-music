@@ -50,7 +50,7 @@ namespace Audio
         {
             var audioSource = _audioSourcePool.Take();
             var audioPlayer = new AudioPlayer(_audioPlayerDescription, audioSource);
-            _toReturnAudioSources[audioPlayer] = audioSource;
+            _toReturnAudioSources.Add(audioPlayer, audioSource);
             return audioPlayer;
         }
         

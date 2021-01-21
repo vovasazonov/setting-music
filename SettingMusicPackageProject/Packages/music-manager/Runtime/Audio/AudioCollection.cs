@@ -26,13 +26,14 @@ namespace Audio
         {
             bool isGetAudio = false;
             audioPlayer = null;
-
-            if (_audioPlayerControllers[idAudio].IsAmountPlayingLessLimit())
+            var audioPlayerController = _audioPlayerControllers[idAudio];
+            
+            if (audioPlayerController.IsAmountPlayingLessLimit())
             {
                 if (_amountPriorityController.CheckSpaceAvailable(audioPriorityType))
                 {
                     isGetAudio = true;
-                    audioPlayer = _audioPlayerControllers[idAudio].GetAudioPlayer();
+                    audioPlayer = audioPlayerController.GetAudioPlayer();
                     AddAudioPlayer(audioPlayer, audioPriorityType);
                 }
             }
